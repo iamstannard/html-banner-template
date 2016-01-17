@@ -88,18 +88,18 @@ function exitClickHandler() {
 
 function addVideoTracking() {
     console.log("addVideoTracking");
-    
+
     var srcNode;
 
-//    srcNode = document.createElement('source');
-//    srcNode.setAttribute('type', 'video/webm');
-//    srcNode.setAttribute('src', Enabler.getUrl('video.webm'));
-//    videoPlayer.appendChild(srcNode);
-//
-//    srcNode = document.createElement('source');
-//    srcNode.setAttribute('type', 'video/ogg');
-//    srcNode.setAttribute('src', Enabler.getUrl('video.ogg'));
-//    videoPlayer.appendChild(srcNode);
+    //    srcNode = document.createElement('source');
+    //    srcNode.setAttribute('type', 'video/webm');
+    //    srcNode.setAttribute('src', Enabler.getUrl('video.webm'));
+    //    videoPlayer.appendChild(srcNode);
+    //
+    //    srcNode = document.createElement('source');
+    //    srcNode.setAttribute('type', 'video/ogg');
+    //    srcNode.setAttribute('src', Enabler.getUrl('video.ogg'));
+    //    videoPlayer.appendChild(srcNode);
 
     srcNode = document.createElement('source');
     srcNode.setAttribute('type', 'video/mp4');
@@ -158,6 +158,8 @@ function videoEndHandler() {
     muteBtn.style.visibility = 'visible';
     unmuteBtn.style.visibility = 'hidden';
 
+    showControls();
+
     if (autoPlayingMuted) {
         removeClickForSound();
         autoPlayingMuted = false;
@@ -205,7 +207,13 @@ unmuteBtn.addEventListener('click', muteUnmuteHandler, false);
 function pausePlayHandler() {
     if (videoPlayer.paused) {
         // If paused, then play
+        if (videoPlayer.muted) {
+            videoPlayer.muted = false;
+            muteBtn.style.visibility = 'visible';
+            unmuteBtn.style.visibility = 'hidden';
+        }
         videoPlayer.play();
+
         // Show pause button and hide play button
         pauseBtn.style.visibility = 'visible';
         playBtn.style.visibility = 'hidden';
@@ -219,7 +227,7 @@ function pausePlayHandler() {
 }
 
 function muteUnmuteHandler() {
-    
+
     if (videoPlayer.muted) {
         if (autoPlayingMuted) {
             removeClickForSound();
