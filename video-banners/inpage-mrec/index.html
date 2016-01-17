@@ -2,25 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta data-template-name="Template_H5T_inpage-300x250-video">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>DCS 300x250 Video Template</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="ad.size" content="width=300,height=250" />
+
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- DoubleClick Enabler -->
     <script type="text/javascript" src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
+
 </head>
 
 <body>
     <div id="main-container">
-        <div id="bg"></div>
+        <img id="bg" src="images/bg.png">
         <div id="exit"></div>
         <div class="feature" id="feature">
-            <div id="video-container-0">
-                <video id="video-0" autoplay muted>
-                    <!-- Src will be added via JS using Enabler.getUrl calls -->
+            <div id="video-container">
+                <video id="video-player" autoplay muted>
+                    <!-- Src is added via JS using Enabler.getUrl calls -->
+                    <!--
+                    <source type="video/webm" src="video.webm" />
+                    <source type="video/ogg" src="video.ogg" />
+                    <source type="video/mp4" src="video.mp4" />
+                    -->
                 </video>
+                <div id="video-controls">
+                    <div id="play-btn" class="video-controls"></div>
+                    <div id="pause-btn" class="video-controls"></div>
+                    <div id="mute-btn" class="video-controls"></div>
+                    <div id="unmute-btn" class="video-controls"></div>
+                </div>
             </div>
+
         </div>
-        <div id="clickForSoundImg"></div>
-        <div id="clickForSound"></div>
+        <img id="click-for-sound" src="images/clickForSound.png">
         <div id="border"></div>
     </div>
     <!-- load tweenmax -->

@@ -56,7 +56,7 @@ initAd = function () {
     collapsedPanel.style.display = "none";
     isExpanded = true;
 
-    addVideoTracking0();
+    addVideoTracking();
     addListeners();
 
 }
@@ -165,8 +165,8 @@ expandStartHandler = function (e) {
 // by loading in video module, and assigning to videos
 // ---------------------------------------------------------------------------------
 
-function addVideoTracking0() {
-    console.log("addVideoTracking0");
+function addVideoTracking() {
+    console.log("addVideoTracking");
     // Add in the video files
     var srcNode;
 

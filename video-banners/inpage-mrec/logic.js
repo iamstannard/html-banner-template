@@ -1,12 +1,11 @@
 var creative = {};
 
 // ---------------------------------------------------------------------------------
-// Window onload handler
+// WINDOW ON LOAD HANDLE
 // ---------------------------------------------------------------------------------
 
 function preInit() {
     console.log("preInit");
-    setupDom();
     if (Enabler.isInitialized()) {
         init();
     } else {
@@ -18,30 +17,28 @@ function preInit() {
 }
 
 // ---------------------------------------------------------------------------------
-// Initializes the ad components
+// INIT AD COMPONENTS
 // ---------------------------------------------------------------------------------
 
-function setupDom() {
-    console.log("setupDom");
+var mainContainer = document.getElementById('main-container');
+var exit = document.getElementById('exit');
 
-    creative.dom = {};
-    creative.dom.mainContainer = document.getElementById('main-container');
-    creative.dom.exit = document.getElementById('exit');
+var videoContainer = document.getElementById('video-container');
+var videoPlayer = document.getElementById("video-player");
+var videoControls = document.getElementById('video-controls');
 
-    creative.dom.video0 = {};
-    creative.dom.video0.vidContainer = document.getElementById('video-container-0');
-    creative.dom.video0.vid = document.getElementById('video-0');
-}
+var bg = document.getElementById("bg");
+var clickForSound = document.getElementById("click-for-sound");
 
 // ---------------------------------------------------------------------------------
-// Ad initialisation
+// INIT AD
 // ---------------------------------------------------------------------------------
 
 function init() {
     console.log("init");
 
-    addVideoTracking0();
     addListeners();
+    addVideoTracking();
 
     // Polite loading
     if (Enabler.isPageLoaded()) {
@@ -52,12 +49,12 @@ function init() {
 }
 
 // ---------------------------------------------------------------------------------
-// Adds appropriate listeners at initialization time
+// LISTENERS
 // ---------------------------------------------------------------------------------
 
 function addListeners() {
     console.log("addListeners");
-    creative.dom.exit.addEventListener('click', exitClickHandler);
+    exit.addEventListener('click', exitClickHandler);
 }
 
 // ---------------------------------------------------------------------------------
@@ -65,7 +62,7 @@ function addListeners() {
 // ---------------------------------------------------------------------------------
 function show() {
     console.log("show");
-    creative.dom.mainContainer.style.display = "block";
+    mainContainer.style.display = "block";
 }
 
 // ---------------------------------------------------------------------------------
@@ -75,37 +72,43 @@ function show() {
 function exitClickHandler() {
     console.log("exitClickHandler");
     // send video to end frame
-    if (creative.dom.video0.vid.currentTime < creative.dom.video0.vid.duration) {
-        creative.dom.video0.vid.currentTime = creative.dom.video0.vid.duration;
+    if (videoPlayer.currentTime < videoPlayer.duration) {
+        videoPlayer.currentTime = videoPlayer.duration;
     }
-    // removeClickForSound();
-    Enabler.exit('BackgroundExit');
+    if (autoPlayingMuted) {
+        removeClickForSound();
+        autoPlayingMuted = false;
+    }
+    Enabler.exit('Exit');
 }
 
 // ---------------------------------------------------------------------------------
-// Add video metrics to the HTML5 video elements
-// by loading in video module, and assigning to videos
+// ADD VIDEO SRC AND METRICS
 // ---------------------------------------------------------------------------------
 
-function addVideoTracking0() {
-    console.log("addVideoTracking0");
-    // Add in the video files.
+function addVideoTracking() {
+    console.log("addVideoTracking");
+    
+    var srcNode;
 
-    //    var srcNode;
-    //
-    //    srcNode = document.createElement('source');
-    //    srcNode.setAttribute('type', 'video/mp4');
-    //    srcNode.setAttribute('src', Enabler.getUrl('video.mp4'));
-    //    creative.dom.video0.vid.appendChild(srcNode);
+//    srcNode = document.createElement('source');
+//    srcNode.setAttribute('type', 'video/webm');
+//    srcNode.setAttribute('src', Enabler.getUrl('video.webm'));
+//    videoPlayer.appendChild(srcNode);
+//
+//    srcNode = document.createElement('source');
+//    srcNode.setAttribute('type', 'video/ogg');
+//    srcNode.setAttribute('src', Enabler.getUrl('video.ogg'));
+//    videoPlayer.appendChild(srcNode);
 
-    creative.dom.video0.vid.muted = true;
-    creative.dom.video0.vid.type = 'video/mp4';
-    creative.dom.video0.vid.src = Enabler.getUrl('video.mp4');
-    creative.dom.video0.vid.play();
+    srcNode = document.createElement('source');
+    srcNode.setAttribute('type', 'video/mp4');
+    srcNode.setAttribute('src', Enabler.getUrl('video.mp4'));
+    videoPlayer.appendChild(srcNode);
 
-    //    Enabler.loadModule(studio.module.ModuleId.VIDEO, function () {
-    //        studio.video.Reporter.attach('video 0', creative.dom.video0.vid);
-    //    }.bind(this));
+    Enabler.loadModule(studio.module.ModuleId.VIDEO, function () {
+        studio.video.Reporter.attach('Video', videoPlayer);
+    }.bind(this));
 
 }
 
@@ -113,54 +116,151 @@ function addVideoTracking0() {
 // CUSTOM
 // ---------------------------------------------------------------------------------
 
-var video = document.getElementById("video-0");
-var bg = document.getElementById("bg");
-var clickForSound = document.getElementById("clickForSound");
-var clickForSoundImg = document.getElementById("clickForSoundImg");
+videoContainer.addEventListener("mouseover", showControls, false);
+videoContainer.addEventListener("mouseout", hideControls, false);
+videoPlayer.addEventListener("ended", videoEndHandler, false);
+clickForSound.addEventListener("click", restartWithSound, false);
 
-video.addEventListener("mouseover", showControls);
-video.addEventListener("mouseout", hideControls);
-video.addEventListener("ended", videoEndHandler);
-clickForSound.addEventListener("click", restartWithSound);
+var autoPlayingMuted = true;
 
 function restartWithSound() {
     console.log("restartWithSound");
     Enabler.counter("Restart With Sound", true);
-    creative.dom.video0.vid.currentTime = 0;
+    videoPlayer.currentTime = 0;
+    videoPlayer.play();
     removeClickForSound();
 }
 
 function showControls() {
-    video.setAttribute("controls", "controls");
-}
-
-function hideControls() {
-    video.removeAttribute("controls");
-}
-
-function videoEndHandler() {
-    console.log("videoEndHandler");
-    Enabler.counter("Video Ended", true);
-    creative.dom.video0.vid.pause();
-    removeClickForSound();
-}
-
-function removeClickForSound() {
-    console.log("removeClickForSound");
-    video.muted = false;
-    TweenMax.set(clickForSound, {
-        autoAlpha: 0
-    });
-    TweenMax.to(clickForSoundImg, 0.5, {
-        y: -50,
+    //console.log("showControls");
+    TweenMax.to(videoControls, 0.5, {
+        autoAlpha: 1,
         ease: Cubic.easeOut
     });
 }
 
+function hideControls() {
+    //console.log("hideControls");
+    TweenMax.to(videoControls, 0.5, {
+        autoAlpha: 0,
+        ease: Cubic.easeOut
+    });
+}
 
+function videoEndHandler() {
+    console.log("videoEndHandler");
+
+    videoPlayer.pause();
+    videoPlayer.muted = false;
+
+    pauseBtn.style.visibility = 'hidden';
+    playBtn.style.visibility = 'visible';
+    muteBtn.style.visibility = 'visible';
+    unmuteBtn.style.visibility = 'hidden';
+
+    if (autoPlayingMuted) {
+        removeClickForSound();
+        autoPlayingMuted = false;
+    }
+}
+
+function removeClickForSound() {
+    console.log("removeClickForSound");
+
+    TweenMax.to(clickForSound, 0.5, {
+        autoAlpha: 0,
+        ease: Cubic.easeIn
+    });
+
+
+    muteBtn.style.visibility = 'visible';
+    unmuteBtn.style.visibility = 'hidden';
+
+
+    videoPlayer.muted = false;
+
+}
 
 // ---------------------------------------------------------------------------------
-// Main onload handler
+// VIDEO CONTROLS
+// ---------------------------------------------------------------------------------
+
+hideControls();
+
+var playBtn = document.getElementById('play-btn');
+var pauseBtn = document.getElementById('pause-btn');
+var muteBtn = document.getElementById('mute-btn');
+var unmuteBtn = document.getElementById('unmute-btn');
+
+pauseBtn.style.visibility = 'visible';
+playBtn.style.visibility = 'hidden';
+muteBtn.style.visibility = 'hidden';
+unmuteBtn.style.visibility = 'visible';
+
+playBtn.addEventListener('click', pausePlayHandler, false);
+pauseBtn.addEventListener('click', pausePlayHandler, false);
+muteBtn.addEventListener('click', muteUnmuteHandler, false);
+unmuteBtn.addEventListener('click', muteUnmuteHandler, false);
+
+function pausePlayHandler() {
+    if (videoPlayer.paused) {
+        // If paused, then play
+        videoPlayer.play();
+        // Show pause button and hide play button
+        pauseBtn.style.visibility = 'visible';
+        playBtn.style.visibility = 'hidden';
+    } else {
+        // If playing, then pause
+        videoPlayer.pause();
+        // Show play button and hide pause button
+        pauseBtn.style.visibility = 'hidden';
+        playBtn.style.visibility = 'visible';
+    }
+}
+
+function muteUnmuteHandler() {
+    
+    if (videoPlayer.muted) {
+        if (autoPlayingMuted) {
+            removeClickForSound();
+            autoPlayMuted = false;
+        }
+
+        // If muted, then turn it on
+        videoPlayer.muted = false;
+        // Show mute button and hide unmute button
+        muteBtn.style.visibility = 'visible';
+        unmuteBtn.style.visibility = 'hidden';
+    } else {
+        // If unmuted, then turn it off
+        videoPlayer.muted = true;
+        // Show unmute button and hide mute button
+        muteBtn.style.visibility = 'hidden';
+        unmuteBtn.style.visibility = 'visible';
+    }
+}
+
+//document.getElementById("mp4_src").src = "movie.mp4";
+//document.getElementById("ogg_src").src = "movie.ogg";
+//document.getElementById("myVideo").load();
+
+//audio|video.addEventListener("loadstart", myScript);
+//audio|video.addEventListener("canplay", myScript);
+//audio|video.addEventListener("canplaythrough", myScript);
+//audio|video.addEventListener("play", myScript);
+//audio|video.addEventListener("pause", myScript);
+//audio|video.addEventListener("ended", myScript);
+
+//audio|video.duration
+//audio|video.paused
+//audio|video.ended
+//audio|video.muted=true|false
+
+//audio|video.play()
+//audio|video.pause()
+
+// ---------------------------------------------------------------------------------
+// MAIN ON LOAD HANDLER
 // ---------------------------------------------------------------------------------
 
 window.addEventListener('load', preInit);
