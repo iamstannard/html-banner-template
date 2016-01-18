@@ -1,5 +1,3 @@
-var creative = {};
-
 // ---------------------------------------------------------------------------------
 // WINDOW ON LOAD HANDLE
 // ---------------------------------------------------------------------------------
@@ -71,14 +69,28 @@ function show() {
 
 function exitClickHandler() {
     console.log("exitClickHandler");
+
     // send video to end frame
-    if (videoPlayer.currentTime < videoPlayer.duration) {
-        videoPlayer.currentTime = videoPlayer.duration;
-    }
+    //    if (videoPlayer.currentTime < videoPlayer.duration) {
+    //        videoPlayer.currentTime = videoPlayer.duration;
+    //    }
+
+    // videoPlayer.currentTime = 0;
+    videoPlayer.pause();
+    videoPlayer.muted = false;
+
+    pauseBtn.style.visibility = 'hidden';
+    playBtn.style.visibility = 'visible';
+    muteBtn.style.visibility = 'visible';
+    unmuteBtn.style.visibility = 'hidden';
+
+    //showControls();
+
     if (autoPlayingMuted) {
         removeClickForSound();
         autoPlayingMuted = false;
     }
+
     Enabler.exit('Exit');
 }
 
@@ -116,8 +128,9 @@ function addVideoTracking() {
 // CUSTOM
 // ---------------------------------------------------------------------------------
 
-videoContainer.addEventListener("mouseover", showControls, false);
-videoContainer.addEventListener("mouseout", hideControls, false);
+//videoContainer.addEventListener("mouseover", showControls, false);
+//videoContainer.addEventListener("mouseout", hideControls, false);
+
 videoPlayer.addEventListener("ended", videoEndHandler, false);
 clickForSound.addEventListener("click", restartWithSound, false);
 
@@ -158,7 +171,7 @@ function videoEndHandler() {
     muteBtn.style.visibility = 'visible';
     unmuteBtn.style.visibility = 'hidden';
 
-    showControls();
+    //showControls();
 
     if (autoPlayingMuted) {
         removeClickForSound();
@@ -187,7 +200,7 @@ function removeClickForSound() {
 // VIDEO CONTROLS
 // ---------------------------------------------------------------------------------
 
-hideControls();
+//hideControls();
 
 var playBtn = document.getElementById('play-btn');
 var pauseBtn = document.getElementById('pause-btn');
@@ -211,6 +224,11 @@ function pausePlayHandler() {
             videoPlayer.muted = false;
             muteBtn.style.visibility = 'visible';
             unmuteBtn.style.visibility = 'hidden';
+
+        }
+        if (autoPlayingMuted) {
+            removeClickForSound();
+            autoPlayingMuted = false;
         }
         videoPlayer.play();
 
