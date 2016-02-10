@@ -164,6 +164,7 @@ function videoEndHandler() {
     console.log("videoEndHandler");
 
     videoPlayer.pause();
+    
     videoPlayer.muted = false;
 
     pauseBtn.style.visibility = 'hidden';
