@@ -21,6 +21,7 @@ video {
     width: 300px;
     height: 250px;
     background: #000;
+    /*display: none;*/
 }
 
 #border {
@@ -58,28 +59,33 @@ video {
 }
 
 #bg {
-    background-color: aquamarine;
+    background-color: #000;
 }
 
 #click-for-sound {
-    top: 0px;
-    width: 100%;
-    background-color: bisque;
     cursor: pointer;
+    visibility: hidden;
+}
+
+#video-controls {
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .video-controls {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     bottom: 5px;
     cursor: pointer;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
 }
 
 #play-btn,
-#pause-btn {
+#pause-btn,
+#replay-btn {
     left: 5px;
 }
 
@@ -94,6 +100,10 @@ video {
 
 #pause-btn {
     background-image: url(images/pause.svg);
+}
+
+#replay-btn {
+    background-image: url(images/replay.svg);
 }
 
 #mute-btn {
