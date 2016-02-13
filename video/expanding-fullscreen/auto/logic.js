@@ -70,6 +70,9 @@
             isExpanded = false;
             // setTimeout(startAnim, 1000);
         }
+
+        startAutoTimer();
+
     }
 
     // ---------------------------------------------------------------------------------
@@ -184,7 +187,7 @@
 
     // SETUP AUTO COLLAPSE
 
-    var autoCollapse;
+    var autoTimer;
 
     autoClose = function () {
         console.log("autoClose");
@@ -198,15 +201,27 @@
         Enabler.requestFullscreenCollapse();
 
         switchToCollapsedPanel();
-        
-        clearTimeout(autoCollapse);
+
+        stopAutoTimer();
 
     }
 
-    if (autoCollapses) {
-        autoCollapse = setTimeout(autoClose, 10000);
+    function userInteract() {
+        console.log("userInteract");
+        stopAutoTimer();
     }
 
+    function startAutoTimer() {
+        console.log("startAutoTimer");
+        if (autoCollapses) {
+            autoTimer = setInterval(autoClose, 10000);
+        }
+    }
+
+    function stopAutoTimer() {
+        console.log("stopAutoTimer");
+        clearInterval(autoTimer);
+    }
 
 
 
@@ -227,6 +242,8 @@
         Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_EXPAND_FINISH, expandFinishHandler);
         Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_COLLAPSE_FINISH, collapseFinishHandler);
 
+        Enabler.addEventListener(studio.events.StudioEvent.INTERACTION, userInteract);
+
         expandButton.addEventListener('click', onExpandHandler, false);
         exitBtn.addEventListener('click', onExitHandler, false);
         closeBtn.addEventListener('click', onCloseHandler, false);
@@ -234,6 +251,8 @@
 
 
     }
+
+
 
 
     // ---------------------------------------------------------------------------------
