@@ -8,6 +8,8 @@
     // set vars
 
     var defaultAnimDist = 20;
+    var defaultAnimScale = 0.5;
+    
     var defaultAnimTime = 1;
     var defaultStaggerOffset = 1;
     var defaultFrameDelay = 2;
@@ -20,7 +22,7 @@
 
     var tl1 = new TimelineMax({
         repeat: 1,
-        repeatDelay: defaultFrameDelay * 2,
+        repeatDelay: defaultFrameDelay
     });
 
     //.to(element, defaultAnimTime, {});
@@ -28,6 +30,9 @@
     //.staggerTo(element, defaultAnimTime, {}, defaultStaggerOffset);
     //.staggerFrom(element, defaultAnimTime, {}, defaultStaggerOffset);
     //.set(element, {});
+    
+    //cycle:{x:[50,0,-20], rotation:[30,60,90]}
+    //cycle:{x:function() { return Math.random() * 200; }}
 
     // animate
 

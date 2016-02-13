@@ -69,12 +69,101 @@
         exit.addEventListener('click', exitClickHandler);
     }
 
+<<<<<<< HEAD
     // ---------------------------------------------------------------------------------
     // SHOWS THE AD
     // ---------------------------------------------------------------------------------
     function show() {
         console.log("show");
         // mainContainer.style.display = "block";
+=======
+    Enabler.exit('Exit');
+}
+
+// ---------------------------------------------------------------------------------
+// ADD VIDEO SRC AND METRICS
+// ---------------------------------------------------------------------------------
+
+function addVideoTracking() {
+    console.log("addVideoTracking");
+
+    var srcNode;
+
+    //    srcNode = document.createElement('source');
+    //    srcNode.setAttribute('type', 'video/webm');
+    //    srcNode.setAttribute('src', Enabler.getUrl('video.webm'));
+    //    videoPlayer.appendChild(srcNode);
+    //
+    //    srcNode = document.createElement('source');
+    //    srcNode.setAttribute('type', 'video/ogg');
+    //    srcNode.setAttribute('src', Enabler.getUrl('video.ogg'));
+    //    videoPlayer.appendChild(srcNode);
+
+    srcNode = document.createElement('source');
+    srcNode.setAttribute('type', 'video/mp4');
+    srcNode.setAttribute('src', Enabler.getUrl('video.mp4'));
+    videoPlayer.appendChild(srcNode);
+
+    Enabler.loadModule(studio.module.ModuleId.VIDEO, function () {
+        studio.video.Reporter.attach('Video', videoPlayer);
+    }.bind(this));
+
+}
+
+// ---------------------------------------------------------------------------------
+// CUSTOM
+// ---------------------------------------------------------------------------------
+
+//videoContainer.addEventListener("mouseover", showControls, false);
+//videoContainer.addEventListener("mouseout", hideControls, false);
+
+videoPlayer.addEventListener("ended", videoEndHandler, false);
+clickForSound.addEventListener("click", restartWithSound, false);
+
+var autoPlayingMuted = true;
+
+function restartWithSound() {
+    console.log("restartWithSound");
+    Enabler.counter("Restart With Sound", true);
+    videoPlayer.currentTime = 0;
+    videoPlayer.play();
+    removeClickForSound();
+}
+
+function showControls() {
+    //console.log("showControls");
+    TweenMax.to(videoControls, 0.5, {
+        autoAlpha: 1,
+        ease: Cubic.easeOut
+    });
+}
+
+function hideControls() {
+    //console.log("hideControls");
+    TweenMax.to(videoControls, 0.5, {
+        autoAlpha: 0,
+        ease: Cubic.easeOut
+    });
+}
+
+function videoEndHandler() {
+    console.log("videoEndHandler");
+
+    videoPlayer.pause();
+    
+    videoPlayer.muted = false;
+
+    pauseBtn.style.visibility = 'hidden';
+    playBtn.style.visibility = 'visible';
+    muteBtn.style.visibility = 'visible';
+    unmuteBtn.style.visibility = 'hidden';
+
+    //showControls();
+
+    if (autoPlayingMuted) {
+        removeClickForSound();
+        autoPlayingMuted = false;
+>>>>>>> origin/master
     }
 
     // ---------------------------------------------------------------------------------
