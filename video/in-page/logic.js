@@ -7,7 +7,6 @@
     var videoAutoPlays = true;
     var videoStartsMuted = true;
     var videoIsReplaying = false;
-    var autoPlayingMuted = true;
 
     // ---------------------------------------------------------------------------------
     // WINDOW ON LOAD HANDLE
@@ -142,18 +141,15 @@
 
             if (videoAutoPlays) {
                 playVideo();
-                showPauseBtn();
             } else {
-                showPlayBtn();
+                pauseVideo();
             }
 
             if (videoStartsMuted) {
                 muteVideo();
-                showUnmuteBtn();
                 showClickForSound();
             } else {
                 unmuteVideo();
-                showMuteBtn();
             }
 
             showControls();
