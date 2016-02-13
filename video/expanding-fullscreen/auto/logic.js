@@ -6,15 +6,13 @@
 
     var autoExpands = true;
     var autoCollapses = autoExpands;
+
     var isExpanded = false;
 
     var videoAutoPlays = true;
     var videoStartsMuted = true;
+
     var videoIsReplaying = false;
-
-    var autoPlayingMuted = true;
-
-    var autoPlayingInitVideo = true;
 
     // ---------------------------------------------------------------------------------
     // INIT AD COMPONENTS
@@ -63,6 +61,7 @@
             // auto expand
             Enabler.requestFullscreenExpand();
             switchToExpandedPanel();
+            startAutoTimer();
         } else {
             // click to expand
             expandedPanel.style.display = "none";
@@ -71,7 +70,7 @@
             // setTimeout(startAnim, 1000);
         }
 
-        startAutoTimer();
+
 
     }
 
@@ -101,8 +100,6 @@
         hideExpandedPanel();
         setTimeout(showCollapsedPanel, 100);
         isExpanded = false;
-        autoPlayingMuted = false;
-        autoPlayingInitVideo = false;
         videoIsReplaying = true;
         // setTimeout(startAnim, 1000);
     }
@@ -120,23 +117,24 @@
     }
     expandFinishHandler = function () {
         console.log("expandFinishHandler");
-        setNewVideoSource();
     }
 
     function setNewVideoSource() {
-        if (!autoPlayingInitVideo) {
-            console.log("setNewVideoSource");
-            unmuteVideo();
-            videoPlayer.type = 'video/mp4';
-            videoPlayer.src = Enabler.getUrl('video-full.mp4');
-            playVideo();
-            //            studio.video.Reporter.detach('Video');
-            //            studio.video.Reporter.attach('Video Full', videoPlayer);
-        }
+        console.log("setNewVideoSource");
+        unmuteVideo();
+        hideClickForSound();
+        videoPlayer.type = 'video/mp4';
+        videoPlayer.src = Enabler.getUrl('video-full.mp4');
+        playVideo();
+        //        studio.video.Reporter.detach('Video');
+        //        studio.video.Reporter.attach('Video Full', videoPlayer);
     }
 
     onExpandHandler = function (e) {
         console.log("onExpandHandler");
+
+        setNewVideoSource();
+
         Enabler.requestFullscreenExpand();
         switchToExpandedPanel();
 
@@ -144,44 +142,36 @@
 
     onExitHandler = function (e) {
         console.log("onExitHandler");
-
         Enabler.exit('Expanded Clickthrough');
-        Enabler.requestFullscreenCollapse();
 
         pauseVideo();
         hideReplayBtn();
         hideClickForSound();
 
+        Enabler.requestFullscreenCollapse();
         switchToCollapsedPanel();
-
-        autoPlayingInitVideo = false;
     }
 
     onCloseHandler = function (e) {
         console.log("onCloseHandler");
-
         Enabler.counter('Manual Close');
+        Enabler.reportManualClose();
 
         pauseVideo();
         hideReplayBtn();
         hideClickForSound();
 
         Enabler.requestFullscreenCollapse();
-        Enabler.reportManualClose();
-
         switchToCollapsedPanel();
-
     }
 
     collapseStartHandler = function (e) {
-        console.log("videoEndHandler");
-
+        console.log("collapseStartHandler");
         Enabler.finishFullscreenCollapse();
     }
 
     expandStartHandler = function (e) {
         console.log("expandStartHandler");
-
         Enabler.finishFullscreenExpand();
     }
 
@@ -191,19 +181,13 @@
 
     autoClose = function () {
         console.log("autoClose");
-
         Enabler.counter('Auto Close');
-
         pauseVideo();
         hideReplayBtn();
         hideClickForSound();
-
         Enabler.requestFullscreenCollapse();
-
         switchToCollapsedPanel();
-
         stopAutoTimer();
-
     }
 
     function userInteract() {
@@ -223,13 +207,6 @@
         clearInterval(autoTimer);
     }
 
-
-
-
-
-
-
-
     // ---------------------------------------------------------------------------------
     // LISTENERS
     // ---------------------------------------------------------------------------------
@@ -247,8 +224,6 @@
         expandButton.addEventListener('click', onExpandHandler, false);
         exitBtn.addEventListener('click', onExitHandler, false);
         closeBtn.addEventListener('click', onCloseHandler, false);
-
-
 
     }
 
@@ -269,27 +244,20 @@
 
     function addVideoTracking() {
         console.log("addVideoTracking");
-
         var srcNode;
-
         srcNode = document.createElement('source');
-
         // srcNode.setAttribute('type', 'video/ogg');
         // srcNode.setAttribute('src', Enabler.getUrl('video.ogg'));
         // videoPlayer.appendChild(srcNode);
-
         //        srcNode.setAttribute('type', 'video/webm');
         //        srcNode.setAttribute('src', Enabler.getUrl('video.webm'));
         //        videoPlayer.appendChild(srcNode);
-
         srcNode.setAttribute('type', 'video/mp4');
         srcNode.setAttribute('src', Enabler.getUrl('video.mp4'));
         videoPlayer.appendChild(srcNode);
-
         //        Enabler.loadModule(studio.module.ModuleId.VIDEO, function () {
         //            studio.video.Reporter.attach('video1', videoPlayer);
         //        }.bind(this));
-
     }
 
     // ---------------------------------------------------------------------------------
@@ -307,7 +275,6 @@
     var replayBtn = document.getElementById('replay-btn');
 
     videoPlayer.addEventListener("canplay", videoReadyToPlay, false);
-
     videoPlayer.addEventListener("ended", videoEndHandler, false);
     clickForSound.addEventListener("click", restartWithSound, false);
 
@@ -323,14 +290,11 @@
         console.log("videoReadyToPlay");
 
         if (!videoIsReplaying) {
-
             if (videoAutoPlays) {
                 playVideo();
-                showPauseBtn();
             } else {
-                showPlayBtn();
+                pauseVideo();
             }
-
             if (videoStartsMuted) {
                 muteVideo();
                 showUnmuteBtn();
@@ -339,10 +303,8 @@
                 unmuteVideo();
                 showMuteBtn();
             }
-
             showControls();
         }
-
     }
 
     function restartWithSound() {
@@ -356,17 +318,13 @@
 
     function videoEndHandler() {
         console.log("videoEndHandler");
-
         pauseVideo();
         unmuteVideo();
-
         hideClickForSound();
-
         hidePlayBtn();
         hidePauseBtn();
         hideMuteBtn();
         hideUnmuteBtn();
-
         showReplayBtn();
     }
 
@@ -483,7 +441,6 @@
     }
 
     function muteUnmuteHandler() {
-
         if (videoPlayer.muted) {
             hideClickForSound();
             unmuteVideo();
