@@ -5,35 +5,27 @@
     // ---------------------------------------------------------------------------------
 
     var autoExpands = true;
-    var autoCollapses = true;
+    var autoCollapses = autoExpands;
+    var isExpanded = false;
 
     var videoAutoPlays = true;
     var videoStartsMuted = true;
     var videoIsReplaying = false;
 
+    var autoPlayingMuted = true;
+
     var autoPlayingInitVideo = true;
 
-    var isExpanded;
-
     // ---------------------------------------------------------------------------------
-    // EXPANDING AND COLLAPSING MECHANICS
+    // INIT AD COMPONENTS
     // ---------------------------------------------------------------------------------
 
-
-
-    // ---------------------------------------------------------------------------------
-    // MAIN
-    // ---------------------------------------------------------------------------------
-
-    function exitClickHandler() {
-        console.log("exitClickHandler");
-
-        pauseVideo();
-        unmuteVideo();
-
-        Enabler.exit('Exit');
-    }
-
+    var container = document.getElementById('container');
+    var collapsedPanel = document.getElementById('collapsed');
+    var expandedPanel = document.getElementById('expanded');
+    var expandButton = document.getElementById('collapsed-click');
+    var exitBtn = document.getElementById('expanded-click');
+    var closeBtn = document.getElementById('close-btn');
 
     // ---------------------------------------------------------------------------------
     // WINDOW ON LOAD HANDLE
@@ -51,60 +43,206 @@
         }
     }
 
+    function init() {
+        console.log("init");
+
+        addListeners();
+        addVideoTracking();
+
+        if (Enabler.isPageLoaded()) {
+            show();
+        } else {
+            Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, show);
+        }
+    }
+
+    function show() {
+        console.log("show");
+
+        if (autoExpands) {
+            // auto expand
+            Enabler.requestFullscreenExpand();
+            switchToExpandedPanel();
+        } else {
+            // click to expand
+            expandedPanel.style.display = "none";
+            collapsedPanel.style.display = "block";
+            isExpanded = false;
+            // setTimeout(startAnim, 1000);
+        }
+    }
+
     // ---------------------------------------------------------------------------------
-    // CUSTOM
+    // EXPANDING AND COLLAPSING MECHANICS
     // ---------------------------------------------------------------------------------
 
-    videoPlayer.addEventListener("ended", videoEndHandler, false);
-    clickForSound.addEventListener("click", restartWithSound, false);
 
-    var autoPlayingMuted = true;
-
-    function restartWithSound() {
-        console.log("restartWithSound");
-        Enabler.counter("Restart With Sound", true);
-        videoPlayer.currentTime = 0;
-        videoPlayer.play();
-        removeClickForSound();
+    function showCollapsedPanel() {
+        collapsedPanel.style.display = "block";
     }
 
-    function showControls() {
-        //console.log("showControls");
-        TweenMax.to(videoControls, 0.5, {
-            autoAlpha: 1,
-            ease: Cubic.easeOut
-        });
+    function hideCollapsedPanel() {
+        collapsedPanel.style.display = "none";
     }
 
-    function hideControls() {
-        //console.log("hideControls");
-        TweenMax.to(videoControls, 0.5, {
-            autoAlpha: 0,
-            ease: Cubic.easeOut
-        });
+    function showExpandedPanel() {
+        expandedPanel.style.display = "block";
     }
 
-    function videoEndHandler() {
+    function hideExpandedPanel() {
+        expandedPanel.style.display = "none";
+    }
+
+    function switchToCollapsedPanel() {
+        console.log("switchToCollapsedPanel");
+        hideExpandedPanel();
+        setTimeout(showCollapsedPanel, 100);
+        isExpanded = false;
+        autoPlayingMuted = false;
+        autoPlayingInitVideo = false;
+        videoIsReplaying = true;
+        // setTimeout(startAnim, 1000);
+    }
+
+    function switchToExpandedPanel() {
+        console.log("switchToExpandedPanel");
+        hideCollapsedPanel();
+        setTimeout(showExpandedPanel, 100);
+        isExpanded = true;
+    }
+
+    collapseFinishHandler = function () {
+        console.log("collapseFinishHandler");
+
+    }
+    expandFinishHandler = function () {
+        console.log("expandFinishHandler");
+        setNewVideoSource();
+    }
+
+    function setNewVideoSource() {
+        if (!autoPlayingInitVideo) {
+            console.log("setNewVideoSource");
+            unmuteVideo();
+            videoPlayer.type = 'video/mp4';
+            videoPlayer.src = Enabler.getUrl('video-full.mp4');
+            playVideo();
+            //            studio.video.Reporter.detach('Video');
+            //            studio.video.Reporter.attach('Video Full', videoPlayer);
+        }
+    }
+
+    onExpandHandler = function (e) {
+        console.log("onExpandHandler");
+        Enabler.requestFullscreenExpand();
+        switchToExpandedPanel();
+
+    }
+
+    onExitHandler = function (e) {
+        console.log("onExitHandler");
+
+        Enabler.exit('Expanded Clickthrough');
+        Enabler.requestFullscreenCollapse();
+
+        pauseVideo();
+        hideReplayBtn();
+        hideClickForSound();
+
+        switchToCollapsedPanel();
+
+        autoPlayingInitVideo = false;
+    }
+
+    onCloseHandler = function (e) {
+        console.log("onCloseHandler");
+
+        Enabler.counter('Manual Close');
+
+        pauseVideo();
+        hideReplayBtn();
+        hideClickForSound();
+
+        Enabler.requestFullscreenCollapse();
+        Enabler.reportManualClose();
+
+        switchToCollapsedPanel();
+
+    }
+
+    collapseStartHandler = function (e) {
         console.log("videoEndHandler");
 
-        videoPlayer.pause();
+        Enabler.finishFullscreenCollapse();
+    }
 
-        videoPlayer.muted = false;
+    expandStartHandler = function (e) {
+        console.log("expandStartHandler");
 
-        pauseBtn.style.visibility = 'hidden';
-        playBtn.style.visibility = 'visible';
-        muteBtn.style.visibility = 'visible';
-        unmuteBtn.style.visibility = 'hidden';
+        Enabler.finishFullscreenExpand();
+    }
 
-        //showControls();
+    // SETUP AUTO COLLAPSE
 
-        if (autoPlayingMuted) {
-            removeClickForSound();
-            autoPlayingMuted = false;
-        }
+    var autoCollapse;
+
+    autoClose = function () {
+        console.log("autoClose");
+
+        Enabler.counter('Auto Close');
+
+        pauseVideo();
+        hideReplayBtn();
+        hideClickForSound();
+
+        Enabler.requestFullscreenCollapse();
+
+        switchToCollapsedPanel();
+        
+        clearTimeout(autoCollapse);
 
     }
 
+    if (autoCollapses) {
+        autoCollapse = setTimeout(autoClose, 10000);
+    }
+
+
+
+
+
+
+
+
+
+    // ---------------------------------------------------------------------------------
+    // LISTENERS
+    // ---------------------------------------------------------------------------------
+
+    function addListeners() {
+        console.log("addListeners");
+
+        Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_EXPAND_START, expandStartHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_COLLAPSE_START, collapseStartHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_EXPAND_FINISH, expandFinishHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_COLLAPSE_FINISH, collapseFinishHandler);
+
+        expandButton.addEventListener('click', onExpandHandler, false);
+        exitBtn.addEventListener('click', onExitHandler, false);
+        closeBtn.addEventListener('click', onCloseHandler, false);
+
+
+
+    }
+
+
+    // ---------------------------------------------------------------------------------
+    // MAIN
+    // ---------------------------------------------------------------------------------
+
+    function exitClickHandler() {
+        console.log("exitClickHandler");
+    }
 
     // ---------------------------------------------------------------------------------
     // ADD VIDEO SRC AND METRICS
@@ -121,17 +259,17 @@
         // srcNode.setAttribute('src', Enabler.getUrl('video.ogg'));
         // videoPlayer.appendChild(srcNode);
 
-        srcNode.setAttribute('type', 'video/webm');
-        srcNode.setAttribute('src', Enabler.getUrl('video.webm'));
-        videoPlayer.appendChild(srcNode);
+        //        srcNode.setAttribute('type', 'video/webm');
+        //        srcNode.setAttribute('src', Enabler.getUrl('video.webm'));
+        //        videoPlayer.appendChild(srcNode);
 
         srcNode.setAttribute('type', 'video/mp4');
         srcNode.setAttribute('src', Enabler.getUrl('video.mp4'));
         videoPlayer.appendChild(srcNode);
 
-        Enabler.loadModule(studio.module.ModuleId.VIDEO, function () {
-            studio.video.Reporter.attach('video1', videoPlayer);
-        }.bind(this));
+        //        Enabler.loadModule(studio.module.ModuleId.VIDEO, function () {
+        //            studio.video.Reporter.attach('video1', videoPlayer);
+        //        }.bind(this));
 
     }
 
@@ -139,9 +277,18 @@
     // VIDEO PLAYER
     // ---------------------------------------------------------------------------------
 
-
+    var videoContainer = document.getElementById('video-container');
+    var videoPlayer = document.getElementById("video-player");
+    var clickForSound = document.getElementById("click-for-sound");
+    var videoControls = document.getElementById('video-controls');
+    var playBtn = document.getElementById('play-btn');
+    var pauseBtn = document.getElementById('pause-btn');
+    var muteBtn = document.getElementById('mute-btn');
+    var unmuteBtn = document.getElementById('unmute-btn');
+    var replayBtn = document.getElementById('replay-btn');
 
     videoPlayer.addEventListener("canplay", videoReadyToPlay, false);
+
     videoPlayer.addEventListener("ended", videoEndHandler, false);
     clickForSound.addEventListener("click", restartWithSound, false);
 
@@ -157,14 +304,6 @@
         console.log("videoReadyToPlay");
 
         if (!videoIsReplaying) {
-
-            if (videoAutoPlays) {
-                playVideo();
-                showPauseBtn();
-            } else {
-                showPlayBtn();
-            }
-
 
             if (videoAutoPlays) {
                 playVideo();
@@ -190,6 +329,8 @@
     function restartWithSound() {
         console.log("restartWithSound");
         Enabler.counter("Restart Video With Sound");
+        videoIsReplaying = true;
+        videoPlayer.currentTime = 0;
         playVideo();
         hideClickForSound();
     }
@@ -340,25 +481,6 @@
         replayVideo();
     }
 
-    //document.getElementById("mp4_src").src = "movie.mp4";
-    //document.getElementById("ogg_src").src = "movie.ogg";
-    //document.getElementById("myVideo").load();
-
-    //audio|video.addEventListener("loadstart", myScript);
-    //audio|video.addEventListener("canplay", myScript);
-    //audio|video.addEventListener("canplaythrough", myScript);
-    //audio|video.addEventListener("play", myScript);
-    //audio|video.addEventListener("pause", myScript);
-    //audio|video.addEventListener("ended", myScript);
-
-    //audio|video.duration
-    //audio|video.paused
-    //audio|video.ended
-    //audio|video.muted=true|false
-
-    //audio|video.play()
-    //audio|video.pause()
-
     // ---------------------------------------------------------------------------------
     // MREC ANIM
     // ---------------------------------------------------------------------------------
@@ -370,238 +492,3 @@
     window.addEventListener('load', preInit);
 
 })();
-
-
-
-
-
-
-/*
-
-
-var creative = {};
-
-var ecid;
-var action;
-var collapsedPanel;
-var expandedPanel;
-var collapsedExit;
-var exitBtn;
-var closeBtn;
-var autoCol;
-var orientate;
-var isExpanded;
-
-var autoPlayingInitVideo = true;
-
-window.onload = function () {
-    if (Enabler.isInitialized()) {
-        enablerInitHandler();
-    } else {
-        Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
-    }
-};
-
-enablerInitHandler = function (e) {
-    console.log("enablerInitHandler");
-    if (Enabler.isVisible()) {
-        initAd();
-    } else {
-        Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, initAd);
-    }
-};
-
-// ---------------------------------------------------------------------------------
-// Initializes the ad components
-// ---------------------------------------------------------------------------------
-
-initAd = function () {
-    console.log("initAd");
-
-    creative.dom = {};
-    creative.dom.video0 = {};
-    creative.dom.video0.vidContainer = document.getElementById('video-container-0');
-    creative.dom.video0.vid = document.getElementById('video-0');
-
-    container = document.getElementById('container');
-    collapsedPanel = document.getElementById('collapsed');
-    expandedPanel = document.getElementById('expanded');
-    expandButton = document.getElementById('collapsed_clickthrough');
-    exitBtn = document.getElementById('exit_btn');
-    closeBtn = document.getElementById('close_btn');
-
-    addVideoTracking0();
-    addListeners();
-
-}
-
-addListeners = function () {
-    console.log("addListeners");
-
-    Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_EXPAND_START, expandStartHandler);
-    Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_COLLAPSE_START, collapseStartHandler);
-    Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_EXPAND_FINISH, expandFinishHandler);
-    Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_COLLAPSE_FINISH, collapseFinishHandler);
-
-    expandButton.addEventListener('click', onExpandHandler, false);
-    exitBtn.addEventListener('click', onExitHandler, false);
-    closeBtn.addEventListener('click', onCloseHandler, false);
-
-    // auto expand
-    Enabler.requestFullscreenExpand();
-    //    collapsedPanel.style.display = "none";
-    //    expandedPanel.style.display = "block";
-    //    isExpanded = true;
-    switchToExpandedPanel();
-
-    // click to expand
-    // expandedPanel.style.display = "none";
-    // collapsedPanel.style.display = "block";
-    // isExpanded = false;
-    // startAnim();
-
-}
-
-function showCollapsedPanel() {
-    collapsedPanel.style.display = "block";
-}
-
-function hideCollapsedPanel() {
-    collapsedPanel.style.display = "none";
-}
-
-function showExpandedPanel() {
-    expandedPanel.style.display = "block";
-}
-
-function hideExpandedPanel() {
-    expandedPanel.style.display = "none";
-}
-
-function switchToCollapsedPanel() {
-    hideExpandedPanel();
-    setTimeout(showCollapsedPanel, 100);
-    isExpanded = false;
-
-}
-
-function switchToExpandedPanel() {
-    hideCollapsedPanel();
-    setTimeout(showExpandedPanel, 100);
-    isExpanded = true;
-}
-
-
-collapseFinishHandler = function () {
-    console.log("collapseFinishHandler");
-
-}
-expandFinishHandler = function () {
-    console.log("expandFinishHandler");
-    // set new source video for video player
-
-    if (!autoPlayingInitVideo) {
-        creative.dom.video0.vid.muted = false;
-        creative.dom.video0.vid.type = 'video/mp4';
-        creative.dom.video0.vid.src = Enabler.getUrl('video-full.mp4');
-        creative.dom.video0.vid.play();
-        //        studio.video.Reporter.detach('Video');
-        //        studio.video.Reporter.attach('Video Full', creative.dom.video0.vid);
-    }
-}
-
-onExpandHandler = function (e) {
-    console.log("onExpandHandler");
-    Enabler.requestFullscreenExpand();
-    //    collapsedPanel.style.display = "none";
-    //    expandedPanel.style.display = "block";
-    //    isExpanded = true;
-    switchToExpandedPanel();
-
-}
-
-onExitHandler = function (e) {
-    console.log("onExitHandler");
-    Enabler.exit('Expanded Clickthrough');
-    Enabler.requestFullscreenCollapse();
-    //    expandedPanel.style.display = "none";
-    //    collapsedPanel.style.display = "block";
-    //    isExpanded = false;
-    switchToCollapsedPanel();
-    // send video to end frame
-    if (creative.dom.video0.vid.currentTime < creative.dom.video0.vid.duration) {
-        creative.dom.video0.vid.currentTime = creative.dom.video0.vid.duration;
-    }
-    creative.dom.video0.vid.pause();
-    removeClickForSound();
-}
-
-onCloseHandler = function (e) {
-    console.log("onCloseHandler");
-    Enabler.counter('Manual Close');
-    closeAd();
-    // send video to end frame
-    if (creative.dom.video0.vid.currentTime < creative.dom.video0.vid.duration) {
-        creative.dom.video0.vid.currentTime = creative.dom.video0.vid.duration;
-    }
-    creative.dom.video0.vid.pause();
-    removeClickForSound();
-
-}
-
-closeAd = function () {
-    console.log("closeAd");
-    Enabler.requestFullscreenCollapse();
-    Enabler.reportManualClose();
-    //    expandedPanel.style.display = "none";
-    //    collapsedPanel.style.display = "block";
-    //    isExpanded = false;
-    switchToCollapsedPanel();
-    autoPlayingInitVideo = false;
-    setTimeout(startAnim, 1000);
-}
-
-collapseStartHandler = function (e) {
-    console.log("videoEndHandler");
-    Enabler.finishFullscreenCollapse();
-    // send video to end frame
-    if (creative.dom.video0.vid.currentTime < creative.dom.video0.vid.duration) {
-        creative.dom.video0.vid.currentTime = creative.dom.video0.vid.duration;
-    }
-    removeClickForSound();
-}
-
-expandStartHandler = function (e) {
-    console.log("expandStartHandler");
-    Enabler.finishFullscreenExpand();
-}
-
-// ---------------------------------------------------------------------------------
-// Add video metrics to the HTML5 video elements
-// by loading in video module, and assigning to videos
-// ---------------------------------------------------------------------------------
-
-
-
-function videoEndHandler() {
-    console.log("videoEndHandler");
-    Enabler.counter("Video Ended", true);
-    creative.dom.video0.vid.pause();
-    removeClickForSound();
-
-    if (autoPlayingInitVideo) {
-        Enabler.requestFullscreenCollapse();
-        //        collapsedPanel.style.display = "block";
-        //        expandedPanel.style.display = "none";
-        //        isExpanded = false;
-        switchToCollapsedPanel();
-        autoPlayingInitVideo = false;
-        setTimeout(startAnim, 1000);
-    }
-
-}
-
-
-}
-
-*/

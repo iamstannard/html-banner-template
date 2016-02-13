@@ -62,7 +62,7 @@ video {
     width: 100%;
     height: 100%;
     background-color: #000;
-    opacity: 0.75;
+    opacity: 0.8;
 }
 
 #content {
@@ -128,10 +128,6 @@ video {
     height: 100%;
 }
 
-#bg {
-    background-color: #000;
-}
-
 #click-for-sound {
     cursor: pointer;
     visibility: hidden;
@@ -183,4 +179,5 @@ video {
 #unmute-btn {
     background-image: url(images/unmute.svg);
 }
+
 /*--------------------------------------------------------*/

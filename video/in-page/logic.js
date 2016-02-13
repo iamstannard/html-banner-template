@@ -1,11 +1,13 @@
 (function () {
 
     // ---------------------------------------------------------------------------------
-    // EXPANDING VARS
+    // CONTROL VARS
     // ---------------------------------------------------------------------------------
 
-    //var autoExpands = true;
-    //var autoCollapses = true;
+    var videoAutoPlays = true;
+    var videoStartsMuted = true;
+    var videoIsReplaying = false;
+    var autoPlayingMuted = true;
 
     // ---------------------------------------------------------------------------------
     // WINDOW ON LOAD HANDLE
@@ -29,18 +31,6 @@
 
     var mainContainer = document.getElementById('main-container');
     var exit = document.getElementById('exit');
-    var videoContainer = document.getElementById('video-container');
-    var videoPlayer = document.getElementById("video-player");
-
-    var bg = document.getElementById("bg");
-    var clickForSound = document.getElementById("click-for-sound");
-
-    var videoControls = document.getElementById('video-controls');
-    var playBtn = document.getElementById('play-btn');
-    var pauseBtn = document.getElementById('pause-btn');
-    var muteBtn = document.getElementById('mute-btn');
-    var unmuteBtn = document.getElementById('unmute-btn');
-    var replayBtn = document.getElementById('replay-btn');
 
     // ---------------------------------------------------------------------------------
     // INIT AD
@@ -52,7 +42,6 @@
         addListeners();
         addVideoTracking();
 
-        // Polite loading
         if (Enabler.isPageLoaded()) {
             show();
         } else {
@@ -124,22 +113,19 @@
     // VIDEO PLAYER
     // ---------------------------------------------------------------------------------
 
-    var videoAutoPlays = true;
-    var videoStartsMuted = true;
-    var videoIsReplaying = false;
-    var autoPlayingMuted = true;
+    var videoContainer = document.getElementById('video-container');
+    var videoPlayer = document.getElementById("video-player");
+    var clickForSound = document.getElementById("click-for-sound");
+    var videoControls = document.getElementById('video-controls');
+    var playBtn = document.getElementById('play-btn');
+    var pauseBtn = document.getElementById('pause-btn');
+    var muteBtn = document.getElementById('mute-btn');
+    var unmuteBtn = document.getElementById('unmute-btn');
+    var replayBtn = document.getElementById('replay-btn');
 
     videoPlayer.addEventListener("canplay", videoReadyToPlay, false);
     videoPlayer.addEventListener("ended", videoEndHandler, false);
     clickForSound.addEventListener("click", restartWithSound, false);
-
-    function restartWithSound() {
-        console.log("restartWithSound");
-        Enabler.counter("Restart With Sound", true);
-        videoPlayer.currentTime = 0;
-        videoPlayer.play();
-        removeClickForSound();
-    }
 
     function showControls() {
         console.log("showControls");
@@ -153,14 +139,6 @@
         console.log("videoReadyToPlay");
 
         if (!videoIsReplaying) {
-
-            if (videoAutoPlays) {
-                playVideo();
-                showPauseBtn();
-            } else {
-                showPlayBtn();
-            }
-
 
             if (videoAutoPlays) {
                 playVideo();
