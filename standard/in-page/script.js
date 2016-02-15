@@ -9,16 +9,20 @@
 
     var defaultAnimDist = 20;
     var defaultAnimScale = 0.5;
-    
+
     var defaultAnimTime = 1;
-    var defaultStaggerOffset = 1;
+    var defaultStaggerOffset = 0.25;
     var defaultFrameDelay = 2;
 
     // set defaults
     // TweenLite.defaultOverwrite = 'auto';
     TweenLite.defaultEase = Cubic.easeOut;
-
-    //var tl1 = new TimelineMax();
+    
+    // ease: Elastic.easeOut.config(1, 0.3);
+    // ease: Back.easeOut.config(1.7);
+    // ease: SteppedEase.config(12);
+    // ease: SlowMo.ease.config(0.5, 1, false);
+    // ease: RoughEase.ease.config({ template: Cubic.easeOut, strength: 1, points: 20, taper: "out", randomize: true, clamp: false});
 
     var tl1 = new TimelineMax({
         repeat: 1,
@@ -30,15 +34,15 @@
     //.staggerTo(element, defaultAnimTime, {}, defaultStaggerOffset);
     //.staggerFrom(element, defaultAnimTime, {}, defaultStaggerOffset);
     //.set(element, {});
-    
+
     //cycle:{x:[50,0,-20], rotation:[30,60,90]}
     //cycle:{x:function() { return Math.random() * 200; }}
 
     // animate
 
-    function nextFrame(nextFrameFunction, nextFrameDelay) {
-        setTimeout(nextFrameFunction, nextFrameDelay);
-    }
+    // function nextFrame(nextFrameFunction, nextFrameDelay) {
+    //     setTimeout(nextFrameFunction, nextFrameDelay);
+    // }
 
     // onComplete: nextFrame,
     // onCompleteParams: [frame2, 2000]
