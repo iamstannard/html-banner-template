@@ -8,6 +8,8 @@
 
     var autoExpanded = autoExpands;
     var autoCollapses = autoExpands;
+    
+    var hasExtendedVideo = true;
 
     var autoTimer;
     var autoCollapseDelay = 5000;
@@ -161,7 +163,7 @@
     function onExpandHandler(e) {
         //console.log("onExpandHandler");
 
-        if (autoExpands) {
+        if (autoExpands && hasExtendedVideo) {
             setNewVideoSource();
         }
 
