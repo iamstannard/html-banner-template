@@ -8,15 +8,17 @@
     // set vars
 
     var defaultAnimDist = 20;
-    var defaultAnimScale = 0.5;
-
+    var defaultAnimScale = 0.25;
     var defaultAnimTime = 1;
     var defaultStaggerOffset = 0.25;
-    var defaultFrameDelay = 2;
+    var defaultFrameDelay = 3;
 
     // set defaults
+    
     // TweenLite.defaultOverwrite = 'auto';
     TweenLite.defaultEase = Cubic.easeOut;
+    
+    // some eases
     
     // ease: Elastic.easeOut.config(1, 0.3);
     // ease: Back.easeOut.config(1.7);
@@ -28,6 +30,8 @@
         repeat: 1,
         repeatDelay: defaultFrameDelay
     });
+    
+    // some timeline options
 
     //.to(element, defaultAnimTime, {});
     //.from(element, defaultAnimTime, {});
@@ -38,7 +42,7 @@
     //cycle:{x:[50,0,-20], rotation:[30,60,90]}
     //cycle:{x:function() { return Math.random() * 200; }}
 
-    // animate
+    // animate functions
 
     // function nextFrame(nextFrameFunction, nextFrameDelay) {
     //     setTimeout(nextFrameFunction, nextFrameDelay);
@@ -159,3 +163,4 @@ function loadScript(url, callback) {
 }
 loadScript("libs/TweenMax.min.js", frame1);
 */
+
