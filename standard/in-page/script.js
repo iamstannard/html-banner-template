@@ -53,7 +53,7 @@
 
     function startAnim() {
 
-        console.log('startAnim');
+        //console.log('startAnim');
 
         tl1.from(placeholder, defaultAnimTime, {
                 autoAlpha: 0
@@ -67,7 +67,7 @@
     // init
 
     function addEventListeners() {
-        console.log('addEventListeners');
+        //console.log('addEventListeners');
     }
 
     function initBanner() {
