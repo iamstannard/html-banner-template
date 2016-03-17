@@ -14,12 +14,12 @@
     var defaultFrameDelay = 3;
 
     // set defaults
-    
+
     // TweenLite.defaultOverwrite = 'auto';
     TweenLite.defaultEase = Cubic.easeOut;
-    
+
     // some eases
-    
+
     // ease: Elastic.easeOut.config(1, 0.3);
     // ease: Back.easeOut.config(1.7);
     // ease: SteppedEase.config(12);
@@ -30,7 +30,7 @@
         repeat: 1,
         repeatDelay: defaultFrameDelay
     });
-    
+
     // some timeline options
 
     //.to(element, defaultAnimTime, {});
@@ -57,11 +57,11 @@
 
         tl1.from(placeholder, defaultAnimTime, {
                 autoAlpha: 0
-            }, 1)
+            }, 0.5)
             .from(cta, defaultAnimTime, {
                 autoAlpha: 0,
                 y: defaultAnimDist
-            }, '+=2');
+            }, '+=1');
     }
 
     // init
@@ -71,7 +71,10 @@
     }
 
     function initBanner() {
-        console.log('initBanner');
+        //console.log('initBanner');
+
+        bannerContainer.style.display = 'block';
+
         addEventListeners();
         startAnim();
     }
@@ -163,4 +166,3 @@ function loadScript(url, callback) {
 }
 loadScript("libs/TweenMax.min.js", frame1);
 */
-
