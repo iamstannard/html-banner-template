@@ -55,13 +55,18 @@
 
         //console.log('startAnim');
 
-        tl1.from(placeholder, defaultAnimTime, {
+        tl1
+
+            .from(placeholder, defaultAnimTime, {
                 autoAlpha: 0
             }, 0.5)
             .from(cta, defaultAnimTime, {
                 autoAlpha: 0,
                 y: defaultAnimDist
-            }, '+=1');
+            }, '+=1')
+
+        ;
+
     }
 
     // init
