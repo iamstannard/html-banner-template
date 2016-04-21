@@ -4,7 +4,7 @@
 
 <head>
 
-    <title>DCS 300x250 Template</title>
+    <title>DCS HTML5 Banner Template</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -44,7 +44,6 @@
 
         function enablerPoliteInit() {
             console.log('enablerPoliteInit');
-
             // Load in CSS 
             //console.log('loadCSS');
             var extCSS = document.createElement('link');
@@ -52,17 +51,14 @@
             extCSS.setAttribute('type', 'text/css');
             extCSS.setAttribute('href', Enabler.getUrl('style.css'));
             document.getElementsByTagName('head')[0].appendChild(extCSS);
-
             // Load in JS
             ////console.log('loadJS');
             var extJavascript = document.createElement('script');
             extJavascript.setAttribute('type', 'text/javascript');
             extJavascript.setAttribute('src', Enabler.getUrl('script.js'));
             document.getElementsByTagName('head')[0].appendChild(extJavascript);
-
             // Setup clickthrough handler
             document.getElementById('clickthrough').addEventListener('click', clickthroughHandler, false);
-
             function clickthroughHandler(event) {
                 console.log('clickthroughHandler');
                 Enabler.exit('Exit');
@@ -81,7 +77,6 @@
         <div id='clickthrough'></div>
     </div>
 <!-- load tweenmax -->
-<!--<script type="text/javascript" src="libs/TweenMax.min.js"></script>-->
 <script type="text/javascript" src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.18.0_499ba64a23378545748ff12d372e59e9_min.js"></script>
 </body>
 
