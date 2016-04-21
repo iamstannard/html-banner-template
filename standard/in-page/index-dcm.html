@@ -4,7 +4,7 @@
 
 <head>
 
-    <title>DCM 300x250 Template</title>
+    <title>DCM HTML5 Standard Banner Template</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,14 +20,13 @@
     </style>
 
     <script>
-        
         var clickTag = "http://www.google.com.au/"; // this url is overwritten in dcm
         //var clickTag = "http://www.sonypictures.com.au/";
         //var clickTag = "http://www.ea.com/au/";
+        //var clickTag = "https://www.myplates.com.au/";
 
         function loadCSSAndJS() {
             //console.log('loadCSSAndJS');
-
             // Load in CSS 
             //console.log('loadCSS');
             var extCSS = document.createElement('link');
@@ -35,7 +34,6 @@
             extCSS.setAttribute('type', 'text/css');
             extCSS.setAttribute('href', 'style.css');
             document.getElementsByTagName('head')[0].appendChild(extCSS);
-
             // Load in JS
             ////console.log('loadJS');
             var extJavascript = document.createElement('script');
@@ -54,12 +52,11 @@
         <img id="placeholder" src="images/placeholder.png">
         <img id="cta" src="images/cta.png">
         <!-- empty div handles clickthroughs and adds 1px border -->
-        <a href="javascript:window.open(window.clickTag)">
+        <a href="javascript:void(0);" onclick="window.open(window.clickTag);">
             <div id="clickthrough"></div>
         </a>
     </div>
     <!-- load tweenmax -->
-    <!--<script type="text/javascript" src="libs/TweenMax.min.js"></script>-->
     <script type="text/javascript" src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.18.0_499ba64a23378545748ff12d372e59e9_min.js"></script>
 </body>
 
