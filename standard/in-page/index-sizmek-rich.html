@@ -3,14 +3,12 @@
 <html>
 
 <head>
-    <title>Sizmek 300x250 Template</title>
+    <title>Sizmek HTML5 Rich Banner Template</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="ad.size" content="width=300,height=250" />
     
-    <!--<meta http-equiv="expires" content="0">-->
-
     <style type="text/css">
         #bannerContainer {
             display: none
@@ -22,7 +20,7 @@
 
     <script>
         function initEB() {
-            console.log('initEB');
+            //console.log('initEB');
             if (!EB.isInitialized()) {
                 EB.addEventListener(EBG.EventName.EB_INITIALIZED, loadCSSAndJS);
             } else {
@@ -50,7 +48,7 @@
             document.getElementById('clickthrough').addEventListener('click', clickthroughHandler, false);
 
             function clickthroughHandler(event) {
-                console.log('clickthroughHandler');
+                //console.log('clickthroughHandler');
                 EB.clickthrough();
             }
 
@@ -68,7 +66,6 @@
         <div id='clickthrough'></div>
     </div>
     <!-- load tweenmax -->
-    <!--<script type="text/javascript" src="libs/TweenMax.min.js"></script>-->
     <script type="text/javascript" src="https://secure-ds.serving-sys.com/BurstingcachedScripts/libraries/greensock/1_18_0/TweenMax.min.js"></script>
 </body>
 

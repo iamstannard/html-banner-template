@@ -4,7 +4,7 @@
 
 <head>
 
-    <title>DCS HTML5 Banner Template</title>
+    <title>DCS HTML5 Rich Banner Template</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +24,7 @@
     <script>
         // Check Enabler is ready
         function checkEnablerInit() {
-            console.log('checkEnablerInit');
+            //console.log('checkEnablerInit');
             if (Enabler.isInitialized()) {
                 enablerInit();
             } else {
@@ -34,7 +34,7 @@
 
         // Run when Enabler is ready
         function enablerInit() {
-            console.log('enablerInit');
+            //console.log('enablerInit');
             if (Enabler.isPageLoaded()) {
                 enablerPoliteInit();
             } else {
@@ -60,7 +60,7 @@
             // Setup clickthrough handler
             document.getElementById('clickthrough').addEventListener('click', clickthroughHandler, false);
             function clickthroughHandler(event) {
-                console.log('clickthroughHandler');
+                //console.log('clickthroughHandler');
                 Enabler.exit('Exit');
             }
         }
