@@ -75,6 +75,7 @@
 
         pauseVideo();
         unmuteVideo();
+        hideClickForSound();
 
         Enabler.exit('Exit');
     }
@@ -211,6 +212,7 @@
     function playVideo() {
         videoPlayer.play();
         unmuteVideo();
+        hideClickForSound();
         showPauseBtn();
         hidePlayBtn();
     }
