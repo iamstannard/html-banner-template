@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>The Big Short Left Panel</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="ad.size" content="width=125,height=900" />
+
+    <!--<meta http-equiv="expires" content="0">-->
+
+    <style type="text/css">
+        #bannerContainer {
+            display: none
+        }
+
+    </style>
+
+    <!-- DoubleClick Enabler -->
+    <script type="text/javascript" src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
+
+    <script>
+        // Check Enabler is ready
+        function checkEnablerInit() {
+            console.log('checkEnablerInit');
+            if (Enabler.isInitialized()) {
+                enablerInit();
+            } else {
+                Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInit);
+            }
+        }
+
+        // Run when Enabler is ready
+        function enablerInit() {
+            console.log('enablerInit');
+            if (Enabler.isPageLoaded()) {
+                enablerPoliteInit();
+            } else {
+                Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, enablerPoliteInit);
+            }
+        }
+
+        function enablerPoliteInit() {
+            console.log('enablerPoliteInit');
+            // Load in CSS 
+            //console.log('loadCSS');
+            var extCSS = document.createElement('link');
+            extCSS.setAttribute('rel', 'stylesheet');
+            extCSS.setAttribute('type', 'text/css');
+            extCSS.setAttribute('href', Enabler.getUrl('style.css'));
+            document.getElementsByTagName('head')[0].appendChild(extCSS);
+            // Load in JS
+            ////console.log('loadJS');
+            var extJavascript = document.createElement('script');
+            extJavascript.setAttribute('type', 'text/javascript');
+            extJavascript.setAttribute('src', Enabler.getUrl('scriptL.js'));
+            document.getElementsByTagName('head')[0].appendChild(extJavascript);
+            // Setup clickthrough handler
+            document.getElementById('clickthrough').addEventListener('click', clickthroughHandler, false);
+
+            function clickthroughHandler(event) {
+                console.log('clickthroughHandler');
+                Enabler.exit('Exit');
+            }
+        }
+
+    </script>
+
+</head>
+
+<body onload='checkEnablerInit()'>
+    <div id="bannerContainer">
+        <!-- banner stuff goes here -->
+
+        <img id='brownArrowL' src='images/brownArrowL.png'>
+        <img id='whiteArrowL' src='images/whiteArrowL.png'>
+
+        <img id='brownArrowR' src='images/brownArrowR.png'>
+        <img id='whiteArrowR' src='images/whiteArrowR.png'>
+
+        <img id='tt1' src='images/tt1.png'>
+        <img id='tt2' src='images/tt2.png'>
+
+        <img id='baleName' src='images/baleName.png'>
+        <img id='carellName' src='images/carellName.png'>
+        <img id='goslingName' src='images/goslingName.png'>
+        <img id='pittName' src='images/pittName.png'>
+
+        <img id='dvd' src='images/dvd.png'>
+        <img id='bd' src='images/bd.png'>
+        <img id='cta' src='images/cta.png'>
+        <img id='button' src='images/button.png'>
+
+        <img id='pitt' src='images/pitt.png'>
+        <img id='gosling' src='images/gosling.png'>
+        <img id='carell' src='images/carell.png'>
+        <img id='bale' src='images/bale.png'>
+
+        <img id="q1" src="images/q1.png">
+        <img id="q2" src="images/q2.png">
+        <img id="q3" src="images/q3.png">
+
+        <img id='copyright' src='images/copyright.png'>
+        <img id='rating' src='images/rating.png'>
+
+        <!-- empty div handles clickthroughs and adds 1px border -->
+        <div id='clickthrough'></div>
+
+    </div>
+    <!-- load tweenmax -->
+    <script type="text/javascript" src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.18.0_499ba64a23378545748ff12d372e59e9_min.js"></script>
+</body>
+
+</html>
