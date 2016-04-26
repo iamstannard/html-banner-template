@@ -73,9 +73,12 @@
     function exitClickHandler() {
         //console.log("exitClickHandler");
 
-        pauseVideo();
-        unmuteVideo();
-        hideClickForSound();
+        if (!videonOnEndFrame) {
+
+            pauseVideo();
+            unmuteVideo();
+            hideClickForSound();
+        }
 
         Enabler.exit('Exit');
     }
@@ -167,8 +170,12 @@
         hideClickForSound();
     }
 
+    var videonOnEndFrame = false;
+
     function videoEndHandler() {
         //console.log("videoEndHandler");
+
+        videonOnEndFrame = true;
 
         pauseVideo();
         unmuteVideo();
@@ -211,8 +218,8 @@
 
     function playVideo() {
         videoPlayer.play();
-        unmuteVideo();
         hideClickForSound();
+        unmuteVideo();
         showPauseBtn();
         hidePlayBtn();
     }
@@ -229,6 +236,7 @@
         videoPlayer.currentTime = 0;
         unmuteVideo();
         playVideo();
+        videonOnEndFrame = false;
     }
 
     function muteVideo() {
