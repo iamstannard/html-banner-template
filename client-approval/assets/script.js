@@ -67,6 +67,8 @@
     var mmm = months[ddd.getMonth()];
     var yyy = ddd.getFullYear();
 
+    var addStaticLabel = true;
+
     function processXML(xml) {
 
         xmlDoc = xml.responseXML;
@@ -82,7 +84,7 @@
         client.innerHTML = cl;
         project.innerHTML = pr;
         date.innerHTML = dt;
-        
+
         document.title = cl + " | " + pr;
 
         // generate button arrays
@@ -143,7 +145,9 @@
                     pA[j] = "./banners/" + pA[j] + "/index.html";
                 } else {
                     pA[j] = "./banners/" + pA[j] + "." + tA[j];
-                    lA[j] = lA[j] + " Static";
+                    if (addStaticLabel) {
+                        lA[j] = lA[j] + " Static";
+                    }
                 }
 
                 textNode = document.createTextNode(lA[j]);
@@ -196,7 +200,9 @@
                         pA[k] = "./banners/" + phaseName + "/" + pA[k] + "/index.html";
                     } else {
                         pA[k] = "./banners/" + phaseName + "/" + pA[k] + "." + tA[j];
-                        lA[k] = lA[k] + " Static";
+                        if (addStaticLabel) {
+                            lA[k] = lA[k] + " Static";
+                        }
                     }
 
                     textNode = document.createTextNode(lA[k]);
