@@ -4,12 +4,12 @@
     // CONTROL VARS
     // ---------------------------------------------------------------------------------
 
-    var autoExpands = true;
+    var autoExpands = false;
 
     var autoExpanded = autoExpands;
     var autoCollapses = autoExpands;
     
-    var hasExtendedVideo = true;
+    var hasExtendedVideo = false;
 
     var autoTimer;
     var autoCollapseDelay = 5000;
