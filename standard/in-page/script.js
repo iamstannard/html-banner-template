@@ -31,6 +31,9 @@
         repeatDelay: defaultFrameDelay
     });
 
+    // set timeScale
+    tl1.timeScale(1);
+
     // some timeline options
 
     //.to(element, defaultAnimTime, {});
@@ -66,6 +69,9 @@
             }, '+=1')
 
         ;
+
+        // get total duration of timeline
+        console.log("totalDuration : " + tl1.totalDuration() + " secs");
 
     }
 
