@@ -7,11 +7,13 @@
 
     // set vars
 
-    var defaultAnimDist = 20;
+    var defaultAnimDist = 25;
     var defaultAnimScale = 0.25;
     var defaultAnimTime = 1;
     var defaultStaggerOffset = 0.25;
     var defaultFrameDelay = 3;
+
+    var vw, vh;
 
     // set defaults
 
@@ -65,13 +67,13 @@
             }, 0.5)
             .from(cta, defaultAnimTime, {
                 autoAlpha: 0,
-                y: defaultAnimDist
+                y: vh
             }, '+=1')
 
         ;
 
-        // get total duration of timeline
-        console.log("totalDuration : " + tl1.totalDuration() + " secs");
+        // total duration of timeline
+        console.log("duration : " + tl1.totalDuration() + " secs");
 
     }
 
@@ -85,6 +87,11 @@
         //console.log('initBanner');
 
         bannerContainer.style.display = 'block';
+
+        // banner size
+        vw = bannerContainer.offsetWidth;
+        vh = bannerContainer.offsetHeight;
+        console.log("size : " + vw + " x " + vh);
 
         addEventListeners();
         startAnim();
