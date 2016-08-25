@@ -102,9 +102,9 @@
         bannerContainer.style.display = 'block';
 
         // banner size
-        vw = bannerContainer.offsetWidth;
-        vh = bannerContainer.offsetHeight;
-        console.log("size : " + vw + " x " + vh);
+//        vw = bannerContainer.offsetWidth;
+//        vh = bannerContainer.offsetHeight;
+//        console.log("size : " + vw + " x " + vh);
 
         addEventListeners();
         startAnim();
