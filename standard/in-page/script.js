@@ -70,13 +70,16 @@
 
         tl1
 
-            .from(placeholder, defaultAnimTime, {
+            .addLabel("frame1", 0)
+            .addLabel("frame2", 3)
+
+        .from(placeholder, defaultAnimTime, {
                 autoAlpha: 0
-            }, 0.5)
+            }, "frame1")
             .from(cta, defaultAnimTime, {
                 autoAlpha: 0,
                 y: vh
-            }, '+=1')
+            }, "frame2")
 
         ;
 
