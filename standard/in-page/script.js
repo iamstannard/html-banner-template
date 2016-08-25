@@ -1,4 +1,6 @@
 (function () {
+    
+    console.clear();
 
     // get elements
 
