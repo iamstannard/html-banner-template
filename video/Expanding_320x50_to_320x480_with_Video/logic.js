@@ -1,3 +1,5 @@
+console.clear();
+
 var creative = {};
 
 /**
