@@ -69,7 +69,7 @@
     var mmm = months[ddd.getMonth()];
     var yyy = ddd.getFullYear();
 
-    var addStaticLabel = true;
+    var addStaticLabel = false;
 
     function processXML(xml) {
 
@@ -201,7 +201,7 @@
                     if (tA[k] == "html") {
                         pA[k] = "./banners/" + phaseName + "/" + pA[k] + "/index.html";
                     } else {
-                        pA[k] = "./banners/" + phaseName + "/" + pA[k] + "." + tA[j];
+                        pA[k] = "./banners/" + phaseName + "/" + pA[k] + "." + tA[k];
                         if (addStaticLabel) {
                             lA[k] = lA[k] + " Static";
                         }
