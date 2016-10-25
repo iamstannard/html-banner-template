@@ -1,5 +1,5 @@
 (function () {
-    
+
     console.clear();
 
     // get elements
@@ -74,6 +74,9 @@
 
             .addLabel("frame1", 0)
             .addLabel("frame2", 3)
+            .addLabel("frame3", 6)
+            .addLabel("frame4", 9)
+            .addLabel("frame5", 12)
 
         .from(placeholder, defaultAnimTime, {
                 autoAlpha: 0
@@ -86,7 +89,7 @@
         ;
 
         // total duration of timeline
-        console.log("duration : " + tl1.totalDuration() + " secs");
+        // console.log("duration : " + tl1.totalDuration() + " secs");
 
     }
 
@@ -102,9 +105,9 @@
         bannerContainer.style.display = 'block';
 
         // banner size
-//        vw = bannerContainer.offsetWidth;
-//        vh = bannerContainer.offsetHeight;
-//        console.log("size : " + vw + " x " + vh);
+        //        vw = bannerContainer.offsetWidth;
+        //        vh = bannerContainer.offsetHeight;
+        //        console.log("size : " + vw + " x " + vh);
 
         addEventListeners();
         startAnim();
