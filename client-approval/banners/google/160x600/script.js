@@ -31,7 +31,7 @@
     //var tl1 = new TimelineMax();
 
     var tl1 = new TimelineMax({
-        repeat: 1,
+        repeat: 0,
         repeatDelay: 3
     });
 

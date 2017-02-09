@@ -39,7 +39,7 @@
     // ease: RoughEase.ease.config({ template: Cubic.easeOut, strength: 1, points: 20, taper: "out", randomize: true, clamp: false});
 
     var tl1 = new TimelineMax({
-        repeat: 1,
+        repeat: 0,
         repeatDelay: defaultFrameDelay
     });
 
