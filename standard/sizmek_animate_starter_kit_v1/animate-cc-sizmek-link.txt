@@ -1,1 +1,3 @@
 https://support.sizmek.com/hc/en-us/articles/206445016--howto-Build-a-Sizmek-Compatible-Adobe-Animate-CC-Standard-and-Polite-Ad
+
+https://support.sizmek.com/hc/en-us/articles/201128145--reference-glossary-Sizmek-HTML5-API
