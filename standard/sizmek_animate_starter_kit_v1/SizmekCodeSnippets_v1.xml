@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+<!--
+This file determines which code snippets appear in the Code Snippets panel.
+
+isBranch attribute - Set to "false" for snippets.
+title - The name of the snippet to display in the Code Snippets panel.
+description - The description of the snippet to display in the tooltip.
+requiresSymbol - Set to true if snippet requires an object to be selected on stage.
+code - The code to insert.  Actual code should be placed inside the CDATA block as in this example.
+minPlayerVersion - Require FLA file to meet a minimum Player version.
+maxPlayerVersion -  Require FLA file to be less than or equal to a maximum Player version.
+minASVersion - Require FLA file to meet a minimum ActionScript version.
+maxASVersion - Require FLA file to be less than or equal to a maximum ActionScript version.
+
+To create your own code snippets copy the following empty one and paste it into the category where you want it to appear.
+
+	<snippet isBranch="false">
+	  <title>Custom Snippet</title>
+	  <description>This is an example of a custom code snippet.</description>
+	  <requiresSymbol>true</requiresSymbol>
+	  <code><![CDATA[
+// Code goes here
+trace("A custom code snippet");
+	  ]]></code>
+	</snippet>
+-->
+<!--last updated April 21, 2016 ggszmk -->
+	<snippets>
+		<category title="Sizmek Code Snippets"
+		      isBranch="true" expanded="false"
+		      description="Code for interactions in HTML5 Canvas Document">
+			<snippet isBranch="false">
+			  <title>Sizmek Clickthrough</title>
+			  <description>Clicking on the specified object executes the Sizmek clickthrough code.</description>
+			  <requiresSymbol>true</requiresSymbol>
+			  <placeholders>
+				<placeholder
+					type="stageInstance"
+					text="instance_name_here" />
+			  </placeholders>
+			  <code><![CDATA[
+//turns mouse pointer into hand
+this.instance_name_here.cursor = "pointer";
+
+//listens for click event and calls click function
+this.instance_name_here.addEventListener("click", clickthroughSizmek);
+
+//click function
+function clickthroughSizmek() {
+	console.log("Sizmek Clickthrough");
+
+	//for custom clickthrough add string to parenthesis
+	EB.clickthrough();
+
+	//checks for video and pauses video on clickthrough if present
+	if (typeof(videlem) != 'undefined' && videlem != null) {
+		videlem.pause();
+	}
+}
+		]]></code>
+			</snippet>
+			<snippet isBranch="false">
+			  <title>Sizmek User Action Mouseover</title>
+			  <description>Applies the Sizmek user action code to the specified object on mouseover.</description>
+			  <requiresSymbol>true</requiresSymbol>
+			  <placeholders>
+				<placeholder
+					type="stageInstance"
+					text="instance_name_here" />
+			  </placeholders>
+			  <code><![CDATA[
+//enables mouse actions on stage
+stage.enableMouseOver();
+
+//listens for click event and calls customer interaction function
+this.instance_name_here.addEventListener("mouseover", customInteractSizmekMouseover);
+
+//click function
+function customInteractSizmekMouseover() {
+	console.log("Sizmek Custom Interaction Mouseover");
+	//rename "Mouseover" as needed
+	EB.userActionCounter("Mouseover");
+}
+		]]></code>
+			</snippet>
+			<snippet isBranch="false">
+			  <title>Sizmek User Action Mouseout</title>
+			  <description>Applies the Sizmek user action code to the specified object on mouseout.</description>
+			  <requiresSymbol>true</requiresSymbol>
+			  <placeholders>
+				<placeholder
+					type="stageInstance"
+					text="instance_name_here" />
+			  </placeholders>
+			  <code><![CDATA[
+//enables mouse actions on stage
+stage.enableMouseOver();
+
+//listens for click event and calls customer interaction function
+this.instance_name_here.addEventListener("mouseout", customInteractSizmekMouseout);
+
+//click function
+function customInteractSizmekMouseout() {
+	console.log("Sizmek Custom Interaction Mouseout");
+	//rename "Mouseout" as needed
+	EB.userActionCounter("Mouseout");
+}
+		]]></code>
+			</snippet>
+			<snippet isBranch="false">
+			  <title>Sizmek Video with Tracking</title>
+			  <description>Inserts a video into the creative and adds Sizmek tracking code.</description>
+			  <requiresSymbol>false</requiresSymbol>
+			  <code><![CDATA[
+var videlem = document.createElement("video");
+
+//mp4 video source files
+var sourceMP4 = document.createElement("source"); 
+sourceMP4.type = "video/mp4";
+sourceMP4.src = "videos/video.mp4";
+videlem.appendChild(sourceMP4);
+//webM video source files
+var sourceWEBM = document.createElement("source"); 
+sourceWEBM.type = "video/webm";
+sourceWEBM.src = "videos/video.webm";
+videlem.appendChild(sourceWEBM);
+
+//video style properties
+videlem.style.width = "300px";
+videlem.style.overflow = "overlay";
+videlem.style.position = "absolute";
+videlem.style.marginTop = "80px";
+videlem.controls = true;
+
+//attach video element to body
+var bodyElement = document.body;
+bodyElement.insertBefore(videlem, bodyElement.childNodes[0]);
+
+//video auto play
+videlem.play();
+
+//video starts muted
+videlem.muted = true;
+
+//Sizmek video tracking
+new EBG.VideoModule(videlem);
+		]]></code>
+			</snippet>
+		</category>
+	</snippets>
+</CodeSnippets>
