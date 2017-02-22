@@ -8,31 +8,31 @@
 	5. Remove unnecessary comments before creating your template.
 -->
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="authoring-tool" content="$VERSION">
-<title>$TITLE</title>
+    <meta charset="UTF-8">
+    <meta name="authoring-tool" content="$VERSION">
+    <title>$TITLE</title>
     <!-- write your code here -->
-<script>
-    EBModulesToLoad = ['Video', 'EBCMD'];
-</script>
-<script type="text/javascript" src="https://secure-ds.serving-sys.com/BurstingScript/EBLoader.js"></script>
-<script type="text/javascript">
-    function checkInit() {
-        if (!EB.isInitialized()) {
-            EB.addEventListener(EBG.EventName.EB_INITIALIZED, onInit);
-        } else {
-            onInit();
-        }
+    <script>
+        EBModulesToLoad = ['Video', 'EBCMD'];
+    </script>
+    <script type="text/javascript" src="https://secure-ds.serving-sys.com/BurstingScript/EBLoader.js"></script>
+    <script type="text/javascript">
+        function checkInit() {
+            if (!EB.isInitialized()) {
+                EB.addEventListener(EBG.EventName.EB_INITIALIZED, onInit);
+            } else {
+                onInit();
+            }
 
-        function onInit() {
-            init();
+            function onInit() {
+                init();
+            }
         }
-    }
-    // window.addEventListener('load', checkInit);
-    
-</script>
-
+        // window.addEventListener('load', checkInit);
+        // Add EB clickthrough code to FLA
+    </script>
 $CENTER_STYLE
 $CREATEJS_LIBRARY_SCRIPTS
 $ANIMATE_CC_SCRIPTS
@@ -59,17 +59,15 @@ $HANDLE_COMPLETE_START
 $HANDLE_COMPLETE_END
 $PLAYSOUND
 $SCRIPT_END
-
     <!-- write your code here -->
-
 </head>
 
 <body onload="checkInit();" style="background-color:#ffffff;margin:0px;">
-	<div id="$ANIM_CONTAINER_ID" style="background-color:$BG; width:$WTpx; height:$HTpx; overflow:hidden;">
-		<canvas id="$CANVAS_ID" width="$WT" height="$HT" style="position: absolute; display: $CANVAS_DISP; background-color:$BG;"></canvas>
-		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:$WTpx; height:$HTpx; position: absolute; left: 0px; top: 0px; display: $CANVAS_DISP;">
-		</div>
-	</div>
+    <div id="$ANIM_CONTAINER_ID" style="background-color:$BG; width:$WTpx; height:$HTpx; overflow:hidden;">
+        <canvas id="$CANVAS_ID" width="$WT" height="$HT" style="position: absolute; display: $CANVAS_DISP; background-color:$BG;"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:$WTpx; height:$HTpx; position: absolute; left: 0px; top: 0px; display: $CANVAS_DISP;">
+        </div>
+    </div>
     $PRELOADER_DIV
 </body>
 
