@@ -18,7 +18,21 @@
         html {overflow: -moz-scrollbars-none;}
     </style>
     <script>
-        var clickTag = "http://www.postproduktiv.com.au/";
+        EBModulesToLoad = ['Video', 'EBCMD'];
+    </script>
+    <script type="text/javascript" src="https://secure-ds.serving-sys.com/BurstingScript/EBLoader.js"></script>
+    <script type="text/javascript">
+        function checkInit() {
+            if (!EB.isInitialized()) {
+                EB.addEventListener(EBG.EventName.EB_INITIALIZED, onInit);
+            } else {
+                onInit();
+            }
+            function onInit() {
+                init();
+            }
+        }
+        // window.addEventListener('load', checkInit);
     </script>
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
 <script src="300x250.js"></script>
@@ -33,7 +47,14 @@
 	loader.addEventListener("fileload", handleFileLoad);
 	loader.addEventListener("complete", handleComplete);
 	loader.loadManifest(lib.properties.manifest);
-    }
+        //---- ADD EB CLICKTHROUGH -----
+        anim_container.style.cursor = "pointer";
+        anim_container.addEventListener("click", clickthroughSizmek);
+        function clickthroughSizmek() {
+            //console.log("Sizmek Clickthrough");
+            EB.clickthrough();
+        }
+    }    
 function handleFileLoad(evt) {	
 	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }	
 }
@@ -92,12 +113,10 @@ function handleComplete(evt) {
     </script>
     <!-- write your code here -->
 </head>
-<body onload="init();" style="background-color:#ffffff;margin:0px;">
+<body onload="checkInit();" style="background-color:#ffffff;margin:0px;">
     <div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:300px; height:250px; overflow:hidden;">
-        <a href="javascript:window.open(window.clickTag)">
-            <canvas id="canvas" width="300" height="250" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
-            <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:300px; height:250px; position: absolute; left: 0px; top: 0px; display: block;"></div>
-        </a>
+        <canvas id="canvas" width="300" height="250" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:300px; height:250px; position: absolute; left: 0px; top: 0px; display: block;"></div>
     </div>
 </body>
 </html>

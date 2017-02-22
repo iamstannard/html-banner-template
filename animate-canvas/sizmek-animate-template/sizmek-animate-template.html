@@ -35,7 +35,6 @@
             }
         }
         // window.addEventListener('load', checkInit);
-        // Add EB clickthrough code to FLA
     </script>
     $CENTER_STYLE
     $CREATEJS_LIBRARY_SCRIPTS
@@ -49,7 +48,16 @@
         $CREATE_LOADER
         $LOAD_MANIFEST
         $PRELOAD_ASSETS
-    }
+        
+        //---- ADD EB CLICKTHROUGH -----
+        anim_container.style.cursor = "pointer";
+        anim_container.addEventListener("click", clickthroughSizmek);
+        function clickthroughSizmek() {
+            //console.log("Sizmek Clickthrough");
+            EB.clickthrough();
+        }
+    
+    }    
     $HANDLE_FILE_LOAD_START	
         $HANDLE_FILE_LOAD_BODY	
     $HANDLE_FILE_LOAD_END
