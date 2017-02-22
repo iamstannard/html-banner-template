@@ -19,17 +19,19 @@
 
     <script>
         var clickTag = "http://www.google.com.au/"; // this url is overwritten in dcm
+
     </script>
 
-    $CREATEJS_SCRIPTS $SCRIPT_START var canvas, stage, exportRoot; function init() {
-     
-         // --- write your JS code here ---
-     
-         $CJS_INIT
-         
-         fnStartAnimation();
-     
-     } $PLAYSOUND $SCRIPT_END
+    $CREATEJS_SCRIPTS
+    $SCRIPT_START
+    var canvas, stage, exportRoot;
+    function init() {
+        // --- write your JS code here ---
+        $CJS_INIT
+        fnStartAnimation();
+    }
+    $PLAYSOUND
+    $SCRIPT_END
 
     <!-- write your code here -->
 
