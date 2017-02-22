@@ -236,20 +236,20 @@ p.nominalBounds = null;
 	// cta
 	this.instance = new lib.cta_1();
 	this.instance.parent = this;
-	this.instance.setTransform(150,198,0.5,0.5,0,0,0,100,20);
+	this.instance.setTransform(150,198,1,1,0,0,0,100,20);
 	this.instance.alpha = 0;
 	this.instance._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(20).to({_off:false},0).to({scaleX:1,scaleY:1,alpha:1},15,cjs.Ease.get(1)).wait(11));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(20).to({_off:false},0).to({alpha:1},15,cjs.Ease.get(1)).wait(11));
 
 	// title
 	this.instance_1 = new lib.title();
 	this.instance_1.parent = this;
-	this.instance_1.setTransform(150,53,0.5,0.5,0,0,0,150,53);
+	this.instance_1.setTransform(150,53,1,1,0,0,0,150,53);
 	this.instance_1.alpha = 0;
 	this.instance_1._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(15).to({_off:false},0).to({scaleX:1,scaleY:1,alpha:1},15,cjs.Ease.get(1)).wait(16));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(10).to({_off:false},0).to({alpha:1},15,cjs.Ease.get(1)).wait(21));
 
 	// bg
 	this.instance_2 = new lib.bg_1();
@@ -258,7 +258,7 @@ p.nominalBounds = null;
 	this.instance_2.alpha = 0;
 	this.instance_2._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(10).to({_off:false},0).to({alpha:1},15,cjs.Ease.get(1)).wait(21));
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(15).to({_off:false},0).to({alpha:1},15,cjs.Ease.get(1)).wait(16));
 
 	// bgColour
 	this.instance_3 = new lib.bgColour();
