@@ -1,26 +1,19 @@
+<!DOCTYPE html>
 <!--
 	NOTES:
 	1. All tokens are represented by '$' sign in the template.
 	2. You can write your code only wherever mentioned.
-	3. "DO NOT" alter the tokens in the template html as they are required during publishing.
+	3. All occurrences of existing tokens will be replaced by their appropriate values.
+	4. Blank lines will be removed automatically.
+	5. Remove unnecessary comments before creating your template.
 -->
 
-<!DOCTYPE html>
-
 <html>
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <title>$TITLE</title>
-
-    <!-- write your code here -->
-
-    <script>
-        var clickTag = "http://www.google.com.au/"; // this url is overwritten in dcm
-    </script>
-
+<meta charset="UTF-8">
+<meta name="authoring-tool" content="$VERSION">
+<title>$TITLE</title>
+<!-- write your code here -->
 $CENTER_STYLE
 $CREATEJS_LIBRARY_SCRIPTS
 $ANIMATE_CC_SCRIPTS
@@ -47,22 +40,14 @@ $HANDLE_COMPLETE_START
 $HANDLE_COMPLETE_END
 $PLAYSOUND
 $SCRIPT_END
-
-    <!-- write your code here -->
-
+<!-- write your code here -->
 </head>
-
 <body onload="init();" style="background-color:#ffffff;margin:0px;">
 	<div id="$ANIM_CONTAINER_ID" style="background-color:$BG; width:$WTpx; height:$HTpx">
-	        <a href="javascript:window.open(window.clickTag)">
-
 		<canvas id="$CANVAS_ID" width="$WT" height="$HT" style="position: absolute; display: $CANVAS_DISP; background-color:$BG;"></canvas>
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:$WTpx; height:$HTpx; position: absolute; left: 0px; top: 0px; display: $CANVAS_DISP;">
-		        </a>
-
 		</div>
 	</div>
     $PRELOADER_DIV
 </body>
-
 </html>
