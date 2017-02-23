@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!-- AdStarter Adobe Animate CC Template v.1.0, created by Cory Hudson, 03/09/16 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GSAP_AdStarter</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<style>
+html, body{
+	margin: 0;
+	padding: 0;
+	background-color: #FFFFFF;
+}
+#canvas{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	-moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	cursor: pointer;
+	visibility: hidden;
+}
+#border{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	border: 1px solid #000000;
+	pointer-events: none;
+	visibility: hidden;
+}
+#plContainer{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: none;
+	border: none;
+}
+div.preloader{
+	position: relative;
+}
+div.preloader p {
+	font-family: arial;
+	font-size: 100%; 
+	color: white;
+	margin: 0;
+	padding: 5px;
+    background: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+</style>
+
+
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="GSAP_AdStarter.js?1459365434654"></script>
+<!-- comment out or remove if not using AdHelper -->
+<script src="js/AdHelper.min.js"></script> 
+<!-- pull in the latest GreenSock -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+
+<script>
+
+var clickTag = "http://www.greensock.com",
+	adWidth,
+    adHeight,
+    adBorder,
+    preloader,
+    preloaderDiv,
+	canvas,
+    stage,
+    exportRoot;
+
+function doClickthrough(evt){
+	if(evt.type === undefined){
+		window.open(clickTag, "_blank");
+	}else if(evt.nativeEvent.which === 1){
+		//console.log("event: " + evt.type);
+		window.open(clickTag, "_blank");
+	}
+}
+
+function showAd(){
+	preloader.style.display = "none";
+	canvas.style.visibility = "visible";
+    border.style.visibility = "visible";
+}
+
+function init() {
+	
+    canvas = document.getElementById("canvas");
+    adWidth = canvas.width/2;
+    adHeight = canvas.height/2;
+    adBorder = document.getElementById("border");
+    adBorder.style.width = (adWidth-2) + "px";
+    adBorder.style.height = (adHeight-2) + "px";
+    preloader = document.getElementById("plContainer");
+    preloader.style.width = (adWidth-2) + "px";
+    preloader.style.height = (adHeight-2) + "px";
+    preloaderDiv = document.querySelector("div.preloader");
+    preloaderDiv.style.height = (adHeight-2) + "px";
+    
+    if (!createjs.AdHelper.isSupported()) {
+        createjs.AdHelper.showAltImage(canvas, "images/backup_300x250.jpg", "javascript:doClickthrough(this)", "BannerWave", "_blank");
+    }
+	
+	canvas = document.getElementById("canvas");
+	exportRoot = new lib.GSAP_AdStarter();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+    createjs.Touch.enable(stage);
+    stage.enableMouseOver();
+    stage.snapToPixelEnabled = true;
+    stage.on("stagemouseup", doClickthrough);
+
+	var ad = new createjs.AdHelper(stage)
+		.setSleep(15,0,0)
+		.timeSync()
+		.watchFPS(15, 1)
+		.highDPI(true, 2);
+		
+	var failCount = 1;
+
+	ad.on("slow", function(evt) {
+		if (failCount === 0) {
+			evt.preventDefault(); 
+			failCount++; 
+			this.watchFPS(15, 1); 
+		} else if (failCount === 1){
+			createjs.AdHelper.showAltImage(canvas, "images/backup_300x250.jpg", "javascript:doClickthrough(this)", "BannerWave", "_blank");
+		}
+	});
+    
+    // to test watchFPS, lower the FPS after creating the AdHelper, using the changeFPSTimer below
+	// to test timeSynch, remove watchFPS from AdHelper, and then change the FPS using the changeFPSTimer below
+	//var changeFPSTimer = window.setTimeout(changeFPS, 5000, 5);
+
+	// to test directly calling Adhelper methods, use the testMethodTimer below
+	//var testMethodTimer = window.setTimeout(testAdHelper, 5000, "showAlt", 2000);
+    
+    // changes the FPS for testing purposes
+	function changeFPS(framerate){
+		createjs.Ticker.setFPS(framerate);
+	}
+    
+    // allows direct calls of AdHelper methods for testing purposes
+	function testAdHelper(method, ms){
+		if(method === "sleep"){
+			//pass in delay
+			ad.sleep(ms);
+		}else if(method === "wake"){
+			//pass in duration
+			ad.wake(ms);
+		}else if(method === "showAlt"){
+        	createjs.AdHelper.showAltImage(canvas, "images/backup_300x250.jpg", "javascript:doClickthrough(this)", "BannerWave", "_blank");
+			//createjs.AdHelper.showAltHTML(canvas, altHTMLString);
+			//createjs.AdHelper.showAlt(canvas, altElement);
+		}
+	}
+    
+    // trace out AdHelper events for testing purposes
+	ad.on("sleep", trace);
+	ad.on("wake", trace);
+	ad.on("slow", trace);
+	function trace(evt) {
+		console.log("event: " + evt.type);
+	};
+}
+
+</script>
+
+</head>
+<body onload="init();">
+	<canvas id="canvas" width="600" height="500" style="background-color:#FFFFFF"></canvas>
+	<div id="border"></div>
+	<div id="plContainer">
+		<div class="preloader"><p>&nbsp;Loading Advertisement...&nbsp;</p></div>
+	</div>
+    <script>
+		window.addEventListener('load', showAd, false);
+    </script>
+</body>
+</html>
