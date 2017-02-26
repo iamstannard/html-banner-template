@@ -242,7 +242,7 @@ p.nominalBounds = null;
 	}
 
 	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(50).call(this.frame_50).wait(39).call(this.frame_89).wait(7));
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(50).call(this.frame_50).wait(39).call(this.frame_89).wait(1));
 
 	// click
 	this.click = new lib.click();
@@ -250,14 +250,14 @@ p.nominalBounds = null;
 	this.click.setTransform(150,125,3,2.5,0,0,0,50,50);
 	new cjs.ButtonHelper(this.click, 0, 1, 2, false, new lib.click(), 3);
 
-	this.timeline.addTween(cjs.Tween.get(this.click).to({_off:true},90).wait(6));
+	this.timeline.addTween(cjs.Tween.get(this.click).wait(90));
 
 	// border
 	this.shape = new cjs.Shape();
 	this.shape.graphics.f().s("#FF0000").ss(2,1,1).p("AtCqiIaFAAIAAVFI6FAAg");
 	this.shape.setTransform(150,125,1.797,1.852);
 
-	this.timeline.addTween(cjs.Tween.get(this.shape).to({_off:true},90).wait(6));
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(90));
 
 	// cta
 	this.instance = new lib.cta();
@@ -266,7 +266,7 @@ p.nominalBounds = null;
 	this.instance.alpha = 0;
 	this.instance._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).wait(35).to({_off:false},0).to({alpha:1},15,cjs.Ease.get(1)).to({_off:true},40).wait(6));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(35).to({_off:false},0).to({alpha:1},15,cjs.Ease.get(1)).wait(40));
 
 	// title
 	this.instance_1 = new lib.title();
@@ -275,14 +275,14 @@ p.nominalBounds = null;
 	this.instance_1.alpha = 0;
 	this.instance_1._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(10).to({_off:false},0).to({alpha:1},15,cjs.Ease.get(1)).to({_off:true},65).wait(6));
+	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(10).to({_off:false},0).to({alpha:1},15,cjs.Ease.get(1)).wait(65));
 
 	// bg
 	this.instance_2 = new lib.bgColour();
 	this.instance_2.parent = this;
 	this.instance_2.setTransform(150.1,125,1,1,0,0,0,150,125);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_2).to({_off:true},90).wait(6));
+	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(90));
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(149,124,302,252);
