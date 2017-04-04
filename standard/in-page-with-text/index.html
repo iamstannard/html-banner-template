@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>DCM HTML5 Standard Banner Template</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--***********************************************-->
+    <meta name="ad.size" content="width=300,height=250" />
+    <!--***********************************************-->
+
+    <!--<meta http-equiv="expires" content="0">-->
+
+    <link href="https://fonts.googleapis.com/css?family=Creepster&text=Hello" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">-->
+
+    <style type="text/css">
+        #bannerContainer {
+            display: none
+        }
+
+    </style>
+
+    <script>
+        var clickTag = "http://www.google.com.au/"; // this url is overwritten in dcm
+
+        function loadCSSAndJS() {
+            //console.log('loadCSSAndJS');
+            // Load in CSS 
+            //console.log('loadCSS');
+            var extCSS = document.createElement('link');
+            extCSS.setAttribute('rel', 'stylesheet');
+            extCSS.setAttribute('type', 'text/css');
+            extCSS.setAttribute('href', 'style.css');
+            document.getElementsByTagName('head')[0].appendChild(extCSS);
+            // Load in JS
+            ////console.log('loadJS');
+            var extJavascript = document.createElement('script');
+            extJavascript.setAttribute('type', 'text/javascript');
+            extJavascript.setAttribute('src', 'script.js');
+            document.getElementsByTagName('head')[0].appendChild(extJavascript);
+        }
+
+    </script>
+
+</head>
+
+<body onload='loadCSSAndJS()'>
+    <div id="bannerContainer">
+        <!-- banner stuff goes here -->
+        <img id="placeholder" src="images/placeholder.png">
+        <div id='quote1' class='quote'>
+            "LOOK AT
+            <br>THIS
+            <br>QUOTE"</div>
+        <div id='quote2' class='quote'>
+            "AND YET
+            <br>ANOTHER
+            <br>QUOTE"</div>
+        <div id='cta' class='cta'>
+            New to
+            <br>blu-ray<sup>tm</sup>
+            <br>dvd &amp;
+            <br>digital
+        </div>
+        <!-- empty div handles clickthroughs and adds 1px border -->
+        <a href="javascript:void(0);" onclick="window.open(window.clickTag);">
+            <div id="clickthrough"></div>
+        </a>
+    </div>
+    <!-- load tweenmax -->
+    <!--    <script type="text/javascript" src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.18.0_499ba64a23378545748ff12d372e59e9_min.js"></script>-->
+    <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.19.0_643d6911392a3398cb1607993edabfa7_min.js"></script>
+    <script src="gsap/SplitText.js"></script>
+
+</body>
+
+</html>
