@@ -137,6 +137,8 @@
 
     function initVideoControls() {
         //console.log("initVideoControls");
+        
+        videoPlayer.controls = false;
 
         if (autoExpanded) {
             muteVideo();

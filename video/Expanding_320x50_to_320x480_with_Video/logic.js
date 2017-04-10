@@ -47,6 +47,10 @@ function setupDom() {
  * Ad initialisation.
  */
 function init() {
+    
+    
+    creative.dom.video1.vid.controls = false;
+    
     Enabler.setStartExpanded(false);
     // You can update the autoplay flag to 'true' to enable muted
     // autoplay although it won't work on iOS.

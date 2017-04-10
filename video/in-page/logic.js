@@ -131,6 +131,8 @@
     videoPlayer.addEventListener("canplay", videoReadyToPlay, false);
     videoPlayer.addEventListener("ended", videoEndHandler, false);
     clickForSound.addEventListener("click", restartWithSound, false);
+    
+    videoPlayer.controls = false;
 
     function showControls() {
         //console.log("showControls");
