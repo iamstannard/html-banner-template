@@ -196,7 +196,6 @@
         //console.log("onCloseHandler");
 
         Enabler.reportManualClose();
-        Enabler.reportManualClose();
 
         pauseVideo();
         hideReplayBtn();
