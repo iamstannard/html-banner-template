@@ -1,4 +1,4 @@
-console.clear();
+// console.clear();
 
 var creative = {};
 
@@ -34,12 +34,6 @@ function setupDom() {
     creative.dom.video1 = {};
     creative.dom.video1.vidContainer = document.getElementById('video-container-1');
     creative.dom.video1.vid = document.getElementById('video-1');
-    creative.dom.video1.vidPlayBtn = document.getElementById('play-btn-1');
-    creative.dom.video1.vidPauseBtn = document.getElementById('pause-btn-1');
-    creative.dom.video1.vidStopBtn = document.getElementById('stop-btn-1');
-    creative.dom.video1.vidReplayBtn = document.getElementById('replay-btn-1');
-    creative.dom.video1.vidUnmuteBtn = document.getElementById('unmute-btn-1');
-    creative.dom.video1.vidMuteBtn = document.getElementById('mute-btn-1');
     creative.dom.video1.vidProgressBar = document.getElementById('progress-bar-1');
 }
 
@@ -49,7 +43,7 @@ function setupDom() {
 function init() {
     
     
-    creative.dom.video1.vid.controls = false;
+    // creative.dom.video1.vid.controls = false;
     
     Enabler.setStartExpanded(false);
     // You can update the autoplay flag to 'true' to enable muted
@@ -61,8 +55,6 @@ function init() {
     if ((navigator.userAgent.match(/iPhone/i)) ||
         (navigator.userAgent.match(/iPad/i)) ||
         (navigator.userAgent.match(/iPod/i))) {
-        creative.dom.video1.vidUnmuteBtn.style.opacity = 0;
-        creative.dom.video1.vidMuteBtn.style.opacity = 0;
     }
 
     addVideoTracking1();
@@ -89,14 +81,8 @@ function addListeners() {
     creative.dom.collapseButton.addEventListener('click', onCollapseClickHandler, false);
     creative.dom.expandedExit.addEventListener('click', exitClickHandler);
     creative.dom.collapsedExit.addEventListener('click', collapsedExitClickHandler);
-    creative.dom.video1.vidPlayBtn.addEventListener('click', pausePlayHandler1, false);
-    creative.dom.video1.vidPauseBtn.addEventListener('click', pausePlayHandler1, false);
-    creative.dom.video1.vidMuteBtn.addEventListener('click', muteUnmuteHandler1, false);
-    creative.dom.video1.vidUnmuteBtn.addEventListener('click', muteUnmuteHandler1, false);
-    creative.dom.video1.vidReplayBtn.addEventListener('click', replayHandler1, false);
-    creative.dom.video1.vidStopBtn.addEventListener('click', stopHandler1, false);
-    creative.dom.video1.vid.addEventListener('ended', videoEndHandler1, false);
-    creative.dom.video1.vid.addEventListener('timeupdate', videoTimeUpdateHandler1, false);
+    //creative.dom.video1.vid.addEventListener('ended', videoEndHandler1, false);
+    //creative.dom.video1.vid.addEventListener('timeupdate', videoTimeUpdateHandler1, false);
 }
 
 /**
@@ -131,32 +117,10 @@ function expandStartHandler() {
 }
 
 function expandFinishHandler() {
-    creative.dom.video1.vidMuteBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidUnmuteBtn.style.visibility = 'visible';
-    creative.dom.video1.vidPauseBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidPlayBtn.style.visibility = 'visible';
-    creative.dom.video1.vidReplayBtn.style.visibility = 'hidden';
-    if (creative.autoplay1) {
-        if (creative.dom.video1.vid.readyState >= 2) {
-            startMuted1(null);
-        } else {
-            creative.dom.video1.hasCanPlay = true;
-            creative.dom.video1.vid.addEventListener('canplay', startMuted1, false);
-        }
-        // HACK: Safari experiences video rendering issues, fixed by forcing a viewport refresh
-        creative.dom.video1.vidMuteBtn.style.visibility = 'visible';
-        setTimeout(function () {
-            creative.dom.video1.vidMuteBtn.style.visibility = 'hidden';
-        }, 200);
-    } else {
-        creative.dom.video1.vidMuteBtn.style.visibility = 'visible';
-        creative.dom.video1.vidUnmuteBtn.style.visibility = 'hidden';
-        creative.dom.video1.vidPauseBtn.style.visibility = 'hidden';
-        creative.dom.video1.vidPlayBtn.style.visibility = 'visible';
-    }
     creative.dom.video1.vidContainer.style.visibility = 'visible';
     creative.isExpanded = true;
     creative.dom.video1.vid.currentTime = 0;
+    creative.dom.video1.vid.play();
 }
 
 function collapseStartHandler() {
@@ -167,10 +131,6 @@ function collapseStartHandler() {
     creative.dom.collapsedContent.style.display = 'block';
     creative.dom.collapsedExit.style.display = 'block';
     creative.dom.expandButton.style.display = 'block';
-    creative.dom.video1.vidMuteBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidUnmuteBtn.style.visibility = 'visible';
-    creative.dom.video1.vidPauseBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidPlayBtn.style.visibility = 'visible';
     creative.dom.video1.vid.pause();
     creative.dom.video1.vid.currentTime = 0;
 
@@ -195,8 +155,6 @@ function onExpandHandler() {
 function exitClickHandler() {
     // Reset video
     creative.dom.video1.vid.pause();
-    creative.dom.video1.vidPauseBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidPlayBtn.style.visibility = 'visible';
     if (creative.dom.video1.vid.readyState > 0) {
         creative.dom.video1.vid.currentTime = 0;
     }
@@ -208,8 +166,6 @@ function exitClickHandler() {
 function collapsedExitClickHandler() {
     // Reset video
     creative.dom.video1.vid.pause();
-    creative.dom.video1.vidPauseBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidPlayBtn.style.visibility = 'visible';
     if (creative.dom.video1.vid.readyState > 0) {
         creative.dom.video1.vid.currentTime = 0;
     }
@@ -229,8 +185,6 @@ function startMuted1(e) {
     creative.dom.video1.vid.volume = 0; // Muted by default
     creative.dom.video1.vid.currentTime = 0;
     creative.dom.video1.vid.play();
-    creative.dom.video1.vidPauseBtn.style.visibility = 'visible';
-    creative.dom.video1.vidPlayBtn.style.visibility = 'hidden';
 }
 
 /**
@@ -241,23 +195,15 @@ function pausePlayHandler1(e) {
     if (creative.dom.video1.vid.paused || creative.dom.video1.vid.ended) {
         if (creative.isClick1) {
             creative.dom.video1.vid.volume = 1.0;
-            creative.dom.video1.vidMuteBtn.style.visibility = 'visible';
-            creative.dom.video1.vidUnmuteBtn.style.visibility = 'hidden';
             creative.isClick1 = false;
         }
         // If paused then play
         creative.dom.video1.vid.play();
-        creative.dom.video1.vidPauseBtn.style.visibility = 'visible';
-        creative.dom.video1.vidPlayBtn.style.visibility = 'hidden';
     } else {
         creative.dom.video1.vid.pause();
-        creative.dom.video1.vidPauseBtn.style.visibility = 'hidden';
-        creative.dom.video1.vidPlayBtn.style.visibility = 'visible';
     }
     if (creative.dom.video1.vid.volume == 0.0) {
         creative.dom.video1.vid.volume = 1.0;
-        creative.dom.video1.vidMuteBtn.style.visibility = 'visible';
-        creative.dom.video1.vidUnmuteBtn.style.visibility = 'hidden';
     }
 }
 
@@ -268,13 +214,9 @@ function muteUnmuteHandler1(e) {
     if (creative.dom.video1.vid.volume == 0.0) {
         Enabler.counter("Unmute video 1", true);
         creative.dom.video1.vid.volume = 1.0;
-        creative.dom.video1.vidMuteBtn.style.visibility = 'visible';
-        creative.dom.video1.vidUnmuteBtn.style.visibility = 'hidden';
     } else {
         Enabler.counter("Mute video 1", true);
         creative.dom.video1.vid.volume = 0.0;
-        creative.dom.video1.vidMuteBtn.style.visibility = 'hidden';
-        creative.dom.video1.vidUnmuteBtn.style.visibility = 'visible';
     }
 }
 
@@ -285,8 +227,6 @@ function stopHandler1(e) {
     Enabler.counter("Video 1 stopped", true);
     creative.dom.video1.vid.currentTime = 0;
     creative.dom.video1.vid.pause();
-    creative.dom.video1.vidPauseBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidPlayBtn.style.visibility = 'visible';
     creative.isClick1 = true;
 }
 
@@ -298,10 +238,6 @@ function replayHandler1(e) {
     creative.dom.video1.vid.currentTime = 0;
     creative.dom.video1.vid.play();
     creative.dom.video1.vid.volume = 1.0;
-    creative.dom.video1.vidPauseBtn.style.visibility = 'visible';
-    creative.dom.video1.vidMuteBtn.style.visibility = 'visible';
-    creative.dom.video1.vidUnmuteBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidReplayBtn.style.visibility = 'hidden';
 }
 
 /**
@@ -310,9 +246,6 @@ function replayHandler1(e) {
 function videoEndHandler1(e) {
     // creative.dom.video1.vid.currentTime = 0;
     creative.dom.video1.vid.pause();
-    creative.dom.video1.vidPauseBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidPlayBtn.style.visibility = 'hidden';
-    creative.dom.video1.vidReplayBtn.style.visibility = 'visible';
     creative.isClick1 = true;
 }
 
