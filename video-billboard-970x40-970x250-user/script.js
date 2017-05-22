@@ -141,7 +141,7 @@
     }
 
     onCloseHandler = function (e) {
-        Enabler.counter('Manual Close');
+        Enabler.reportManualClose();
         closeAd();
     }
 

@@ -125,8 +125,8 @@
         Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START,
             function () {
                 //Enabler.stopTimer('expanded_panel');
-                expandedPanel.style.display = "none";
                 collapsedPanel.style.display = "block";
+                expandedPanel.style.display = "none";
                 Enabler.finishCollapse();
             });
 
@@ -171,7 +171,7 @@
     }
 
     onCloseHandler = function (e) {
-        Enabler.counter('Manual Close');
+        Enabler.reportManualClose();
         closeAd();
     }
 
@@ -253,24 +253,24 @@
     function videoReadyToPlay() {
         //console.log("videoReadyToPlay");
 
-//        if (!videoIsReplaying) {
-    //
-    //            if (videoAutoPlays) {
-    //                playVideo();
-    //            } else {
-    //                pauseVideo();
-    //            }
-    //
-    //            if (videoStartsMuted) {
-    //                muteVideo();
-    //                showClickForSound();
-    //            } else {
-    //                unmuteVideo();
-    //            }
-    //
-    //            showControls();
-    //        }
-        
+        //        if (!videoIsReplaying) {
+        //
+        //            if (videoAutoPlays) {
+        //                playVideo();
+        //            } else {
+        //                pauseVideo();
+        //            }
+        //
+        //            if (videoStartsMuted) {
+        //                muteVideo();
+        //                showClickForSound();
+        //            } else {
+        //                unmuteVideo();
+        //            }
+        //
+        //            showControls();
+        //        }
+
         showControls();
 
     }

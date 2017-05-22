@@ -195,7 +195,7 @@
     function onCloseHandler(e) {
         //console.log("onCloseHandler");
 
-        Enabler.counter('Manual Close');
+        Enabler.reportManualClose();
         Enabler.reportManualClose();
 
         pauseVideo();
