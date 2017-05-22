@@ -1,30 +1,31 @@
 (function () {
 
-    // JavaScript Document
-    //HTML5 Ad Template JS from DoubleClick by Google
-
     var collapsedPanel;
     var expandedPanel;
     var expandBtn;
     var exitBtn;
     var closeBtn;
 
+    var videoAutoPlays;
+    var videoStartsMuted;
+    var videoIsReplaying;
+    var videonOnEndFrame;
+
+    var firstExpand = true;
+
+    var adstate;
 
     // ======================================For Getting Cookie==========================================
-
-
 
     getThisCookie = function () {
         var useCookie = false;
 
         if (Enabler.getParameter("useCookie")) {
-
             useCookie = (Enabler.getParameter("useCookie") == "true") ? true : false;
-
         }
 
         if (useCookie == false) {
-            var adstate = "expanded";
+            adstate = "expanded";
             serveBillboard(adstate);
         } else {
             getBilllboardState = setInterval(checkCookie, 1000);
@@ -32,8 +33,7 @@
     }
 
     checkCookie = function () {
-        var adstate = getFlashState();
-
+        adstate = getFlashState();
         if (adstate != "null") {
             serveBillboard(adstate);
             clearInterval(getBilllboardState);
@@ -46,20 +46,20 @@
 
             case "expanded":
                 // Enters Expand Function
-                Enabler.counter("Billboard State on Page Load: Secondary Load (Expanded)");
-                console.log("Billboard State on Page Load: Secondary Load (Expanded)");
-                onExpandHandler();
+                //Enabler.counter("Billboard State on Page Load: Secondary Load (Expanded)");
+                //console.log("Billboard State on Page Load: Secondary Load (Expanded)");
+                onAutoExpandHandler();
                 break;
             case "collapsed":
                 // Enters Collapse Function
-                Enabler.counter("Billboard State on Page Load: Collapsed");
-                console.log("Billboard State on Page Load: Collapsed");
+                //Enabler.counter("Billboard State on Page Load: Collapsed");
+                //console.log("Billboard State on Page Load: Collapsed");
                 break;
             default:
                 // Enters Default Function
-                Enabler.counter("Billboard State on Page Load: First Load (Expanded)");
-                console.log("Billboard State on Page Load: First Load (Expanded)");
-                onExpandHandler();
+                //Enabler.counter("Billboard State on Page Load: First Load (Expanded)");
+                //console.log("Billboard State on Page Load: First Load (Expanded)");
+                onAutoExpandHandler();
                 break;
         }
     }
@@ -70,11 +70,11 @@
     // =============================================================================================
 
     dcrmInit = function () {
-        Enabler.setExpandingPixelOffsets(
-            0, // left offset of expanded ad
-            0, // top offset of expanded ad
-            970, // expanded width of ad
-            250); // expanded height of ad
+        //        Enabler.setExpandingPixelOffsets(
+        //            0, // left offset of expanded ad
+        //            0, // top offset of expanded ad
+        //            970, // expanded width of ad
+        //            250); // expanded height of ad
 
 
         // Set Expansion to Auto-Expand
@@ -107,7 +107,7 @@
         Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START,
             function () {
 
-                Enabler.startTimer('expanded_panel');
+                //Enabler.startTimer('expanded_panel');
 
                 collapsedPanel.style.display = "none";
                 expandedPanel.style.display = "block";
@@ -118,9 +118,10 @@
         Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH,
             function () {
                 // Record Cookies for Expand from Billboard JS
+                console.log('handleExpand');
                 handleExpand();
 
-                console.log('play video');
+                //console.log('play video');
                 //playVideo();
 
             });
@@ -130,7 +131,7 @@
         Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START,
             function () {
 
-                Enabler.stopTimer('expanded_panel');
+                //Enabler.stopTimer('expanded_panel');
 
                 expandedPanel.style.display = "none";
                 collapsedPanel.style.display = "block";
@@ -141,45 +142,53 @@
         Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH,
             function () {
                 // Record Cookies for Collapse from Billboard JS
+                console.log('handleCollapse');
                 handleCollapse();
             });
     }
 
 
 
-    onExpandHandler = function (e) {
+    onAutoExpandHandler = function (e) {
         Enabler.requestExpand();
-
-        console.log('mute');
+        // console.log('mute');
         hideReplayBtn();
         muteVideo();
+        firstExpand = false;
+
     }
 
     onUserExpandHandler = function (e) {
+
         Enabler.requestExpand();
 
-        console.log('unmute');
-        unmuteVideo();
-        videoPlayer.play();
+        if (firstExpand) {
+            playVideoMuted();
+            showClickForSound();
+            firstExpand = false;
+        } else {
+            playVideo();
+            hideClickForSound();
+        }
+
+
     }
 
     onExitHandler = function (e) {
         Enabler.exit('Clickthrough');
-
         closeAd();
     }
 
     onCloseHandler = function (e) {
-        Enabler.counter('Manual_Close');
-
+        Enabler.counter('Manual Close');
         closeAd();
     }
 
     closeAd = function () {
         Enabler.requestCollapse();
 
-        console.log('stop video and reset');
-        
+        // console.log('stop video and reset');
+
         videoPlayer.currentTime = 0;
         videoPlayer.pause();
         hideClickForSound();
@@ -194,10 +203,17 @@
     // CONTROL VARS
     // ---------------------------------------------------------------------------------
 
-    var videoAutoPlays = true;
-    var videoStartsMuted = true;
-    var videoIsReplaying = false;
-    var videonOnEndFrame = false;
+    if (adstate == "collapsed") {
+        videoAutoPlays = false;
+        videoStartsMuted = false;
+        videoIsReplaying = false;
+        videonOnEndFrame = false;
+    } else {
+        videoAutoPlays = true;
+        videoStartsMuted = true;
+        videoIsReplaying = false;
+        videonOnEndFrame = false;
+    }
 
     // ---------------------------------------------------------------------------------
     // ADD VIDEO SRC AND METRICS
@@ -209,14 +225,6 @@
         var srcNode;
 
         srcNode = document.createElement('source');
-
-        // srcNode.setAttribute('type', 'video/ogg');
-        // srcNode.setAttribute('src', Enabler.getUrl('video.ogg'));
-        // videoPlayer.appendChild(srcNode);
-
-        // srcNode.setAttribute('type', 'video/webm');
-        // srcNode.setAttribute('src', Enabler.getUrl('video.webm'));
-        // videoPlayer.appendChild(srcNode);
 
         srcNode.setAttribute('type', 'video/mp4');
         srcNode.setAttribute('src', Enabler.getUrl('video.mp4'));
@@ -276,11 +284,12 @@
 
     function restartWithSound() {
         //console.log("restartWithSound");
-        Enabler.counter("Restart Video With Sound");
+        //Enabler.counter("Restart Video With Sound");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
-        playVideo();
         hideClickForSound();
+        unmuteVideo();
+        playVideo();
     }
 
     function videoEndHandler() {
@@ -323,11 +332,19 @@
     }
 
     function playVideo() {
-        videoPlayer.play();
-        hideClickForSound();
-        unmuteVideo();
+
+        //        hideClickForSound();
+        //        unmuteVideo();
         showPauseBtn();
         hidePlayBtn();
+        videoPlayer.play();
+    }
+
+    function playVideoMuted() {
+        //        videoPlayer.play();
+        //        hideClickForSound();
+        muteVideo();
+        playVideo();
     }
 
     function pauseVideo() {
@@ -337,7 +354,7 @@
     }
 
     function replayVideo() {
-        Enabler.counter("Replay Video");
+        //Enabler.counter("Replay Video");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         unmuteVideo();
