@@ -1,5 +1,5 @@
 (function () {
-    
+
     var collapsedPanel;
     var expandedPanel;
     var expandBtn;
@@ -12,7 +12,7 @@
     var videonOnEndFrame;
 
     var firstExpand = true;
-    
+
     // ----------
     var startAdState = "expanded";
     // ----------
@@ -28,7 +28,6 @@
         videoIsReplaying = false;
         videonOnEndFrame = false;
     }
-
 
     serveBillboard = function (adstate) {
         switch (adstate) {
