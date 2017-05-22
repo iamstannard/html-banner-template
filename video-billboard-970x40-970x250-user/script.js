@@ -10,37 +10,6 @@
     var closeBtn;
 
 
-    // ======================================For Getting Cookie==========================================
-
-
-
-    getThisCookie = function () {
-        var useCookie = false;
-
-        if (Enabler.getParameter("useCookie")) {
-
-            useCookie = (Enabler.getParameter("useCookie") == "true") ? true : false;
-
-        }
-
-        if (useCookie == false) {
-            var adstate = "expanded";
-            serveBillboard(adstate);
-        } else {
-            getBilllboardState = setInterval(checkCookie, 1000);
-        }
-    }
-
-    checkCookie = function () {
-        var adstate = getFlashState();
-
-        if (adstate != "null") {
-            serveBillboard(adstate);
-            clearInterval(getBilllboardState);
-        }
-    }
-
-
     serveBillboard = function (adstate) {
         switch (adstate) {
 
@@ -70,15 +39,15 @@
     // =============================================================================================
 
     dcrmInit = function () {
-        Enabler.setExpandingPixelOffsets(
-            0, // left offset of expanded ad
-            0, // top offset of expanded ad
-            970, // expanded width of ad
-            250); // expanded height of ad
+//        Enabler.setExpandingPixelOffsets(
+//            0, // left offset of expanded ad
+//            0, // top offset of expanded ad
+//            970, // expanded width of ad
+//            250); // expanded height of ad
 
 
         // Set Expansion to Auto-Expand
-        Enabler.setStartExpanded(true);
+        // Enabler.setStartExpanded(false);
 
         collapsedPanel = document.getElementById('collapsed');
         expandedPanel = document.getElementById('expanded');
@@ -86,13 +55,9 @@
         exitBtn = document.getElementById('exit_btn');
         closeBtn = document.getElementById('close_btn');
 
-        // Added Listeners
         addListeners();
-
         addVideoTracking();
-
-        // Getting Cookie from Billboard JS
-        getThisCookie();
+        serveBillboard("collapsed");
     }
 
 
@@ -141,7 +106,7 @@
         Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH,
             function () {
                 // Record Cookies for Collapse from Billboard JS
-                handleCollapse();
+                // handleCollapse();
             });
     }
 
@@ -149,7 +114,6 @@
 
     onExpandHandler = function (e) {
         Enabler.requestExpand();
-
         console.log('mute');
         hideReplayBtn();
         muteVideo();
@@ -158,9 +122,8 @@
     onUserExpandHandler = function (e) {
         Enabler.requestExpand();
 
-        console.log('unmute');
-        unmuteVideo();
-        videoPlayer.play();
+        // console.log('unmute');
+     playVideoMuted();
     }
 
     onExitHandler = function (e) {
@@ -194,7 +157,7 @@
     // CONTROL VARS
     // ---------------------------------------------------------------------------------
 
-    var videoAutoPlays = true;
+    var videoAutoPlays = false;
     var videoStartsMuted = true;
     var videoIsReplaying = false;
     var videonOnEndFrame = false;
@@ -326,6 +289,14 @@
         videoPlayer.play();
         hideClickForSound();
         unmuteVideo();
+        showPauseBtn();
+        hidePlayBtn();
+    }
+    
+        function playVideoMuted() {
+        videoPlayer.play();
+        showClickForSound();
+        muteVideo();
         showPauseBtn();
         hidePlayBtn();
     }

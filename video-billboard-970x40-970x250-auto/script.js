@@ -13,34 +13,6 @@
     // ======================================For Getting Cookie==========================================
 
 
-
-    getThisCookie = function () {
-        var useCookie = false;
-
-        if (Enabler.getParameter("useCookie")) {
-
-            useCookie = (Enabler.getParameter("useCookie") == "true") ? true : false;
-
-        }
-
-        if (useCookie == false) {
-            var adstate = "expanded";
-            serveBillboard(adstate);
-        } else {
-            getBilllboardState = setInterval(checkCookie, 1000);
-        }
-    }
-
-    checkCookie = function () {
-        var adstate = getFlashState();
-
-        if (adstate != "null") {
-            serveBillboard(adstate);
-            clearInterval(getBilllboardState);
-        }
-    }
-
-
     serveBillboard = function (adstate) {
         switch (adstate) {
 
@@ -70,15 +42,15 @@
     // =============================================================================================
 
     dcrmInit = function () {
-        Enabler.setExpandingPixelOffsets(
-            0, // left offset of expanded ad
-            0, // top offset of expanded ad
-            970, // expanded width of ad
-            250); // expanded height of ad
+//        Enabler.setExpandingPixelOffsets(
+//            0, // left offset of expanded ad
+//            0, // top offset of expanded ad
+//            970, // expanded width of ad
+//            250); // expanded height of ad
 
 
         // Set Expansion to Auto-Expand
-        Enabler.setStartExpanded(true);
+        // Enabler.setStartExpanded(true);
 
         collapsedPanel = document.getElementById('collapsed');
         expandedPanel = document.getElementById('expanded');
@@ -86,13 +58,9 @@
         exitBtn = document.getElementById('exit_btn');
         closeBtn = document.getElementById('close_btn');
 
-        // Added Listeners
         addListeners();
-
         addVideoTracking();
-
-        // Getting Cookie from Billboard JS
-        getThisCookie();
+        serveBillboard("expanded");
     }
 
 
@@ -118,9 +86,9 @@
         Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH,
             function () {
                 // Record Cookies for Expand from Billboard JS
-                handleExpand();
+                // handleExpand();
 
-                console.log('play video');
+                //console.log('play video');
                 //playVideo();
 
             });
