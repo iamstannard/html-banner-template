@@ -6,10 +6,10 @@
     var exitBtn;
     var closeBtn;
 
-    var videoAutoPlays;
-    var videoStartsMuted;
-    var videoIsReplaying;
-    var videonOnEndFrame;
+    var videoAutoPlays = false;
+    var videoStartsMuted = false;
+    var videoIsReplaying = false;
+    var videonOnEndFrame = false;
 
     var firstExpand = true;
 
@@ -64,9 +64,6 @@
         }
     }
 
-
-
-
     // =============================================================================================
 
     dcrmInit = function () {
@@ -86,9 +83,7 @@
         exitBtn = document.getElementById('exit_btn');
         closeBtn = document.getElementById('close_btn');
 
-        // Added Listeners
         addListeners();
-
         addVideoTracking();
 
         // Getting Cookie from Billboard JS
@@ -111,7 +106,6 @@
 
                 collapsedPanel.style.display = "none";
                 expandedPanel.style.display = "block";
-
                 Enabler.finishExpand();
             });
 
@@ -130,12 +124,9 @@
         // Collapse Event Listeners
         Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START,
             function () {
-
                 //Enabler.stopTimer('expanded_panel');
-
                 expandedPanel.style.display = "none";
                 collapsedPanel.style.display = "block";
-
                 Enabler.finishCollapse();
             });
 
@@ -150,15 +141,15 @@
 
 
     onAutoExpandHandler = function (e) {
+        console.log('onAutoExpandHandler');
         Enabler.requestExpand();
-        // console.log('mute');
-        hideReplayBtn();
-        muteVideo();
+        playVideoMuted();
+        showClickForSound();
         firstExpand = false;
-
     }
 
     onUserExpandHandler = function (e) {
+        console.log('onUserExpandHandler');
 
         Enabler.requestExpand();
 
@@ -203,17 +194,17 @@
     // CONTROL VARS
     // ---------------------------------------------------------------------------------
 
-    if (adstate == "collapsed") {
-        videoAutoPlays = false;
-        videoStartsMuted = false;
-        videoIsReplaying = false;
-        videonOnEndFrame = false;
-    } else {
-        videoAutoPlays = true;
-        videoStartsMuted = true;
-        videoIsReplaying = false;
-        videonOnEndFrame = false;
-    }
+    //    if (adstate == "collapsed") {
+    //        videoAutoPlays = false;
+    //        videoStartsMuted = false;
+    //        videoIsReplaying = false;
+    //        videonOnEndFrame = false;
+    //    } else {
+    //        videoAutoPlays = false;
+    //        videoStartsMuted = false;
+    //        videoIsReplaying = false;
+    //        videonOnEndFrame = false;
+    //    }
 
     // ---------------------------------------------------------------------------------
     // ADD VIDEO SRC AND METRICS
@@ -262,23 +253,25 @@
     function videoReadyToPlay() {
         //console.log("videoReadyToPlay");
 
-        if (!videoIsReplaying) {
-
-            if (videoAutoPlays) {
-                playVideo();
-            } else {
-                pauseVideo();
-            }
-
-            if (videoStartsMuted) {
-                muteVideo();
-                showClickForSound();
-            } else {
-                unmuteVideo();
-            }
-
-            showControls();
-        }
+//        if (!videoIsReplaying) {
+    //
+    //            if (videoAutoPlays) {
+    //                playVideo();
+    //            } else {
+    //                pauseVideo();
+    //            }
+    //
+    //            if (videoStartsMuted) {
+    //                muteVideo();
+    //                showClickForSound();
+    //            } else {
+    //                unmuteVideo();
+    //            }
+    //
+    //            showControls();
+    //        }
+        
+        showControls();
 
     }
 
