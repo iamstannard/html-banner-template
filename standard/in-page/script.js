@@ -2,20 +2,73 @@
 
     console.clear();
 
-    // get elements
+    // ===== get elements =====
 
     var placeholder = document.getElementById('placeholder');
     var cta = document.getElementById('cta');
 
-    // set vars
+    // ===== set vars and defaults =====
 
-    var defaultAnimDist = 25;
-    var defaultAnimScale = 0.25;
     var defaultAnimTime = 1;
+    var defaultFadeTime = 0.5;
+    var defaultAnimDist = 50;
+    var defaultAnimScale = 2;
     var defaultStaggerOffset = 0.25;
     var defaultFrameDelay = 3;
 
-    var vw, vh;
+    // TweenLite.defaultOverwrite = 'auto';
+
+    TweenLite.defaultEase = Cubic.easeOut;
+
+    var ee = Elastic.easeOut.config(1, 0.5); // elastic ease
+    var re = RoughEase.ease.config({
+        template: Cubic.easeOut,
+        strength: 1,
+        points: 25,
+        taper: "out",
+        randomize: true,
+        clamp: false
+    }); // rough ease
+    var le = Power0.easeNone; // linear ease
+    var bo = Back.easeOut.config(2); // back out
+    var bi = Back.easeIn.config(2); // back out
+
+    var tl1 = new TimelineMax({
+        repeat: 0,
+        repeatDelay: defaultFrameDelay
+    });
+
+    // ===== set timeScale =====
+
+    tl1.timeScale(1);
+
+    // ===== some eases =====
+
+    // ease: Elastic.easeOut.config(1, 0.3);
+    // ease: Back.easeOut.config(1.7);
+    // ease: SteppedEase.config(12);
+    // ease: SlowMo.ease.config(0.5, 1, false);
+    // ease: RoughEase.ease.config({ template: Cubic.easeOut, strength: 1, points: 20, taper: "out", randomize: true, clamp: false});
+
+    //  ===== some timeline options =====
+
+    //.set(element, {});
+    //.to(element, defaultAnimTime, {});
+    //.from(element, defaultAnimTime, {});
+    //.toFrom(element, defaultAnimTime, {},{});
+    //.staggerTo(element, defaultAnimTime, {}, defaultStaggerOffset);
+    //.staggerFrom(element, defaultAnimTime, {}, defaultStaggerOffset);
+
+    //cycle:{x:[50,0,-20], rotation:[30,60,90]}
+    //cycle:{x:function() { return Math.random() * 200; }}
+
+    // ===== frame functions =====
+
+    // function nextFrame(nextFrameFunction, nextFrameDelay) {
+    //     setTimeout(nextFrameFunction, nextFrameDelay);
+    // }
+    // onComplete: nextFrame,
+    // onCompleteParams: [frame2, 2000]
 
     function random(min, max) {
         if (max == null) {
@@ -25,49 +78,7 @@
         return Math.random() * (max - min) + min;
     }
 
-    // set defaults
-
-    // TweenLite.defaultOverwrite = 'auto';
-    TweenLite.defaultEase = Cubic.easeOut;
-
-    // some eases
-
-    // ease: Elastic.easeOut.config(1, 0.3);
-    // ease: Back.easeOut.config(1.7);
-    // ease: SteppedEase.config(12);
-    // ease: SlowMo.ease.config(0.5, 1, false);
-    // ease: RoughEase.ease.config({ template: Cubic.easeOut, strength: 1, points: 20, taper: "out", randomize: true, clamp: false});
-
-    var tl1 = new TimelineMax({
-        repeat: 0,
-        repeatDelay: defaultFrameDelay
-    });
-
-    // set timeScale
-    tl1.timeScale(1);
-
-    // some timeline options
-
-    //.to(element, defaultAnimTime, {});
-    //.from(element, defaultAnimTime, {});
-    //.staggerTo(element, defaultAnimTime, {}, defaultStaggerOffset);
-    //.staggerFrom(element, defaultAnimTime, {}, defaultStaggerOffset);
-    //.set(element, {});
-
-    //cycle:{x:[50,0,-20], rotation:[30,60,90]}
-    //cycle:{x:function() { return Math.random() * 200; }}
-
-    // animate functions
-
-    // function nextFrame(nextFrameFunction, nextFrameDelay) {
-    //     setTimeout(nextFrameFunction, nextFrameDelay);
-    // }
-
-    // onComplete: nextFrame,
-    // onCompleteParams: [frame2, 2000]
-
     function startAnim() {
-
         //console.log('startAnim');
 
         tl1
@@ -79,21 +90,24 @@
             .addLabel("frame5", 12)
 
         .from(placeholder, defaultAnimTime, {
-                autoAlpha: 0
+                autoAlpha: 0,
+                scale: defaultAnimScale
             }, "frame1")
             .from(cta, defaultAnimTime, {
                 autoAlpha: 0,
-                y: vh
+                y: defaultAnimDist,
+                ease: ee
             }, "frame2")
 
         ;
 
-        // total duration of timeline
-        // console.log("duration : " + tl1.totalDuration() + " secs");
+        // ===== total duration of timeline =====
+
+        console.log("duration : " + tl1.totalDuration() + " secs");
 
     }
 
-    // init
+    // ===== init =====
 
     function addEventListeners() {
         //console.log('addEventListeners');
@@ -101,14 +115,7 @@
 
     function initBanner() {
         //console.log('initBanner');
-
         bannerContainer.style.display = 'block';
-
-        // banner size
-        //        vw = bannerContainer.offsetWidth;
-        //        vh = bannerContainer.offsetHeight;
-        //        console.log("size : " + vw + " x " + vh);
-
         addEventListeners();
         startAnim();
     }
