@@ -49,6 +49,7 @@
 
     var numPhases;
     var phaseName;
+    var phaseNameText;
     var numBanners;
 
     var ddd = new Date();
@@ -173,8 +174,8 @@
 
                 phase = xmlDoc.getElementsByTagName('phase')[i];
                 phaseName = phase.attributes.getNamedItem("category").nodeValue;
-                phaseName = phaseName.replace(/-/g, ' ');
-                //console.log("phase : " + phaseName);
+                phaseNameText = phaseName.replace(/-/g, ' ');
+                //console.log("phase : " + phaseNameText);
 
                 // how many banners?
 
@@ -184,7 +185,7 @@
                 if (numBanners > 0) {
 
                     node = document.createElement("DIV");
-                    textNode = document.createTextNode(phaseName.toUpperCase());
+                    textNode = document.createTextNode(phaseNameText.toUpperCase());
                     node.appendChild(textNode);
                     buttonContainer.appendChild(node);
                 }

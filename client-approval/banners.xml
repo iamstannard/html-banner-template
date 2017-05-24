@@ -32,15 +32,15 @@
         etc
         -->
 
-        <phase category="physical">
-            <!--phase category cna be whatever you want it to be, but subfolder has to have the same name-->
+        <phase category="phys-ical">
+            <!--phase category can be whatever you want it to be, but subfolder has to have the same name-->
+            <!--hyphens in category name/subfolder will be displayed as spaces-->
 
             <banner>
                 <type>html</type>
                 <!--type : html or gif or jpg or png-->
                 <!--if html, will navigate to index file-->
                 <!--if image type, will append filename with image type-->
-                <!--if image type, will append button label with "static"-->
                 <width>300</width>
                 <height>250</height>
                 <altLabel></altLabel>
@@ -49,45 +49,12 @@
             </banner>
 
             <banner>
-                <type>html</type>
-                <width>728</width>
-                <height>90</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
-
-            <banner>
-                <type>html</type>
-                <width>160</width>
-                <height>600</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
-
-            <banner>
                 <type>gif</type>
                 <width>300</width>
                 <height>250</height>
                 <altLabel></altLabel>
                 <altFileName></altFileName>
             </banner>
-
-            <banner>
-                <type>gif</type>
-                <width>728</width>
-                <height>90</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
-
-            <banner>
-                <type>gif</type>
-                <width>160</width>
-                <height>600</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
-
 
         </phase>
 
@@ -101,22 +68,6 @@
                 <altFileName></altFileName>
             </banner>
 
-            <banner>
-                <type>html</type>
-                <width>728</width>
-                <height>90</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
-
-            <banner>
-                <type>html</type>
-                <width>160</width>
-                <height>600</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
-
         </phase>
 
         <phase category="google">
@@ -125,22 +76,6 @@
                 <type>html</type>
                 <width>300</width>
                 <height>250</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
-
-            <banner>
-                <type>html</type>
-                <width>728</width>
-                <height>90</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
-
-            <banner>
-                <type>html</type>
-                <width>160</width>
-                <height>600</height>
                 <altLabel></altLabel>
                 <altFileName></altFileName>
             </banner>
