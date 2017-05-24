@@ -33,7 +33,7 @@ video {
     top: 0px;
     right: 0px;
     width: 970px;
-    height: 15px;
+    height: 40px;
     /*    background-image: url('collapsedBG.jpg');*/
 /*    border: 1px solid #000;*/
     /*    z-index: 100;*/
@@ -80,11 +80,6 @@ video {
     /*    background-image: url('close.png');*/
     cursor: pointer;
     /*    z-index: 400;*/
-}
-#closeBtn {
-    /*    position: absolute;*/
-    top: 0px;
-    right: 0px;
 }
 
 /*-----------------------------------*/

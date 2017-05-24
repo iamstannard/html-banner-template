@@ -1,5 +1,5 @@
 // JavaScript Document
-//HTML5 Ad Template JS from DoubleClick by Google
+// HTML5 Ad Template JS from DoubleClick by Google
 
 var collapsedPanel;
 var expandedPanel;
@@ -14,7 +14,10 @@ var videonOnEndFrame;
 
 var firstExpand = true;
 
-// ======================================For Getting Cookie==========================================
+// ====================================== For Getting Cookie ==========================================
+
+// ========== NOTE : COOKIE FUNCTIONALITY NEEDS TO BE ACTIVATED IN DCM
+// ========== Creative parameters/Key-value parameters [ useCookie=true ]
 
 getThisCookie = function () {
     var useCookie = false;
@@ -26,7 +29,7 @@ getThisCookie = function () {
     }
 
     if (useCookie == false) {
-        // var adstate = "expanded";
+        var adstate = "expanded";
         serveBillboard(adstate);
     } else {
         getBilllboardState = setInterval(checkCookie, 1000);
@@ -86,7 +89,6 @@ dcrmInit = function () {
     //        970, // expanded width of ad
     //        250); // expanded height of ad
 
-
     // Set Expansion to Auto-Expand
     Enabler.setStartExpanded(true);
 
@@ -99,7 +101,7 @@ dcrmInit = function () {
     // Added Listeners
     addListeners();
 
-    //
+    // Add video tracking
     addVideoTracking();
 
     // Getting Cookie from Billboard JS
@@ -230,13 +232,10 @@ videoPlayer.addEventListener("ended", videoEndHandler, false);
 clickForSound.addEventListener("click", restartWithSound, false);
 
 function showControls() {
-    //console.log("showControls");
     videoControls.style.visibility = 'visible';
 }
 
 function videoReadyToPlay() {
-    //console.log("videoReadyToPlay");
-
     if (!videoIsReplaying) {
 
         if (videoAutoPlays) {
@@ -260,8 +259,6 @@ function videoReadyToPlay() {
 }
 
 function restartWithSound() {
-    //console.log("restartWithSound");
-    //Enabler.counter("Restart Video With Sound");
     videoIsReplaying = true;
     videoPlayer.currentTime = 0;
     unmuteVideo();
@@ -270,8 +267,6 @@ function restartWithSound() {
 }
 
 function videoEndHandler() {
-    //console.log("videoEndHandler");
-
     videonOnEndFrame = true;
 
     pauseVideo();
@@ -326,7 +321,6 @@ function pauseVideo() {
 }
 
 function replayVideo() {
-    // Enabler.counter("Replay Video");
     videoIsReplaying = true;
     videoPlayer.currentTime = 0;
     unmuteVideo();
@@ -410,7 +404,6 @@ function muteUnmuteHandler() {
 }
 
 function replayHandler() {
-    //console.log("replayHandler");
     hideReplayBtn();
     showPauseBtn();
     showMuteBtn();
