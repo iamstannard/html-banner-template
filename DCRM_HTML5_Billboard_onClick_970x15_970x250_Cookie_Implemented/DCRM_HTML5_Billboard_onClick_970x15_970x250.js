@@ -7,6 +7,9 @@ var expandBtn;
 var exitBtn;
 var closeBtn;
 
+// var adstate;
+// var useCookie;
+
 
 // ======================================For Getting Cookie==========================================
 
@@ -72,11 +75,11 @@ serveBillboard = function(adstate)
 // =============================================================================================
 
 dcrmInit = function(){
-	Enabler.setExpandingPixelOffsets(
-  	0, // left offset of expanded ad
-  	0, // top offset of expanded ad
- 	970, // expanded width of ad
-  	250); // expanded height of ad
+//	Enabler.setExpandingPixelOffsets(
+//  	0, // left offset of expanded ad
+//  	0, // top offset of expanded ad
+// 	970, // expanded width of ad
+//  	250); // expanded height of ad
 
 
 	// Set Expansion to Auto-Expand
