@@ -42,7 +42,9 @@
 
     tl1.timeScale(1);
 
-    // ===== some eases =====
+    // ===== eases =====
+    
+    // https://greensock.com/ease-visualizer
 
     // ease: Elastic.easeOut.config(1, 0.3);
     // ease: Back.easeOut.config(1.7);
@@ -50,7 +52,9 @@
     // ease: SlowMo.ease.config(0.5, 1, false);
     // ease: RoughEase.ease.config({ template: Cubic.easeOut, strength: 1, points: 20, taper: "out", randomize: true, clamp: false});
 
-    //  ===== some timeline options =====
+    //  ===== timeline =====
+    
+    // https://greensock.com/docs/#/HTML5/Sequencing/TimelineMax/
 
     //.set(element, {});
     //.to(element, defaultAnimTime, {});
