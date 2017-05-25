@@ -7,6 +7,35 @@
     var placeholder = document.getElementById('placeholder');
     var cta = document.getElementById('cta');
 
+    // ===== check date =====
+
+    //    var d = new Date(); // get new date
+    //
+    //    var d1 = new Date("October 13, 2017"); // date
+    //    var d2 = new Date("October 20, 2017"); // day of week
+    //    var d3 = new Date("October 27, 2017"); // out now
+    //
+    //    console.log(d);
+    //    console.log(d1);
+    //    console.log(d2);
+    //    console.log(d3);
+    //
+    //    d = new Date("October 30, 2017"); // for testing
+    //
+    //    if (d >= d3) {
+    //        console.log('out now');
+    //        console.log(d);
+    //        console.log(d3);
+    //    } else if (d >= d2) {
+    //        console.log('day of week');
+    //        console.log(d);
+    //        console.log(d2);
+    //    } else {
+    //        console.log('date');
+    //        console.log(d);
+    //        console.log(d1);
+    //    }
+
     // ===== set vars and defaults =====
 
     var defaultAnimTime = 1;
@@ -43,7 +72,7 @@
     tl1.timeScale(1);
 
     // ===== eases =====
-    
+
     // https://greensock.com/ease-visualizer
 
     // ease: Elastic.easeOut.config(1, 0.3);
@@ -53,7 +82,7 @@
     // ease: RoughEase.ease.config({ template: Cubic.easeOut, strength: 1, points: 20, taper: "out", randomize: true, clamp: false});
 
     //  ===== timeline =====
-    
+
     // https://greensock.com/docs/#/HTML5/Sequencing/TimelineMax/
 
     //.set(element, {});
