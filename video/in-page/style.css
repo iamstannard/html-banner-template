@@ -76,12 +76,13 @@ video {
     visibility: hidden;
 }
 #play-btn,
-#pause-btn,
-#replay-btn {
+#pause-btn {
     left: 5px;
 }
+
 #mute-btn,
-#unmute-btn {
+#unmute-btn,
+#replay-btn {
     right: 5px;
 }
 #play-btn {

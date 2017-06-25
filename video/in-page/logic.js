@@ -1,5 +1,5 @@
 (function () {
-    
+
     console.clear();
 
     // ---------------------------------------------------------------------------------
@@ -131,7 +131,7 @@
     videoPlayer.addEventListener("canplay", videoReadyToPlay, false);
     videoPlayer.addEventListener("ended", videoEndHandler, false);
     clickForSound.addEventListener("click", restartWithSound, false);
-    
+
     videoPlayer.controls = false;
 
     function showControls() {
@@ -148,16 +148,21 @@
         if (!videoIsReplaying) {
 
             if (videoAutoPlays) {
-                playVideo();
+                //playVideo();
+                videoPlayer.play();
             } else {
-                pauseVideo();
+                //pauseVideo();
+                videoPlayer.pause();
             }
 
             if (videoStartsMuted) {
-                muteVideo();
+                //muteVideo();
+                videoPlayer.muted = true;
+
                 showClickForSound();
             } else {
-                unmuteVideo();
+                //unmuteVideo();
+                videoPlayer.muted = false;
             }
 
             showControls();
