@@ -29,7 +29,6 @@
         videonOnEndFrame = false;
     }
 
-
     serveBillboard = function (adstate) {
         switch (adstate) {
             case "expanded":
@@ -111,24 +110,44 @@
 
 
     onAutoExpandHandler = function (e) {
+        // console.log('onAutoExpandHandler');
         Enabler.requestExpand();
-        // console.log('mute');
+
+        hidePlayBtn();
+        hidePauseBtn();
+        hideUnmuteBtn();
+        hideMuteBtn();
         hideReplayBtn();
+
         muteVideo();
-        firstExpand = false;
+        playVideo();
+
+        //firstExpand = false;
 
     }
 
-    onUserExpandHandler = function (e) {
 
+    onUserExpandHandler = function (e) {
+        // console.log('onUserExpandHandler');
         Enabler.requestExpand();
 
         if (firstExpand) {
-            playVideoMuted();
-            showClickForSound();
+            // console.log('firstExpand');
+            unmuteVideo();
+            pauseVideo();
+            showPlayBtn();
+            hidePauseBtn();
+            showMuteBtn();
+            hideUnmuteBtn();
+            hideClickForSound();
             firstExpand = false;
         } else {
+            unmuteVideo();
             playVideo();
+            hidePlayBtn();
+            showPauseBtn();
+            showMuteBtn();
+            hideUnmuteBtn();
             hideClickForSound();
         }
 
@@ -136,18 +155,21 @@
     }
 
     onExitHandler = function (e) {
+        // console.log('onExitHandler');
+
         Enabler.exit('Clickthrough');
         closeAd();
     }
 
     onCloseHandler = function (e) {
+        // console.log('onCloseHandler');
         Enabler.reportManualClose();
         closeAd();
     }
 
     closeAd = function () {
+        // console.log('closeAd');
         Enabler.requestCollapse();
-        // console.log('stop video and reset');
         videoPlayer.currentTime = 0;
         videoPlayer.pause();
         hideClickForSound();
@@ -207,7 +229,7 @@
         if (!videoIsReplaying) {
 
             if (videoAutoPlays) {
-                playVideo();
+                //playVideo();
             } else {
                 pauseVideo();
             }
@@ -229,9 +251,20 @@
         //Enabler.counter("Restart Video With Sound");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
+
+        hideClickForSound();
+
+        hideReplayBtn();
+
+        hidePlayBtn();
+        showPauseBtn();
+
+        hideUnmuteBtn();
+        showMuteBtn();
+
         unmuteVideo();
         playVideo();
-        hideClickForSound();
+
     }
 
     function videoEndHandler() {
@@ -273,21 +306,21 @@
     }
 
     function playVideo() {
-        showPauseBtn();
-        hidePlayBtn();
+        //showPauseBtn();
+        //hidePlayBtn();
         videoPlayer.play();
     }
 
     function playVideoMuted() {
-        videoPlayer.play();
+        //videoPlayer.play();
         muteVideo();
         playVideo();
     }
 
     function pauseVideo() {
         videoPlayer.pause();
-        showPlayBtn();
-        hidePauseBtn();
+        //showPlayBtn();
+        //hidePauseBtn();
     }
 
     function replayVideo() {
@@ -301,14 +334,14 @@
 
     function muteVideo() {
         videoPlayer.muted = true;
-        showUnmuteBtn();
-        hideMuteBtn();
+        //showUnmuteBtn();
+        //hideMuteBtn();
     }
 
     function unmuteVideo() {
         videoPlayer.muted = false;
-        showMuteBtn();
-        hideUnmuteBtn();
+        //showMuteBtn();
+        //hideUnmuteBtn();
     }
 
     function showPlayBtn() {
@@ -356,11 +389,17 @@
         if (videoPlayer.paused) {
             if (videoPlayer.muted) {
                 unmuteVideo();
+                hideUnmuteBtn();
+                showMuteBtn();
                 hideClickForSound();
             }
             playVideo();
+            hidePlayBtn();
+            showPauseBtn();
         } else {
             pauseVideo();
+            showPlayBtn();
+            hidePauseBtn();
         }
     }
 
@@ -369,8 +408,12 @@
         if (videoPlayer.muted) {
             hideClickForSound();
             unmuteVideo();
+            hideUnmuteBtn();
+            showMuteBtn();
         } else {
             muteVideo();
+            showUnmuteBtn();
+            hideMuteBtn();
         }
     }
 
@@ -381,8 +424,6 @@
         showMuteBtn();
         replayVideo();
     }
-
-
 
     // ---------------------------------------------------------------------------------
     // MAIN ON LOAD HANDLER

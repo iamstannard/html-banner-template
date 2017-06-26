@@ -138,6 +138,7 @@
 
     function showControls() {
         //console.log("showControls");
+        //videoControls.style.visibility = 'visible';
         TweenMax.to(videoControls, 0.25, {
             autoAlpha: 1,
             ease: Cubic.easeOut
@@ -151,8 +152,10 @@
         timer8Sec = setTimeout(function () {
             hideClickForSound();
             showWatchTrailer();
-            pauseVideo();
+            //pauseVideo();
+            videoPlayer.pause();
             // unmuteVideo();
+            videoPlayer.muted = false;
             stop8SecTimer();
         }, 8000);
     }
@@ -168,17 +171,22 @@
         if (!videoIsReplaying) {
 
             if (videoAutoPlays) {
-                playVideo();
+                //playVideo();
+                videoPlayer.play();
                 start8SecTimer();
             } else {
-                pauseVideo();
+                //pauseVideo();
+                videoPlayer.pause();
             }
 
             if (videoStartsMuted) {
-                muteVideo();
+                //muteVideo();
+                videoPlayer.muted = true;
+
                 showClickForSound();
             } else {
-                unmuteVideo();
+                //unmuteVideo();
+                videoPlayer.muted = false;
             }
 
             showControls();
@@ -232,31 +240,35 @@
     hideReplayBtn();
 
     function showClickForSound() {
-        TweenMax.to(clickForSound, 0.25, {
-            autoAlpha: 1,
-            ease: Cubic.easeout
-        });
+        clickForSound.style.visibility = 'visible';
+//        TweenMax.to(clickForSound, 0.25, {
+//            autoAlpha: 1,
+//            ease: Cubic.easeout
+//        });
     }
 
     function hideClickForSound() {
-        TweenMax.to(clickForSound, 0.25, {
-            autoAlpha: 0,
-            ease: Cubic.easeout
-        });
+        clickForSound.style.visibility = 'hidden';
+//        TweenMax.to(clickForSound, 0.25, {
+//            autoAlpha: 0,
+//            ease: Cubic.easeout
+//        });
     }
 
     function showWatchTrailer() {
-        TweenMax.to(watchTrailer, 0.25, {
-            autoAlpha: 1,
-            ease: Cubic.easeout
-        });
+        watchTrailer.style.visibility = 'visible';
+//        TweenMax.to(watchTrailer, 0.25, {
+//            autoAlpha: 1,
+//            ease: Cubic.easeout
+//        });
     }
 
     function hideWatchTrailer() {
-        TweenMax.to(watchTrailer, 0.25, {
-            autoAlpha: 0,
-            ease: Cubic.easeout
-        });
+        watchTrailer.style.visibility = 'hidden';
+//        TweenMax.to(watchTrailer, 0.25, {
+//            autoAlpha: 0,
+//            ease: Cubic.easeout
+//        });
     }
 
     function playVideo() {
@@ -274,7 +286,7 @@
     }
 
     function replayVideo() {
-        Enabler.counter("Replay Video");
+        // Enabler.counter("Replay Video");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         unmuteVideo();

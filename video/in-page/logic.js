@@ -136,6 +136,7 @@
 
     function showControls() {
         //console.log("showControls");
+        //videoControls.style.visibility = 'visible';
         TweenMax.to(videoControls, 0.25, {
             autoAlpha: 1,
             ease: Cubic.easeOut
@@ -172,7 +173,7 @@
 
     function restartWithSound() {
         //console.log("restartWithSound");
-        Enabler.counter("Restart Video With Sound");
+        //Enabler.counter("Restart Video With Sound");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         playVideo();
@@ -212,17 +213,19 @@
     hideReplayBtn();
 
     function showClickForSound() {
-        TweenMax.to(clickForSound, 0.25, {
-            autoAlpha: 1,
-            ease: Cubic.easeout
-        });
+        clickForSound.style.visibility = 'visible';
+//        TweenMax.to(clickForSound, 0.25, {
+//            autoAlpha: 1,
+//            ease: Cubic.easeout
+//        });
     }
 
     function hideClickForSound() {
-        TweenMax.to(clickForSound, 0.25, {
-            autoAlpha: 0,
-            ease: Cubic.easeout
-        });
+        clickForSound.style.visibility = 'hidden';
+//        TweenMax.to(clickForSound, 0.25, {
+//            autoAlpha: 0,
+//            ease: Cubic.easeout
+//        });
     }
 
     function playVideo() {
@@ -240,7 +243,7 @@
     }
 
     function replayVideo() {
-        Enabler.counter("Replay Video");
+        //Enabler.counter("Replay Video");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         unmuteVideo();
