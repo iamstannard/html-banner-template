@@ -1,6 +1,6 @@
 (function () {
 
-    console.clear();
+    // console.clear();
 
     // get elements
 
