@@ -37,7 +37,7 @@ trace("A custom code snippet");
 			  <placeholders>
 				<placeholder
 					type="stageInstance"
-					text="instance_name_here" />
+					text="instance_name_here" >
 			  </placeholders>
 			  <code><![CDATA[
 //turns mouse pointer into hand
@@ -67,7 +67,7 @@ function clickthroughSizmek() {
 			  <placeholders>
 				<placeholder
 					type="stageInstance"
-					text="instance_name_here" />
+					text="instance_name_here" >
 			  </placeholders>
 			  <code><![CDATA[
 //enables mouse actions on stage
@@ -91,7 +91,7 @@ function customInteractSizmekMouseover() {
 			  <placeholders>
 				<placeholder
 					type="stageInstance"
-					text="instance_name_here" />
+					text="instance_name_here" >
 			  </placeholders>
 			  <code><![CDATA[
 //enables mouse actions on stage

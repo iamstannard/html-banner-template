@@ -6,16 +6,17 @@
 
     <title>DCS HTML5 Rich Banner Template</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="ad.size" content="width=300,height=250" />
-    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ad.size" content="width=300,height=250">
+
     <!--<meta http-equiv="expires" content="0">-->
 
     <style type="text/css">
         #bannerContainer {
             display: none
         }
+
     </style>
 
     <!-- DoubleClick Enabler -->
@@ -59,11 +60,13 @@
             document.getElementsByTagName('head')[0].appendChild(extJavascript);
             // Setup clickthrough handler
             document.getElementById('clickthrough').addEventListener('click', clickthroughHandler, false);
+
             function clickthroughHandler(event) {
                 //console.log('clickthroughHandler');
                 Enabler.exit('Exit');
             }
         }
+
     </script>
 
 </head>
@@ -76,8 +79,8 @@
         <!-- empty div handles clickthroughs and adds 1px border -->
         <div id='clickthrough'></div>
     </div>
-<!-- load tweenmax -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <!-- load tweenmax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 </body>
 
 </html>
