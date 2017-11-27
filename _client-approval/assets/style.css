@@ -6,6 +6,7 @@
 /* BOX MODEL */
 
 body * {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -49,6 +50,7 @@ body {
     user-select: none;
     -webkit-text-size-adjust: none;
     -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
     text-size-adjust: none;
     background-color: #fff;
     color: #1c1c1c;
@@ -116,6 +118,7 @@ button {
     background-color: #ad0000;
     color: white;
     font-size: 12px;
+    border-radius: 0px;
 }
 
 button:last-of-type {
