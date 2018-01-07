@@ -7,12 +7,14 @@ body {
     user-select: none;
     -webkit-text-size-adjust: none;
     -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
     text-size-adjust: none;
 }
 img,
 div,
 video {
     position: absolute;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 #main-container {
@@ -21,6 +23,7 @@ video {
     background: #000;
     overflow: hidden;
     /*display: none;*/
+    position: relative;
 }
 #border {
     width: 100%;
@@ -79,7 +82,6 @@ video {
 #pause-btn {
     left: 5px;
 }
-
 #mute-btn,
 #unmute-btn,
 #replay-btn {

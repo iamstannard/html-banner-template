@@ -7,11 +7,13 @@ body {
     user-select: none;
     -webkit-text-size-adjust: none;
     -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
     text-size-adjust: none;
 }
 img,
 div {
     position: absolute;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 img {
@@ -23,6 +25,7 @@ img {
     /*    display: block;*/
     overflow: hidden;
     background: #ccc;
+    position: relative;
 }
 #clickthrough {
     background: rgba(0, 0, 0, 0);
