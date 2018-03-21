@@ -1,0 +1,85 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+img,
+div {
+    position: absolute;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+img {
+    visibility: hidden;
+}
+
+#bannerContainer {
+    width: 1900px;
+    height: 1000px;
+/*    display: block;*/
+    overflow: hidden;
+    background: #fff;
+}
+
+#clickthrough {
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+/*    border: 1px solid #fff;*/
+}
+
+/*banner elements */
+
+.full {width:100%;height:100%;left:0px;top:0px;}
+
+#bg {left:0px;top:0px;}
+
+.panel {
+    width: 435px;
+    height: 1000px;
+    overflow: hidden;
+}
+#panelL {left: 0px; top: 0px;
+/*    background: #440603;*/
+}
+#panelR {right: 0px; top: 0px;
+/*    background: #261602;*/
+}
+
+#tt1L{right:0px;top:0px;}
+#tt2L{right:0px;top:0px;}
+
+#tt1R{left:0px;top:0px;}
+#tt2R{left:0px;top:0px;}
+
+#dvd1 {right:20px;bottom:745px;}
+#dvd2 {right:10px;bottom:578px;}
+
+#dvd3 {left:10px;bottom:745px;}
+#dvd4 {left:20px;bottom:578px;}
+
+#ctaL {right:0px;top:0px;}
+#ctaR {left:0px;top:0px;}
+
+#ratings {right:0px;top:0px;}
+#copyright {left:0px;top:0px;}
+
+#s1 {right:-240px;top:60px;}
+#s2 {right:-280px;top:120px;}
+
+#s3 {left:-240px;top:60px;}
+#s4 {left:-280px;top:120px;}
+
+
+
+

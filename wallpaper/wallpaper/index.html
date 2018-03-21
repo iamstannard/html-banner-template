@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Family Media April 2018</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--***********************************************-->
+    <meta name="ad.size" content="width=1900,height=1000" />
+    <!--***********************************************-->
+
+    <style type="text/css">
+        #bannerContainer {
+            display: none
+        }
+
+    </style>
+
+    <script>
+        var clickTag = "http://www.google.com.au/"; // this url is overwritten in dcm
+
+        function loadCSSAndJS() {
+            var extCSS = document.createElement('link');
+            extCSS.setAttribute('rel', 'stylesheet');
+            extCSS.setAttribute('type', 'text/css');
+            extCSS.setAttribute('href', 'style.css');
+            document.getElementsByTagName('head')[0].appendChild(extCSS);
+            var extJavascript = document.createElement('script');
+            extJavascript.setAttribute('type', 'text/javascript');
+            extJavascript.setAttribute('src', 'script.js');
+            document.getElementsByTagName('head')[0].appendChild(extJavascript);
+        }
+
+    </script>
+
+</head>
+
+<body onload='loadCSSAndJS()'>
+    <div id="bannerContainer">
+
+        <img id='bg' src='images/bg.jpg'>
+
+        <div id='panelL' class='panel'>
+            <img id='s1' src='images/spotlight.png'>
+            <img id='s2' src='images/spotlight.png'>
+            <img id='tt1L' src='images/tt1.png'>
+            <img id='tt2L' src='images/tt2.png'>
+            <img id='dvd1' src="images/dvd1.png">
+            <img id='dvd2' src="images/dvd2.png">
+            <img id='ctaL' src="images/btn.png">
+            <img id='ratings' src='images/ratings.png'>
+        </div>
+
+        <div id='panelR' class='panel'>
+            <img id='s3' src='images/spotlight.png'>
+            <img id='s4' src='images/spotlight.png'>
+            <img id='tt1R' src='images/tt1.png'>
+            <img id='tt2R' src='images/tt2.png'>
+            <img id='dvd3' src="images/dvd3.png">
+            <img id='dvd4' src="images/dvd4.png">
+            <img id='ctaR' src="images/btn.png">
+            <img id='copyright' src='images/copyright.png'>
+        </div>
+
+        <a href="javascript:void(0);" onclick="window.open(window.clickTag);">
+            <div id="clickthrough"></div>
+        </a>
+
+    </div>
+    <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.20.0_d360d9a082ccc13b1a1a9b153f86b378_min.js"></script>
+</body>
+
+</html>

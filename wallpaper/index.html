@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>USPHE | Family Media April 2018</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link href="http://postproduktiv.com.au/newsite/wp-content/uploads/2014/05/Logo-website-icon.png" rel="shortcut icon">
+    
+    <link rel="stylesheet" type="text/css" href="../../assets/normalize.css">
+
+    <style type="text/css">
+        body {
+            margin: 0px;
+            padding: 0px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            text-size-adjust: none;
+        }
+        
+        img,
+        div,
+        iframe {
+            margin: 0px;
+            padding: 0px;
+            position: absolute;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            background: #fff;
+            border: none;
+        }
+        
+        #wallpaperContainer {
+            width: 1900px;
+            height: 1141px;
+            top: 0px;
+            left: calc(50% - 950px);
+            display: none;
+        }
+        
+        #wallpaper {
+            width: 1900px;
+            height: 1000px;
+            top: 141px;
+            left: 0px;
+        }
+        
+        #top {
+            top: 0px;
+            left: 0px;
+        }
+        
+        #site {
+            top: 141px;
+            left: calc(50% - 515px);
+        }
+
+    </style>
+
+    <script>
+        function showWallpaper() {
+            document.getElementById("wallpaperContainer").style.display = "block";
+        }
+
+    </script>
+
+</head>
+
+<body onload="showWallpaper()">
+    <div id="wallpaperContainer">
+        <iframe id='wallpaper' src="./wallpaper/index.html"></iframe>
+        <img id='top' src="header.jpg" alt="">
+        <img id='site' src="site.jpg" alt="">
+    </div>
+</body>
+
+</html>
