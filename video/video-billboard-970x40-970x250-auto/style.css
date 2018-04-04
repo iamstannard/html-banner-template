@@ -51,7 +51,8 @@ body, body * {
     /*	background-image: url('Background_970x40.jpg');*/
     /*	border:1px solid #FF0;*/
     /*	z-index:100;*/
-    display: block;
+    /*  display: block;*/
+    display: none;
 }
 #expand_btn {
     /*	position:absolute;*/
