@@ -48,7 +48,7 @@
                 <!--if altLabel or altFileName are left empty, will use WxH-->
             </banner>
 
-            <!--
+<!--
             <banner>
                 <type>gif</type>
                 <width>300</width>

@@ -4,11 +4,16 @@
 
 <head>
 
-    <title>Hotel Transylvania 2 300x250 Physical</title>
+    <title>DCM HTML5 Standard Banner Template</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--***********************************************-->
     <meta name="ad.size" content="width=300,height=250">
+    <!--***********************************************-->
+
+    <!--<meta http-equiv="expires" content="0">-->
 
     <style type="text/css">
         #bannerContainer {
@@ -17,22 +22,72 @@
 
     </style>
 
+    <!-- load tweenmax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+
     <script>
         var clickTag = "http://www.google.com.au/"; // this url is overwritten in dcm
 
+        //        (function() {
+        //            var relegateNavigation = '';
+        //            var handleClickTagMessage = function(e) {
+        //                try {
+        //                    var eventData = JSON.parse(e.data);
+        //                } catch (err) {
+        //                    return;
+        //                }
+        //                if (eventData.isInitClickTag) {
+        //                    if (eventData.clickTags) {
+        //                        for (var i = 0; i < eventData.clickTags.length; i++) {
+        //                            var clkTag = eventData.clickTags[i];
+        //                            window[clkTag.name] = clkTag.url;
+        //                        }
+        //                    } else if (eventData.clickTag) {
+        //                        window.clickTag = eventData.clickTag;
+        //                    }
+        //                    relegateNavigation = eventData.relegateNavigation;
+        //                }
+        //            };
+        //
+        //            if (open.call) {
+        //                window.open = function(open) {
+        //                    return function(url, name, features) {
+        //                        if (relegateNavigation === 'parent') {
+        //                            var message = {
+        //                                'clickTag': url,
+        //                                'isPostClickTag': true
+        //                            };
+        //                            parent.postMessage(JSON.stringify(message), '*');
+        //                        } else {
+        //                            var args = [url, name];
+        //                            if (features) {
+        //                                args.push(features);
+        //                            }
+        //                            open.apply(window, args);
+        //                        }
+        //                    };
+        //                }(window.open);
+        //            }
+        //
+        //            if (window.addEventListener) {
+        //                window.addEventListener(
+        //                    'message', handleClickTagMessage, false);
+        //            } else {
+        //                window.attachEvent('onmessage', handleClickTagMessage);
+        //            }
+        //        })();
+
         function loadCSSAndJS() {
             //console.log('loadCSSAndJS');
-
             // Load in CSS 
-            //console.log('loadCSSAndJS');
+            //console.log('loadCSS');
             var extCSS = document.createElement('link');
             extCSS.setAttribute('rel', 'stylesheet');
             extCSS.setAttribute('type', 'text/css');
             extCSS.setAttribute('href', 'style.css');
             document.getElementsByTagName('head')[0].appendChild(extCSS);
-
             // Load in JS
-            //console.log('loadCSSAndJS');
+            ////console.log('loadJS');
             var extJavascript = document.createElement('script');
             extJavascript.setAttribute('type', 'text/javascript');
             extJavascript.setAttribute('src', 'script.js');
@@ -46,30 +101,13 @@
 <body onload='loadCSSAndJS()'>
     <div id="bannerContainer">
         <!-- banner stuff goes here -->
-        <div id="bg1"></div>
-        <div id="bg2"></div>
-        <img id='bats1' src='images/bats.png'>
-        <img id='title1' src='images/title.png'>
-        <img id='char1' src='images/char1.png'>
-        <img id='char2' src='images/char2.png'>
-        <img id='char3' src='images/char3.png'>
-        <img id='char4' src='images/char4.png'>
-        <img id='char5' src='images/char5.png'>
-        <img id='char6' src='images/char6.png'>
-        <img id='char7' src='images/char7.png'>
-        <img id='quote' src='images/quote.png'>
-        <img id='slime' src='images/slime.png'>
-        <img id='title2' src='images/title.png'>
-        <img id='packs' src='images/packs.png'>
-        <img id='cta' src='images/cta.png'>
-        <img id='legals' src='images/legals.png'>
+        <img id="placeholder" src="images/placeholder.png">
+        <img id="cta" src="images/cta.png">
         <!-- empty div handles clickthroughs and adds 1px border -->
-        <a href="javascript:window.open(window.clickTag)">
+        <a href="javascript:void(0);" onclick="window.open(window.clickTag);">
             <div id="clickthrough"></div>
         </a>
     </div>
-    <!-- load tweenmax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 </body>
 
 </html>
