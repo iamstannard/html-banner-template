@@ -1,5 +1,5 @@
 (function () {
-    
+
     // console.clear();
 
     /*global document, $, console, alert, window*/

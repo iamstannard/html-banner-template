@@ -10,7 +10,6 @@ body * {
     box-sizing: border-box;
 }
 
-
 /* CLEARFIX HACK */
 
 .cf:after {
@@ -21,21 +20,17 @@ body * {
     height: 0;
     visibility: visible;
 }
-
 .clear {
     clear: both;
 }
-
 .fl {
     float: left;
     padding-right: 7.5px;
 }
-
 .fr {
     float: right;
     padding-left: 7.5px;
 }
-
 
 /******************************************
 /* STYLES
@@ -56,57 +51,48 @@ body {
     color: #1c1c1c;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     vertical-align: baseline;
-    background-color: #ad0000;
+    background-color: #121b26;
 }
-
 div,
 iframe {
     overflow: hidden !important;
     padding: 0px;
     margin: 0px;
 }
-
 img {
     padding: 0px;
     margin: 0px;
 }
-
 header,
 footer {
-    background-color: #ad0000;
+    background-color: #121b26;
     padding-top: 15px;
     padding-bottom: 15px;
-    color: white;
+    color: #fff;
 }
-
 header {
     font-size: 18px;
     font-weight: 400;
 }
-
 footer {
     text-align: center;
     font-size: 14px;
     font-weight: 400;
 }
-
 main {
     background-color: #fff;
 }
-
 .container {
     width: 1200px;
     margin: 0 auto;
+    
 }
-
 .col-left {
     width: 150px;
 }
-
 .col-right {
     width: 1050px;
 }
-
 button {
     display: block;
     width: 100%;
@@ -115,46 +101,40 @@ button {
     margin-bottom: 1px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #ad0000;
+    background-color: #121b26;
     color: white;
     font-size: 12px;
     border-radius: 0px;
 }
-
 button:last-of-type {
     margin-bottom: 0px;
 }
-
 button:focus {
     outline: 0;
 }
-
 button:hover {
-    background-color: white;
-    color: #ad0000;
+    background-color: #121b26;
+    color: #d2fc4f;
 }
-
 #buttonContainer div {
     padding-top: 15px;
     padding-bottom: 15px;
     font-weight: 700;
     text-align: left;
     font-size: 14px;
+    color: #121b26;
 }
-
 #buttonContainer div:first-of-type {
     padding-top: 0px;
 }
-
 #buttonContainer,
 #bannerContainer {
     width: 100%;
     min-height: 800px;
-    background-color: rgba(238, 238, 238, 1);
+    background-color: #eee;
     padding: 15px;
     margin-bottom: 15px;
 }
-
 iframe {
     outline: none;
     border: none;
@@ -162,33 +142,35 @@ iframe {
     margin: 0px;
     overflow: hidden !important;
 }
-
 #projectHeadings,
 #projectData {
     padding-top: 15px;
     padding-bottom: 15px;
     font-size: 18px;
     line-height: 20px;
+    background-color: #fff;
+    color: #121b26;
 }
-
 #projectHeadings div {
     text-align: right;
     font-weight: 700;
 }
-
 #projectData div {
     text-align: left;
     font-weight: 400;
 }
-
+#main-logo {
+    height: 36px;
+    padding-left: 15px;
+}
 #subhead {
     text-align: left;
     font-weight: 400;
     /*same height as logo*/
     height: 36px;
     line-height: 36px;
+    color: #121b26;
 }
-
 [class*="decor-"] {
     width: 100%;
     height: 30px;
@@ -196,21 +178,16 @@ iframe {
     display: block;
     background-color: #fff;
 }
-
 .decor-top {
     bottom: 0px;
 }
-
 .decor-bottom {
     top: 0px;
 }
-
 svg path {
-    fill: #ad0000;
+    fill: #121b26;
 }
-
 #bannerFrame {
-/*    background-color: darkgreen;*/
     position: absolute;
     outline: none;
     border: none;
@@ -218,9 +195,7 @@ svg path {
     margin: 0px;
     display: none;
 }
-
 #staticFrame {
-/*    background-color: indigo;*/
     position: absolute;
     outline: none;
     border: none;
