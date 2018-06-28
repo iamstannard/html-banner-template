@@ -7,13 +7,13 @@
     // ---------------------------------------------------------------------------------
 
     var videoIsReplaying = false;
+    var videonOnEndFrame = false;
 
     // ---------------------------------------------------------------------------------
     // WINDOW ON LOAD HANDLE
     // ---------------------------------------------------------------------------------
 
     function preInit() {
-        //console.log("preInit");
         if (Enabler.isInitialized()) {
             init();
         } else {
@@ -36,8 +36,6 @@
     // ---------------------------------------------------------------------------------
 
     function init() {
-        //console.log("init");
-
         addListeners();
         addVideoTracking();
 
@@ -53,15 +51,14 @@
     // ---------------------------------------------------------------------------------
 
     function addListeners() {
-        //console.log("addListeners");
         exit.addEventListener('click', exitClickHandler);
     }
 
     // ---------------------------------------------------------------------------------
     // SHOWS THE AD
     // ---------------------------------------------------------------------------------
+
     function show() {
-        //console.log("show");
         // mainContainer.style.display = "block";
 
     }
@@ -71,15 +68,11 @@
     // ---------------------------------------------------------------------------------
 
     function exitClickHandler() {
-        //console.log("exitClickHandler");
-
         if (!videonOnEndFrame) {
-
             pauseVideo();
             unmuteVideo();
             hideClickForSound();
         }
-
         Enabler.exit('Exit');
     }
 
@@ -88,8 +81,6 @@
     // ---------------------------------------------------------------------------------
 
     function addVideoTracking() {
-        //console.log("addVideoTracking");
-
         var srcNode;
 
         srcNode = document.createElement('source');
@@ -144,25 +135,19 @@
     var timer8Sec;
 
     function start8SecTimer() {
-        console.log("start8SecTimer");
         timer8Sec = setTimeout(function () {
             hideClickForSound();
             showWatchTrailer();
-            //pauseVideo();
             videoPlayer.pause();
-            // unmuteVideo();
-            // videoPlayer.muted = false;
             stop8SecTimer();
         }, 8000);
     }
 
     function stop8SecTimer() {
-        console.log("stop8SecTimer");
         clearTimeout(timer8Sec);
     }
 
     function videoReadyToPlay() {
-        //console.log("videoReadyToPlay");
         if (!videoIsReplaying) {
             showClickForSound();
         }
@@ -172,7 +157,6 @@
 
 
     function restartWithSound() {
-        //console.log("restartWithSound");
         stop8SecTimer();
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
@@ -181,10 +165,7 @@
         hideWatchTrailer();
     }
 
-    var videonOnEndFrame = false;
-
     function videoEndHandler() {
-        //console.log("videoEndHandler");
         videonOnEndFrame = true;
         pauseVideo();
         unmuteVideo();
@@ -210,34 +191,26 @@
 
     function showClickForSound() {
         //clickForSound.style.visibility = 'visible';
-                TweenMax.to(clickForSound, 0.5, {
-                    autoAlpha: 1,
-                    ease: Cubic.easeout
-                });
+        TweenMax.to(clickForSound, 0.5, {
+            autoAlpha: 1,
+            ease: Cubic.easeout
+        });
     }
 
     function hideClickForSound() {
-        //clickForSound.style.visibility = 'hidden';
-                TweenMax.to(clickForSound, 0.5, {
-                    autoAlpha: 0,
-                    ease: Cubic.easeout
-                });
+        clickForSound.style.visibility = 'hidden';
     }
 
     function showWatchTrailer() {
         //watchTrailer.style.visibility = 'visible';
-                TweenMax.to(watchTrailer, 0.5, {
-                    autoAlpha: 1,
-                    ease: Cubic.easeout
-                });
+        TweenMax.to(watchTrailer, 0.5, {
+            autoAlpha: 1,
+            ease: Cubic.easeout
+        });
     }
 
     function hideWatchTrailer() {
-        //watchTrailer.style.visibility = 'hidden';
-                TweenMax.to(watchTrailer, 0.5, {
-                    autoAlpha: 0,
-                    ease: Cubic.easeout
-                });
+        watchTrailer.style.visibility = 'hidden';
     }
 
     function playVideo() {
@@ -338,7 +311,6 @@
     }
 
     function replayHandler() {
-        //console.log("replayHandler");
         hideReplayBtn();
         showPauseBtn();
         showMuteBtn();

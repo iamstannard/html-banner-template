@@ -6,8 +6,8 @@
     var exitBtn;
     var closeBtn;
 
-    var videoAutoPlays;
-    var videoStartsMuted;
+    //var videoAutoPlays;
+    //var videoStartsMuted;
     var videoIsReplaying;
     var videonOnEndFrame;
 
