@@ -1,13 +1,11 @@
 (function () {
 
-    // console.clear();
+    console.clear();
 
     // ---------------------------------------------------------------------------------
     // CONTROL VARS
     // ---------------------------------------------------------------------------------
 
-    var videoAutoPlays = true;
-    var videoStartsMuted = true;
     var videoIsReplaying = false;
 
     // ---------------------------------------------------------------------------------
@@ -137,9 +135,7 @@
     videoPlayer.controls = false;
 
     function showControls() {
-        //console.log("showControls");
-        //videoControls.style.visibility = 'visible';
-        TweenMax.to(videoControls, 0.25, {
+        TweenMax.to(videoControls, 0.5, {
             autoAlpha: 1,
             ease: Cubic.easeOut
         });
@@ -155,7 +151,7 @@
             //pauseVideo();
             videoPlayer.pause();
             // unmuteVideo();
-            videoPlayer.muted = false;
+            // videoPlayer.muted = false;
             stop8SecTimer();
         }, 8000);
     }
@@ -167,39 +163,17 @@
 
     function videoReadyToPlay() {
         //console.log("videoReadyToPlay");
-
         if (!videoIsReplaying) {
-
-            if (videoAutoPlays) {
-                //playVideo();
-                videoPlayer.play();
-                start8SecTimer();
-            } else {
-                //pauseVideo();
-                videoPlayer.pause();
-            }
-
-            if (videoStartsMuted) {
-                //muteVideo();
-                videoPlayer.muted = true;
-
-                showClickForSound();
-            } else {
-                //unmuteVideo();
-                videoPlayer.muted = false;
-            }
-
-            showControls();
+            showClickForSound();
         }
-
+        showControls();
+        start8SecTimer();
     }
+
 
     function restartWithSound() {
         //console.log("restartWithSound");
-        //Enabler.counter("Restart Video With Sound");
-
         stop8SecTimer();
-
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         playVideo();
@@ -211,19 +185,14 @@
 
     function videoEndHandler() {
         //console.log("videoEndHandler");
-
         videonOnEndFrame = true;
-
         pauseVideo();
         unmuteVideo();
-
         hideClickForSound();
-
         hidePlayBtn();
         hidePauseBtn();
         hideMuteBtn();
         hideUnmuteBtn();
-
         showReplayBtn();
     }
 
@@ -240,35 +209,35 @@
     hideReplayBtn();
 
     function showClickForSound() {
-        clickForSound.style.visibility = 'visible';
-//        TweenMax.to(clickForSound, 0.25, {
-//            autoAlpha: 1,
-//            ease: Cubic.easeout
-//        });
+        //clickForSound.style.visibility = 'visible';
+                TweenMax.to(clickForSound, 0.5, {
+                    autoAlpha: 1,
+                    ease: Cubic.easeout
+                });
     }
 
     function hideClickForSound() {
-        clickForSound.style.visibility = 'hidden';
-//        TweenMax.to(clickForSound, 0.25, {
-//            autoAlpha: 0,
-//            ease: Cubic.easeout
-//        });
+        //clickForSound.style.visibility = 'hidden';
+                TweenMax.to(clickForSound, 0.5, {
+                    autoAlpha: 0,
+                    ease: Cubic.easeout
+                });
     }
 
     function showWatchTrailer() {
-        watchTrailer.style.visibility = 'visible';
-//        TweenMax.to(watchTrailer, 0.25, {
-//            autoAlpha: 1,
-//            ease: Cubic.easeout
-//        });
+        //watchTrailer.style.visibility = 'visible';
+                TweenMax.to(watchTrailer, 0.5, {
+                    autoAlpha: 1,
+                    ease: Cubic.easeout
+                });
     }
 
     function hideWatchTrailer() {
-        watchTrailer.style.visibility = 'hidden';
-//        TweenMax.to(watchTrailer, 0.25, {
-//            autoAlpha: 0,
-//            ease: Cubic.easeout
-//        });
+        //watchTrailer.style.visibility = 'hidden';
+                TweenMax.to(watchTrailer, 0.5, {
+                    autoAlpha: 0,
+                    ease: Cubic.easeout
+                });
     }
 
     function playVideo() {
@@ -286,7 +255,6 @@
     }
 
     function replayVideo() {
-        // Enabler.counter("Replay Video");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         unmuteVideo();
