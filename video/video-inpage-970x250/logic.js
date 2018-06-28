@@ -1,13 +1,12 @@
 (function () {
 
-    // console.clear();
+    console.clear();
 
     // ---------------------------------------------------------------------------------
     // CONTROL VARS
     // ---------------------------------------------------------------------------------
 
-    var videoAutoPlays = true;
-    var videoStartsMuted = true;
+    var videonOnEndFrame = false;
     var videoIsReplaying = false;
 
     // ---------------------------------------------------------------------------------
@@ -15,7 +14,6 @@
     // ---------------------------------------------------------------------------------
 
     function preInit() {
-        //console.log("preInit");
         if (Enabler.isInitialized()) {
             init();
         } else {
@@ -38,11 +36,8 @@
     // ---------------------------------------------------------------------------------
 
     function init() {
-        //console.log("init");
-
         addListeners();
         addVideoTracking();
-
         if (Enabler.isPageLoaded()) {
             show();
         } else {
@@ -55,7 +50,6 @@
     // ---------------------------------------------------------------------------------
 
     function addListeners() {
-        //console.log("addListeners");
         exit.addEventListener('click', exitClickHandler);
     }
 
@@ -64,7 +58,7 @@
     // ---------------------------------------------------------------------------------
     function show() {
         //console.log("show");
-        // mainContainer.style.display = "block";
+        //mainContainer.style.display = "block";
 
     }
 
@@ -73,15 +67,11 @@
     // ---------------------------------------------------------------------------------
 
     function exitClickHandler() {
-        //console.log("exitClickHandler");
-
         if (!videonOnEndFrame) {
-
             pauseVideo();
             unmuteVideo();
             hideClickForSound();
         }
-
         Enabler.exit('Exit');
     }
 
@@ -90,8 +80,6 @@
     // ---------------------------------------------------------------------------------
 
     function addVideoTracking() {
-        //console.log("addVideoTracking");
-
         var srcNode;
 
         srcNode = document.createElement('source');
@@ -135,68 +123,34 @@
     videoPlayer.controls = false;
 
     function showControls() {
-        //console.log("showControls");
-        //videoControls.style.visibility = 'visible';
-        TweenMax.to(videoControls, 0.25, {
+        TweenMax.to(videoControls, 0.5, {
             autoAlpha: 1,
             ease: Cubic.easeOut
         });
     }
 
     function videoReadyToPlay() {
-        //console.log("videoReadyToPlay");
-
+        showControls();
         if (!videoIsReplaying) {
-
-            if (videoAutoPlays) {
-                //playVideo();
-                videoPlayer.play();
-            } else {
-                //pauseVideo();
-                videoPlayer.pause();
-            }
-
-            if (videoStartsMuted) {
-                //muteVideo();
-                videoPlayer.muted = true;
-
-                showClickForSound();
-            } else {
-                //unmuteVideo();
-                videoPlayer.muted = false;
-            }
-
-            showControls();
+            showClickForSound();
         }
-
     }
 
     function restartWithSound() {
-        //console.log("restartWithSound");
-        //Enabler.counter("Restart Video With Sound");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         playVideo();
         hideClickForSound();
     }
 
-    var videonOnEndFrame = false;
-
     function videoEndHandler() {
-        //console.log("videoEndHandler");
-
         videonOnEndFrame = true;
-
         pauseVideo();
-        unmuteVideo();
-
         hideClickForSound();
-
         hidePlayBtn();
         hidePauseBtn();
         hideMuteBtn();
         hideUnmuteBtn();
-
         showReplayBtn();
     }
 
@@ -213,19 +167,14 @@
     hideReplayBtn();
 
     function showClickForSound() {
-        clickForSound.style.visibility = 'visible';
-//        TweenMax.to(clickForSound, 0.25, {
-//            autoAlpha: 1,
-//            ease: Cubic.easeout
-//        });
+        TweenMax.to(clickForSound, 0.5, {
+            autoAlpha: 1,
+            ease: Cubic.easeout
+        });
     }
 
     function hideClickForSound() {
         clickForSound.style.visibility = 'hidden';
-//        TweenMax.to(clickForSound, 0.25, {
-//            autoAlpha: 0,
-//            ease: Cubic.easeout
-//        });
     }
 
     function playVideo() {
@@ -243,7 +192,6 @@
     }
 
     function replayVideo() {
-        //Enabler.counter("Replay Video");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         unmuteVideo();
@@ -317,7 +265,6 @@
     }
 
     function muteUnmuteHandler() {
-
         if (videoPlayer.muted) {
             hideClickForSound();
             unmuteVideo();
@@ -327,7 +274,6 @@
     }
 
     function replayHandler() {
-        //console.log("replayHandler");
         hideReplayBtn();
         showPauseBtn();
         showMuteBtn();
