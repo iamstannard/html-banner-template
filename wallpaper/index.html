@@ -4,13 +4,13 @@
 
 <head>
 
-    <title>USPHE | Family Media April 2018</title>
+    <title>Wallpaper</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <link href="http://postproduktiv.com.au/client_files/logos/Logo-website-icon.png" rel="shortcut icon">
-    
+
+    <link href="http://p2.com.au/client-files/p2/logo/P2-Logo-Art-Green-RGB-64x64.png" rel="shortcut icon">
+
     <link rel="stylesheet" type="text/css" href="../../assets/normalize.css">
 
     <style type="text/css">
@@ -39,7 +39,7 @@
             border: none;
         }
         
-        #wallpaperContainer {
+        #container {
             width: 1900px;
             height: 1141px;
             top: 0px;
@@ -50,7 +50,8 @@
         #wallpaper {
             width: 1900px;
             height: 1000px;
-            top: 141px;
+            /*top: 141px;*/
+            top: 0px;
             left: 0px;
         }
         
@@ -68,7 +69,7 @@
 
     <script>
         function showWallpaper() {
-            document.getElementById("wallpaperContainer").style.display = "block";
+            document.getElementById("container").style.display = "block";
         }
 
     </script>
@@ -76,10 +77,12 @@
 </head>
 
 <body onload="showWallpaper()">
-    <div id="wallpaperContainer">
+    <div id="container">
         <iframe id='wallpaper' src="./wallpaper/index.html"></iframe>
+        <!--
         <img id='top' src="header.jpg" alt="">
         <img id='site' src="site.jpg" alt="">
+-->
     </div>
 </body>
 
