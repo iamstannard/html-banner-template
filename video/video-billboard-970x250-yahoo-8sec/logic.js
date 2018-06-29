@@ -73,7 +73,7 @@
             unmuteVideo();
             hideClickForSound();
         }
-        Enabler.exit('Exit');
+        Enabler.exit('Clickthrough');
     }
 
     // ---------------------------------------------------------------------------------

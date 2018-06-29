@@ -10,21 +10,6 @@
     var videoIsReplaying = false;
 
     // ---------------------------------------------------------------------------------
-    // WINDOW ON LOAD HANDLE
-    // ---------------------------------------------------------------------------------
-
-    function preInit() {
-        if (Enabler.isInitialized()) {
-            init();
-        } else {
-            Enabler.addEventListener(
-                studio.events.StudioEvent.INIT,
-                init
-            );
-        }
-    }
-
-    // ---------------------------------------------------------------------------------
     // INIT AD COMPONENTS
     // ---------------------------------------------------------------------------------
 
@@ -57,9 +42,7 @@
     // SHOWS THE AD
     // ---------------------------------------------------------------------------------
     function show() {
-        //console.log("show");
-        //mainContainer.style.display = "block";
-
+        // mainContainer.style.display = "block";
     }
 
     // ---------------------------------------------------------------------------------
@@ -72,7 +55,7 @@
             unmuteVideo();
             hideClickForSound();
         }
-        Enabler.exit('Exit');
+        Enabler.exit('Clickthrough');
     }
 
     // ---------------------------------------------------------------------------------
@@ -303,6 +286,12 @@
     // MAIN ON LOAD HANDLER
     // ---------------------------------------------------------------------------------
 
-    window.addEventListener('load', preInit);
+    window.onload = function () {
+        if (Enabler.isInitialized()) {
+            init();
+        } else {
+            Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
+        }
+    }
 
 })();

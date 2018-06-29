@@ -1,33 +1,17 @@
 (function () {
 
-    var collapsedPanel;
-    var expandedPanel;
-    var expandBtn;
-    var exitBtn;
-    var closeBtn;
+    var collapsedPanel = document.getElementById('collapsed');
+    var expandedPanel = document.getElementById('expanded');
+    var expandBtn = document.getElementById('expand_btn');
+    var exitBtn = document.getElementById('exit_btn');
+    var closeBtn = document.getElementById('close_btn');
 
-    //var videoAutoPlays;
-    //var videoStartsMuted;
-    var videoIsReplaying;
-    var videonOnEndFrame;
-
-    var firstExpand = true;
+    var videoIsReplaying = false;
+    var videonOnEndFrame = false;
 
     // ----------
     var startAdState = "expanded";
     // ----------
-
-    if (startAdState == "collapsed") {
-        videoAutoPlays = false;
-        videoStartsMuted = false;
-        videoIsReplaying = false;
-        videonOnEndFrame = false;
-    } else {
-        videoAutoPlays = true;
-        videoStartsMuted = true;
-        videoIsReplaying = false;
-        videonOnEndFrame = false;
-    }
 
     serveBillboard = function (adstate) {
         switch (adstate) {
@@ -36,6 +20,7 @@
                 break;
             case "collapsed":
                 // ----------
+                collapsedPanel.style.display = "block";
                 break;
             default:
                 if (startAdState == "collapsed") {
@@ -52,19 +37,7 @@
 
     // =============================================================================================
 
-    dcrmInit = function () {
-
-        //        Enabler.setExpandingPixelOffsets(
-        //            0, // left offset of expanded ad
-        //            0, // top offset of expanded ad
-        //            970, // expanded width of ad
-        //            250); // expanded height of ad
-
-        collapsedPanel = document.getElementById('collapsed');
-        expandedPanel = document.getElementById('expanded');
-        expandBtn = document.getElementById('expand_btn');
-        exitBtn = document.getElementById('exit_btn');
-        closeBtn = document.getElementById('close_btn');
+    init = function () {
 
         addListeners();
         addVideoTracking();
@@ -80,7 +53,6 @@
         // Expand Event Listeners
         Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START,
             function () {
-                //Enabler.startTimer('expanded_panel');
                 collapsedPanel.style.display = "none";
                 expandedPanel.style.display = "block";
                 Enabler.finishExpand();
@@ -95,7 +67,6 @@
         // Collapse Event Listeners
         Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START,
             function () {
-                //Enabler.stopTimer('expanded_panel');
                 expandedPanel.style.display = "none";
                 collapsedPanel.style.display = "block";
                 Enabler.finishCollapse();
@@ -110,55 +81,44 @@
 
 
     onAutoExpandHandler = function (e) {
-        // console.log('onAutoExpandHandler');
         Enabler.requestExpand();
-
         hidePlayBtn();
         hidePauseBtn();
         hideUnmuteBtn();
         hideMuteBtn();
         hideReplayBtn();
-
-        muteVideo();
+        showClickForSound();
         playVideo();
-
-        // firstExpand = false;
-
     }
 
 
     onUserExpandHandler = function (e) {
         // console.log('onUserExpandHandler');
         Enabler.requestExpand();
+        //unmuteVideo();
+        pauseVideo();
+        hidePlayBtn();
+        hidePauseBtn();
+        hideMuteBtn();
+        hideUnmuteBtn();
+        hideClickForSound();
+        showWatchTrailer();
+    }
 
-        if (firstExpand) {
-            // console.log('firstExpand');
-            unmuteVideo();
+    onExitHandler = function (e) {
+        // console.log('onExitHandler');
+        if (!videonOnEndFrame) {
             pauseVideo();
+            unmuteVideo();
             showPlayBtn();
             hidePauseBtn();
             showMuteBtn();
             hideUnmuteBtn();
             hideClickForSound();
-            firstExpand = false;
-        } else {
-            unmuteVideo();
-            playVideo();
-            hidePlayBtn();
-            showPauseBtn();
-            showMuteBtn();
-            hideUnmuteBtn();
-            hideClickForSound();
+            hideWatchTrailer();
         }
-
-
-    }
-
-    onExitHandler = function (e) {
-        // console.log('onExitHandler');
-
         Enabler.exit('Clickthrough');
-        closeAd();
+        // closeAd();
     }
 
     onCloseHandler = function (e) {
@@ -173,6 +133,7 @@
         videoPlayer.currentTime = 0;
         videoPlayer.pause();
         hideClickForSound();
+        //hideWatchTrailer();
         unmuteVideo();
         showPauseBtn();
         hidePlayBtn();
@@ -214,9 +175,12 @@
     var unmuteBtn = document.getElementById('unmute-btn');
     var replayBtn = document.getElementById('replay-btn');
 
+    var watchTrailer = document.getElementById("watch-trailer");
+
     videoPlayer.addEventListener("canplay", videoReadyToPlay, false);
     videoPlayer.addEventListener("ended", videoEndHandler, false);
     clickForSound.addEventListener("click", restartWithSound, false);
+    watchTrailer.addEventListener("click", restartWithSound, false);
 
     function showControls() {
         //console.log("showControls");
@@ -227,61 +191,38 @@
         //console.log("videoReadyToPlay");
 
         if (!videoIsReplaying) {
-
-            if (videoAutoPlays) {
-                //playVideo();
-            } else {
-                pauseVideo();
-            }
-
-            if (videoStartsMuted) {
-                muteVideo();
-                showClickForSound();
-            } else {
-                unmuteVideo();
-            }
-
-            showControls();
+            showClickForSound();
         }
 
+        showControls();
     }
+
 
     function restartWithSound() {
         //console.log("restartWithSound");
-        //Enabler.counter("Restart Video With Sound");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
-
         hideClickForSound();
-
+        hideWatchTrailer();
         hideReplayBtn();
-
         hidePlayBtn();
         showPauseBtn();
-
         hideUnmuteBtn();
         showMuteBtn();
-
         unmuteVideo();
         playVideo();
-
     }
 
     function videoEndHandler() {
         //console.log("videoEndHandler");
-
         videonOnEndFrame = true;
-
         pauseVideo();
         unmuteVideo();
-
         hideClickForSound();
-
         hidePlayBtn();
         hidePauseBtn();
         hideMuteBtn();
         hideUnmuteBtn();
-
         showReplayBtn();
     }
 
@@ -298,33 +239,41 @@
     hideReplayBtn();
 
     function showClickForSound() {
-        clickForSound.style.visibility = 'visible';
+        TweenMax.to(clickForSound, 0.5, {
+            autoAlpha: 1,
+            ease: Cubic.easeout
+        });
     }
 
     function hideClickForSound() {
         clickForSound.style.visibility = 'hidden';
     }
 
+    function showWatchTrailer() {
+        TweenMax.to(watchTrailer, 0.5, {
+            autoAlpha: 1,
+            ease: Cubic.easeout
+        });
+    }
+
+    function hideWatchTrailer() {
+        watchTrailer.style.visibility = 'hidden';
+    }
+
     function playVideo() {
-        //showPauseBtn();
-        //hidePlayBtn();
         videoPlayer.play();
     }
 
     function playVideoMuted() {
-        //videoPlayer.play();
         muteVideo();
         playVideo();
     }
 
     function pauseVideo() {
         videoPlayer.pause();
-        //showPlayBtn();
-        //hidePauseBtn();
     }
 
     function replayVideo() {
-        // Enabler.counter("Replay Video");
         videoIsReplaying = true;
         videoPlayer.currentTime = 0;
         unmuteVideo();
@@ -334,14 +283,10 @@
 
     function muteVideo() {
         videoPlayer.muted = true;
-        //showUnmuteBtn();
-        //hideMuteBtn();
     }
 
     function unmuteVideo() {
         videoPlayer.muted = false;
-        //showMuteBtn();
-        //hideUnmuteBtn();
     }
 
     function showPlayBtn() {
@@ -418,7 +363,6 @@
     }
 
     function replayHandler() {
-        //console.log("replayHandler");
         hideReplayBtn();
         showPauseBtn();
         showMuteBtn();
@@ -430,11 +374,10 @@
     // ---------------------------------------------------------------------------------
 
     window.onload = function () {
-        /* Initialize Enabler */
         if (Enabler.isInitialized()) {
-            dcrmInit();
+            init();
         } else {
-            Enabler.addEventListener(studio.events.StudioEvent.INIT, dcrmInit);
+            Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
         }
     }
 
