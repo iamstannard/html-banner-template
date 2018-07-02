@@ -35,7 +35,7 @@ video {
     height: 40px;
     display: none;
 }
-#expand_btn {
+#expand-btn {
     top: 0px;
     left: 0px;
     width: 100%;
@@ -50,7 +50,7 @@ video {
     height: 250px;
     display: none;
 }
-#exit_btn {
+#exit-btn {
     top: 0px;
     left: 0px;
     width: 100%;
@@ -58,7 +58,7 @@ video {
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
 }
-#close_btn {
+#close-btn {
     top: 0px;
     right: 0px;
     width: 80px;

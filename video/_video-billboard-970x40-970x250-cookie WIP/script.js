@@ -96,9 +96,9 @@
 
         collapsedPanel = document.getElementById('collapsed');
         expandedPanel = document.getElementById('expanded');
-        expandBtn = document.getElementById('expand_btn');
-        exitBtn = document.getElementById('exit_btn');
-        closeBtn = document.getElementById('close_btn');
+        expandBtn = document.getElementById('expand-btn');
+        exitBtn = document.getElementById('exit-btn');
+        closeBtn = document.getElementById('close-btn');
 
         // Added Listeners
         addListeners();

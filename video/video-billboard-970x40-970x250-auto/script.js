@@ -2,9 +2,9 @@
 
     var collapsedPanel = document.getElementById('collapsed');
     var expandedPanel = document.getElementById('expanded');
-    var expandBtn = document.getElementById('expand_btn');
-    var exitBtn = document.getElementById('exit_btn');
-    var closeBtn = document.getElementById('close_btn');
+    var expandBtn = document.getElementById('expand-btn');
+    var exitBtn = document.getElementById('exit-btn');
+    var closeBtn = document.getElementById('close-btn');
 
     var videoIsReplaying = false;
     var videonOnEndFrame = false;

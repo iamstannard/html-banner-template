@@ -42,7 +42,7 @@ video {
     /*    display: block;*/
     display: none;
 }
-#expand_btn {
+#expand-btn {
     /*    position: absolute;*/
     top: 0px;
     left: 0px;
@@ -63,7 +63,7 @@ video {
     /*    z-index: 300;*/
     display: none;
 }
-#exit_btn {
+#exit-btn {
     /*    position: absolute;*/
     top: 0px;
     left: 0px;
@@ -73,7 +73,7 @@ video {
     cursor: pointer;
     /*    z-index: 400;*/
 }
-#close_btn {
+#close-btn {
     /*    position: absolute;*/
     top: 0px;
     right: 0px;
