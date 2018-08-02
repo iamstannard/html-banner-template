@@ -26,56 +26,60 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 
     <script>
+        
+        // HTML5 Validator
+        // https://h5validator.appspot.com/dcm/asset
+
         var clickTag = "http://www.google.com.au/"; // this url is overwritten in dcm
 
-        //        (function() {
-        //            var relegateNavigation = '';
-        //            var handleClickTagMessage = function(e) {
-        //                try {
-        //                    var eventData = JSON.parse(e.data);
-        //                } catch (err) {
-        //                    return;
-        //                }
-        //                if (eventData.isInitClickTag) {
-        //                    if (eventData.clickTags) {
-        //                        for (var i = 0; i < eventData.clickTags.length; i++) {
-        //                            var clkTag = eventData.clickTags[i];
-        //                            window[clkTag.name] = clkTag.url;
-        //                        }
-        //                    } else if (eventData.clickTag) {
-        //                        window.clickTag = eventData.clickTag;
-        //                    }
-        //                    relegateNavigation = eventData.relegateNavigation;
-        //                }
-        //            };
-        //
-        //            if (open.call) {
-        //                window.open = function(open) {
-        //                    return function(url, name, features) {
-        //                        if (relegateNavigation === 'parent') {
-        //                            var message = {
-        //                                'clickTag': url,
-        //                                'isPostClickTag': true
-        //                            };
-        //                            parent.postMessage(JSON.stringify(message), '*');
-        //                        } else {
-        //                            var args = [url, name];
-        //                            if (features) {
-        //                                args.push(features);
-        //                            }
-        //                            open.apply(window, args);
-        //                        }
-        //                    };
-        //                }(window.open);
-        //            }
-        //
-        //            if (window.addEventListener) {
-        //                window.addEventListener(
-        //                    'message', handleClickTagMessage, false);
-        //            } else {
-        //                window.attachEvent('onmessage', handleClickTagMessage);
-        //            }
-        //        })();
+        (function() {
+            var relegateNavigation = '';
+            var handleClickTagMessage = function(e) {
+                try {
+                    var eventData = JSON.parse(e.data);
+                } catch (err) {
+                    return;
+                }
+                if (eventData.isInitClickTag) {
+                    if (eventData.clickTags) {
+                        for (var i = 0; i < eventData.clickTags.length; i++) {
+                            var clkTag = eventData.clickTags[i];
+                            window[clkTag.name] = clkTag.url;
+                        }
+                    } else if (eventData.clickTag) {
+                        window.clickTag = eventData.clickTag;
+                    }
+                    relegateNavigation = eventData.relegateNavigation;
+                }
+            };
+
+            if (open.call) {
+                window.open = function(open) {
+                    return function(url, name, features) {
+                        if (relegateNavigation === 'parent') {
+                            var message = {
+                                'clickTag': url,
+                                'isPostClickTag': true
+                            };
+                            parent.postMessage(JSON.stringify(message), '*');
+                        } else {
+                            var args = [url, name];
+                            if (features) {
+                                args.push(features);
+                            }
+                            open.apply(window, args);
+                        }
+                    };
+                }(window.open);
+            }
+
+            if (window.addEventListener) {
+                window.addEventListener(
+                    'message', handleClickTagMessage, false);
+            } else {
+                window.attachEvent('onmessage', handleClickTagMessage);
+            }
+        })();
 
         function loadCSSAndJS() {
             //console.log('loadCSSAndJS');
