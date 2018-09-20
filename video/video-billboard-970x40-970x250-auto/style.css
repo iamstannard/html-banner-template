@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 body {
     margin: 0px;
     padding: 0px;
@@ -20,7 +19,6 @@ video {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 #container {
     width: 970px;
     height: 250px;
@@ -66,7 +64,6 @@ video {
     background-color: rgba(255, 0, 0, 0.5);
     cursor: pointer;
 }
-
 .border {
     width: 100%;
     height: 100%;
@@ -74,7 +71,6 @@ video {
     border: 1px solid #c52026;
     pointer-events: none;
 }
-
 #video-container {
     top: 0px;
     left: 263px;
@@ -98,6 +94,10 @@ video {
     cursor: pointer;
     visibility: hidden;
     background-color: rgba(0, 0, 0, 0);
+}
+#click-for-sound-img,
+#watch-trailer-img {
+    bottom: 0px;
 }
 #video-controls {
     visibility: hidden;
