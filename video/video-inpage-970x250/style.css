@@ -70,6 +70,8 @@ video {
 #video-controls {
     visibility: hidden;
     background-color: rgba(0, 0, 0, 0);
+    height: 30px;
+    bottom: 0px;
 }
 .video-controls {
     width: 20px;

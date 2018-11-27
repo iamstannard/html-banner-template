@@ -48,6 +48,7 @@
     addListeners = function () {
         expandBtn.addEventListener('click', onUserExpandHandler, false);
         exitBtn.addEventListener('click', onExitHandler, false);
+        videoPlayer.addEventListener('click', onExitHandler, false);
         closeBtn.addEventListener('click', onCloseHandler, false);
 
         // Expand Event Listeners

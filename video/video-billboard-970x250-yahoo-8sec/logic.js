@@ -51,7 +51,8 @@
     // ---------------------------------------------------------------------------------
 
     function addListeners() {
-        exit.addEventListener('click', exitClickHandler);
+        exit.addEventListener('click', onExitHandler);
+        videoPlayer.addEventListener('click', onExitHandler);
     }
 
     // ---------------------------------------------------------------------------------
@@ -67,7 +68,7 @@
     // MAIN
     // ---------------------------------------------------------------------------------
 
-    function exitClickHandler() {
+    function onExitHandler() {
         if (!videonOnEndFrame) {
             pauseVideo();
             unmuteVideo();
