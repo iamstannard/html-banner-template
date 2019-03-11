@@ -32,10 +32,10 @@
 
     // set vars
 
-    var defaultAnimScale = 0.75;
-    var defaultAnimTime = 1.25;
-    var defaultStaggerOffset = 0.25;
-    var defaultFrameDelay = 3;
+    var animScale = 0.75;
+    var animTime = 1.25;
+    var staggerOffset = 0.25;
+    var frameDelay = 3;
 
     // set defaults
 
@@ -45,7 +45,7 @@
 
     var tl1 = new TimelineMax({
         repeat: 0,
-        repeatDelay: defaultFrameDelay
+        repeatDelay: frameDelay
     });
 
     function startAnim() {
@@ -72,15 +72,15 @@
             autoAlpha: 0,
         }, 1, secs[1])
 
-        .staggerFrom([bale, carell, gosling, pitt], defaultAnimTime, {
+        .staggerFrom([bale, carell, gosling, pitt], animTime, {
             autoAlpha: 0,
             y: 25
-        }, defaultStaggerOffset, secs[2])
+        }, staggerOffset, secs[2])
 
         .staggerFrom([q1, q2, q3], 0.75, {
             autoAlpha: 0,
             y: 25
-        }, defaultStaggerOffset, secs[3])
+        }, staggerOffset, secs[3])
 
 
         .from(rating, 1.5, {

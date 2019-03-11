@@ -38,12 +38,12 @@
 
     // ===== set vars and defaults =====
 
-    var defaultAnimTime = 1;
-    var defaultFadeTime = 0.5;
-    var defaultAnimDist = 50;
-    var defaultAnimScale = 2;
-    var defaultStaggerOffset = 0.25;
-    var defaultFrameDelay = 3;
+    var animTime = 1;
+    var fadeTime = 0.5;
+    var animDist = 50;
+    var animScale = 2;
+    var staggerOffset = 0.25;
+    var frameDelay = 3;
 
     // TweenLite.defaultOverwrite = 'auto';
 
@@ -64,7 +64,7 @@
 
     var tl1 = new TimelineMax({
         repeat: 0,
-        repeatDelay: defaultFrameDelay
+        repeatDelay: frameDelay
     });
 
     // ===== set timeScale =====
@@ -86,11 +86,11 @@
     // https://greensock.com/docs/#/HTML5/Sequencing/TimelineMax/
 
     //.set(element, {});
-    //.to(element, defaultAnimTime, {});
-    //.from(element, defaultAnimTime, {});
-    //.toFrom(element, defaultAnimTime, {},{});
-    //.staggerTo([elements], defaultAnimTime, {}, defaultStaggerOffset);
-    //.staggerFrom([elements], defaultAnimTime, {}, defaultStaggerOffset);
+    //.to(element, animTime, {});
+    //.from(element, animTime, {});
+    //.toFrom(element, animTime, {},{});
+    //.staggerTo([elements], animTime, {}, staggerOffset);
+    //.staggerFrom([elements], animTime, {}, staggerOffset);
 
     //cycle:{x:[50,0,-20], rotation:[30,60,90]}
     //cycle:{x:function() { return Math.random() * 200; }}
@@ -122,8 +122,8 @@
         .addLabel("frame4", 9)
         .addLabel("frame5", 12)
 
-        .from(placeholder, defaultAnimTime, {autoAlpha: 0, scale: defaultAnimScale}, "frame1")
-        .from(cta, defaultAnimTime, {autoAlpha: 0, y: defaultAnimDist, ease: ee}, "frame2")
+        .from(placeholder, animTime, {autoAlpha: 0, scale: animScale}, "frame1")
+        .from(cta, animTime, {autoAlpha: 0, y: animDist, ease: ee}, "frame2")
 
         ;
 

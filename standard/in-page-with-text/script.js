@@ -33,11 +33,11 @@
 
     // set vars
 
-    var defaultAnimDist = 25;
-    var defaultAnimScale = 0.25;
-    var defaultAnimTime = 3;
-    var defaultStaggerOffset = 0.125;
-    var defaultFrameDelay = 3;
+    var animDist = 25;
+    var animScale = 0.25;
+    var animTime = 3;
+    var staggerOffset = 0.125;
+    var frameDelay = 3;
 
     var vw, vh;
 
@@ -64,7 +64,7 @@
 
     var tl1 = new TimelineMax({
         repeat: 0,
-        repeatDelay: defaultFrameDelay
+        repeatDelay: frameDelay
     });
 
     // set timeScale
@@ -72,10 +72,10 @@
 
     // some timeline options
 
-    //.to(element, defaultAnimTime, {});
-    //.from(element, defaultAnimTime, {});
-    //.staggerTo(element, defaultAnimTime, {}, defaultStaggerOffset);
-    //.staggerFrom(element, defaultAnimTime, {}, defaultStaggerOffset);
+    //.to(element, animTime, {});
+    //.from(element, animTime, {});
+    //.staggerTo(element, animTime, {}, staggerOffset);
+    //.staggerFrom(element, animTime, {}, staggerOffset);
     //.set(element, {});
 
     //cycle:{x:[50,0,-20], rotation:[30,60,90]}
@@ -101,11 +101,11 @@
             .addLabel("quote2", 7)
             .addLabel("end", 12)
 
-        .from(placeholder, defaultAnimTime, {
+        .from(placeholder, animTime, {
             autoAlpha: 0
         }, "intro")
 
-        .staggerFrom(quote1SplitWords, defaultAnimTime, {
+        .staggerFrom(quote1SplitWords, animTime, {
             opacity: 0,
             scale: 1,
             x: 0,
@@ -116,13 +116,13 @@
             rotationZ: 0,
             transformOrigin: "50% 50% -100",
             ease: Elastic.easeOut
-        }, defaultStaggerOffset, "quote1")
+        }, staggerOffset, "quote1")
 
         .to(quote1, 0.5, {
             autoAlpha: 0
         }, "quote2-=0.5")
 
-        .staggerFrom(quote2SplitWords, defaultAnimTime, {
+        .staggerFrom(quote2SplitWords, animTime, {
             opacity: 0,
             scale: 1,
             x: 0,
@@ -133,13 +133,13 @@
             rotationZ: 0,
             transformOrigin: "50% 50% -100",
             ease: Elastic.easeOut
-        }, defaultStaggerOffset, "quote2")
+        }, staggerOffset, "quote2")
 
         .to(quote2, 0.5, {
             autoAlpha: 0
         }, "end-=0.5")
 
-        .staggerFrom(ctaSplitWords, defaultAnimTime, {
+        .staggerFrom(ctaSplitWords, animTime, {
             opacity: 0,
             scale: 1,
             x: 0,
@@ -150,7 +150,7 @@
             rotationZ: 0,
             transformOrigin: "50% 50% -100",
             ease: Elastic.easeOut
-        }, defaultStaggerOffset, "end")
+        }, staggerOffset, "end")
 
         ;
 

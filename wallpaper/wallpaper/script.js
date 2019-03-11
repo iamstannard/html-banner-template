@@ -25,11 +25,11 @@
 
     // set vars
 
-    var defaultAnimDist = 25;
-    var defaultAnimScale = 1.75;
-    var defaultAnimTime = 2;
-    var defaultStaggerOffset = 0.75;
-    var defaultFrameDelay = 3;
+    var animDist = 25;
+    var animScale = 1.75;
+    var animTime = 2;
+    var staggerOffset = 0.75;
+    var frameDelay = 3;
 
     var vw, vh;
 
@@ -62,7 +62,7 @@
 
     var tl1 = new TimelineMax({
         repeat: 0,
-        repeatDelay: defaultFrameDelay
+        repeatDelay: frameDelay
     });
 
     // set timeScale
@@ -147,26 +147,26 @@
         
 
         
-        .staggerFrom([tt1L,tt2L],0.25, {autoAlpha: 0},defaultStaggerOffset/2, 'tt')
-        .staggerFrom([tt1R,tt2R],0.25, {autoAlpha: 0},defaultStaggerOffset/2, 'tt')
-        .staggerFrom([tt1L,tt2L],defaultAnimTime, {x: 125, ease:ee},defaultStaggerOffset/2, 'tt')
-        .staggerFrom([tt1R,tt2R],defaultAnimTime, {x: -125, ease:ee},defaultStaggerOffset/2, 'tt')
+        .staggerFrom([tt1L,tt2L],0.25, {autoAlpha: 0},staggerOffset/2, 'tt')
+        .staggerFrom([tt1R,tt2R],0.25, {autoAlpha: 0},staggerOffset/2, 'tt')
+        .staggerFrom([tt1L,tt2L],animTime, {x: 125, ease:ee},staggerOffset/2, 'tt')
+        .staggerFrom([tt1R,tt2R],animTime, {x: -125, ease:ee},staggerOffset/2, 'tt')
         
         
 //        .staggerFrom([dvd1, dvd3, dvd2, dvd4], 0.25, {
 //            autoAlpha: 0
-//        }, defaultStaggerOffset, 'packs')
+//        }, staggerOffset, 'packs')
         
-        .staggerTo([dvd1, dvd3, dvd2, dvd4], defaultAnimTime, {
+        .staggerTo([dvd1, dvd3, dvd2, dvd4], animTime, {
             x: 0,
             rotation: 0,
             ease: ee
-        }, defaultStaggerOffset, 'packs')
+        }, staggerOffset, 'packs')
         
         .from([ctaL,ctaR],0.25, {autoAlpha: 0}, 'cta')
-        .from([ctaL,ctaR],defaultAnimTime, {scale: defaultAnimScale, ease:ee}, 'cta')
+        .from([ctaL,ctaR],animTime, {scale: animScale, ease:ee}, 'cta')
         
-        .from(legals, defaultAnimTime, {autoAlpha: 0}, 'legals')
+        .from(legals, animTime, {autoAlpha: 0}, 'legals')
         
 
 
