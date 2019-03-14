@@ -88,7 +88,7 @@
     //.set(element, {});
     //.to(element, animTime, {});
     //.from(element, animTime, {});
-    //.toFrom(element, animTime, {},{});
+    //.fromTo(element, animTime, {},{});
     //.staggerTo([elements], animTime, {}, staggerOffset);
     //.staggerFrom([elements], animTime, {}, staggerOffset);
 

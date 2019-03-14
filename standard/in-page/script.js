@@ -78,7 +78,8 @@
     // ease: Elastic.easeOut.config(1, 0.3);
     // ease: Back.easeOut.config(1.7);
     // ease: SteppedEase.config(12);
-    // ease: SlowMo.ease.config(0.5, 1, false);
+    // ease: SlowMo.ease.config(0.75, 0.75, false); // for position/scale/ect
+    // ease: SlowMo.ease.config(0.75, 0.75, true); // for opacity
     // ease: RoughEase.ease.config({ template: Cubic.easeOut, strength: 1, points: 20, taper: "out", randomize: true, clamp: false});
 
     //  ===== timeline =====
@@ -88,7 +89,7 @@
     //.set(element, {});
     //.to(element, animTime, {});
     //.from(element, animTime, {});
-    //.toFrom(element, animTime, {},{});
+    //.fromTo(element, animTime, {},{});
     //.staggerTo([elements], animTime, {}, staggerOffset);
     //.staggerFrom([elements], animTime, {}, staggerOffset);
 
