@@ -114,8 +114,14 @@
 
     function startAnim() {
         //console.log('startAnim');
-
+        
         tl1
+        
+        //.eventCallback("onStart", onStartF)
+        //.eventCallback("onUpdate", onUpdateF)
+        //.eventCallback("onComplete", onCompleteF)
+        
+        //.eventCallback("onUpdate", null)
 
         .addLabel("frame1", 0)
         .addLabel("frame2", 3)
