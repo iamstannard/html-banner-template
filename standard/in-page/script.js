@@ -47,7 +47,7 @@
 
     // TweenLite.defaultOverwrite = 'auto';
 
-    TweenLite.defaultEase = Cubic.easeOut;
+    TweenLite.defaultEase = Power4.easeOut;
 
     var ee = Elastic.easeOut.config(1, 0.5); // elastic ease
     var re = RoughEase.ease.config({

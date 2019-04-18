@@ -51,7 +51,7 @@
 
     // set defaults
 
-    TweenLite.defaultEase = Cubic.easeOut;
+    TweenLite.defaultEase = Power4.easeOut;
 
     var tl1 = new TimelineMax({
         repeat: 0,
