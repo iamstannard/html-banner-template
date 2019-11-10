@@ -36,9 +36,8 @@
     // ---------------------------------------------------------------------------------
 
     function init() {
-        addListeners();
-        addVideoTracking();
-
+        // addListeners();
+        // addVideoTracking();
         if (Enabler.isPageLoaded()) {
             show();
         } else {
@@ -61,7 +60,8 @@
 
     function show() {
         // mainContainer.style.display = "block";
-
+        addListeners();
+        addVideoTracking();
     }
 
     // ---------------------------------------------------------------------------------
