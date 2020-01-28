@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Sizmek HTML5 Standard Banner Template</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ad.size" content="width=300,height=250">
+
+
+
+    <style type="text/css">
+        #bannerContainer {
+            display: none
+        }
+
+    </style>
+
+    <!-- Load GSAP -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>-->
+    <script src="https://secure-ds.serving-sys.com/BurstingcachedScripts/libraries/gsap/3_0_0/gsap.min.js"></script>
+
+    <!-- Sizmek Loader -->
+    <!--<script type="text/javascript" src="https://secure-ds.serving-sys.com/BurstingScript/EBLoader.js"></script>-->
+
+    <script>
+        var clickTag = "http://www.sizmek.com/"; // this url is overwritten in sizmek
+
+        function loadCSSAndJS() {
+            //console.log('loadCSSAndJS');
+            // Load in CSS 
+            //console.log('loadCSS');
+            var extCSS = document.createElement('link');
+            extCSS.setAttribute('rel', 'stylesheet');
+            extCSS.setAttribute('type', 'text/css');
+            extCSS.setAttribute('href', 'style.css');
+            document.getElementsByTagName('head')[0].appendChild(extCSS);
+            // Load in JS
+            ////console.log('loadJS');
+            var extJavascript = document.createElement('script');
+            extJavascript.setAttribute('type', 'text/javascript');
+            extJavascript.setAttribute('src', 'script.js');
+            document.getElementsByTagName('head')[0].appendChild(extJavascript);
+
+        }
+
+    </script>
+
+</head>
+
+<body onload='loadCSSAndJS()'>
+    <div id='bannerContainer'>
+        <!-- banner stuff goes here -->
+        <img id="placeholder" src="images/placeholder.png">
+        <img id="cta" src="images/cta.png">
+        <!-- empty div handles clickthroughs and adds 1px border -->
+        <a href="javascript:void(0);" onclick="window.open(window.clickTag);">
+            <div id="clickthrough"></div>
+        </a>
+    </div>
+
+</body>
+
+</html>
+
+<!--FROM TEMPLATE FILE-->
+
+<!--
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <title>HTML5 Standard Banner: 300x250</title>
+    <link rel="stylesheet" href="styles/style.css" >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>
+    <script type="text/javascript" src="https://secure-ds.serving-sys.com/BurstingScript/EBLoader.js"></script>
+    <script src="scripts/script.js"></script>
+    <script>
+        document.getElementById('clickthrough').addEventListener('click', clickthroughHandler, false);
+
+        function clickthroughHandler(event) {
+            console.log('clickthroughHandler');
+            EB.Clickthrough();
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="ad">
+        <div id="banner">
+            <div class="label"><strong>HTML5 Standard Banner:</strong> 300x250</div>
+            <div class="buttons">
+                <button id="clickthrough">ClickThrough</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+-->

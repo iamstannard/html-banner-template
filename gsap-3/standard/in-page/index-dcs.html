@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>DCS HTML5 Rich Banner Template</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ad.size" content="width=300,height=250">
+
+    <style type="text/css">
+        #bannerContainer {
+            display: none
+        }
+
+    </style>
+
+    <!-- Load GSAP -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>-->
+    <script src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.1.0_min.js"></script>
+
+    <!-- DoubleClick Enabler -->
+    <script type="text/javascript" src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
+
+    <script>
+        // Check Enabler is ready
+        function checkEnablerInit() {
+            //console.log('checkEnablerInit');
+            if (Enabler.isInitialized()) {
+                enablerInit();
+            } else {
+                Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInit);
+            }
+        }
+
+        // Run when Enabler is ready
+        function enablerInit() {
+            //console.log('enablerInit');
+            if (Enabler.isPageLoaded()) {
+                enablerPoliteInit();
+            } else {
+                Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, enablerPoliteInit);
+            }
+        }
+
+        function enablerPoliteInit() {
+            console.log('enablerPoliteInit');
+            // Load in CSS 
+            //console.log('loadCSS');
+            var extCSS = document.createElement('link');
+            extCSS.setAttribute('rel', 'stylesheet');
+            extCSS.setAttribute('type', 'text/css');
+            extCSS.setAttribute('href', Enabler.getUrl('style.css'));
+            document.getElementsByTagName('head')[0].appendChild(extCSS);
+            // Load in JS
+            ////console.log('loadJS');
+            var extJavascript = document.createElement('script');
+            extJavascript.setAttribute('type', 'text/javascript');
+            extJavascript.setAttribute('src', Enabler.getUrl('script.js'));
+            document.getElementsByTagName('head')[0].appendChild(extJavascript);
+            // Setup clickthrough handler
+            document.getElementById('clickthrough').addEventListener('click', clickthroughHandler, false);
+
+            function clickthroughHandler(event) {
+                //console.log('clickthroughHandler');
+                Enabler.exit('Clickthrough');
+            }
+        }
+
+    </script>
+
+</head>
+
+<body onload='checkEnablerInit()'>
+    <div id='bannerContainer'>
+        <!-- banner stuff goes here -->
+        <img id="placeholder" src="images/placeholder.png">
+        <img id="cta" src="images/cta.png">
+        <!-- empty div handles clickthroughs and adds 1px border -->
+        <div id='clickthrough'></div>
+    </div>
+</body>
+
+</html>
