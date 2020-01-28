@@ -44,7 +44,7 @@
     var animScale = 2;
     var staggerOffset = 0.25;
 
-    // TweenLite.defaultOverwrite = 'auto';
+    // https://greensock.com/docs/v3/GSAP
 
     var tl1 = gsap.timeline({
         repeat: 0,
