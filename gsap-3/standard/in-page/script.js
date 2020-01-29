@@ -7,35 +7,6 @@
     var placeholder = document.getElementById('placeholder');
     var cta = document.getElementById('cta');
 
-    // ===== check date =====
-
-    //    var d = new Date(); // get new date
-    //
-    //    var d1 = new Date("October 13, 2017"); // date
-    //    var d2 = new Date("October 20, 2017"); // day of week
-    //    var d3 = new Date("October 27, 2017"); // out now
-    //
-    //    console.log(d);
-    //    console.log(d1);
-    //    console.log(d2);
-    //    console.log(d3);
-    //
-    //    d = new Date("October 30, 2017"); // for testing
-    //
-    //    if (d >= d3) {
-    //        console.log('out now');
-    //        console.log(d);
-    //        console.log(d3);
-    //    } else if (d >= d2) {
-    //        console.log('day of week');
-    //        console.log(d);
-    //        console.log(d2);
-    //    } else {
-    //        console.log('date');
-    //        console.log(d);
-    //        console.log(d1);
-    //    }
-
     // ===== set vars and defaults =====
 
     var animTime = 1;
@@ -55,9 +26,9 @@
         ease: "power4.out"
     });
 
-    //    gsap.config({
-    //        force3D: false
-    //    });
+    //gsap.config({
+    //    force3D: false
+    //});
 
     // ===== eases =====
 
@@ -73,9 +44,9 @@
     var bi = "back.in(1.7)";
     var bio = "back.inOut(1.7)";
 
-    var eo = "elastic.out(1, 1)"; //or just "elastic" because ".out" is the default flavor
-    var ei = "elastic.in(1, 1)";
-    var eio = "elastic.inOut(1, 1)";
+    var eo = "elastic.out(1, 0.7)"; //or just "elastic" because ".out" is the default flavor
+    var ei = "elastic.in(1, 0.7)";
+    var eio = "elastic.inOut(1, 0.7)";
 
     // "bounce.out";
     // "steps(5)";
@@ -101,7 +72,7 @@
     //});
 
     // ===== timescale/duration =====
-    
+
     // tl1.timeScale(1); 
     // tl1.totalDuration(10);
 
