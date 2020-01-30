@@ -40,13 +40,13 @@
     var si = "sine.in";
     var sio = "sine.inOut";
 
-    var bo = "back.out(1.7)";
-    var bi = "back.in(1.7)";
-    var bio = "back.inOut(1.7)";
+    var bo = "back.out(1.5)";
+    var bi = "back.in(1.5)";
+    var bio = "back.inOut(1.5)";
 
-    var eo = "elastic.out(1, 0.7)"; //or just "elastic" because ".out" is the default flavor
-    var ei = "elastic.in(1, 0.7)";
-    var eio = "elastic.inOut(1, 0.7)";
+    var eo = "elastic.out(1.25, 1)"; //or just "elastic" because ".out" is the default flavor
+    var ei = "elastic.in(1.25, 1)";
+    var eio = "elastic.inOut(1.25, 1)";
 
     // "bounce.out";
     // "steps(5)";
@@ -56,9 +56,9 @@
 
     // ===== random =====
 
-    //chooses a random number between -100 and 100 for each target, rounding to the closest 5!
+    //chooses a random number between -100 and 100 for each target, rounding to the closest 10!
     //gsap.to(".class", {
-    //    x: "random(-100, 100, 5)"
+    //    x: "random(-100, 100, 10)"
     //});
 
     //randomly selects one of the values (0, 100, 200, or 500)
@@ -92,8 +92,7 @@
         .from(placeholder, {
             duration: animTime,
             autoAlpha: 0,
-            scale: animScale,
-            ease: eo
+            scale: animScale
         }, "frame1")
 
         .from(cta, {
