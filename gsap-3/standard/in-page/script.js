@@ -65,6 +65,21 @@
     // "rough(40)"; //external EasePack file
     // "expoScale(0.5, 3)"; //external EasePack file
 
+    // ===== random stagger =====
+
+    // gsap.from(target, {autoAlpha:0}, {
+    //    autoAlpha: 0, 
+    //    stagger: { 
+    //      from: "random", 
+    //      amount: 1 
+    //    }
+    //  });
+    
+    // ===== shuffle =====
+    
+    // var array = [1, 2, 3, 4, 5];
+    // gsap.utils.shuffle(array); // returns the same array, but shuffled like [2, 5, 3, 1, 4]
+
     // ===== random =====
 
     //chooses a random number between -100 and 100 for each target, rounding to the closest 10!
