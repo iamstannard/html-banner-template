@@ -2,7 +2,7 @@
 
     // console.clear();
 
-    // ===== get elements =====
+    // ===== get dom elements =====
 
     var placeholder = document.getElementById('placeholder');
     var cta = document.getElementById('cta');
@@ -14,16 +14,23 @@
     var animDist = 100;
     var animScale = 2;
     var staggerOffset = 0.25;
+    var maxAnimDuration = 15; // secs
+
+    // ===== establish gsap timeline =====
 
     // https://greensock.com/docs/v3/GSAP
 
     var tl1 = gsap.timeline({
-        repeat: 0,
-        repeatDelay: 2
+        repeat: 1,
+        repeatDelay: 3
     });
 
+    // ===== defaults =====
+
     gsap.defaults({
-        ease: "power4.out"
+        ease: "power3.out",
+        duration: animTime,
+        stagger: staggerOffset
     });
 
     //gsap.config({
@@ -40,19 +47,23 @@
     var si = "sine.in";
     var sio = "sine.inOut";
 
-    var bo = "back.out(1.5)";
-    var bi = "back.in(1.5)";
-    var bio = "back.inOut(1.5)";
+    var bConfig = "1.5"
 
-    var eo = "elastic.out(1.25, 1)"; //or just "elastic" because ".out" is the default flavor
-    var ei = "elastic.in(1.25, 1)";
-    var eio = "elastic.inOut(1.25, 1)";
+    var bo = "back.out(" + bConfig + ")";
+    var bi = "back.in(" + bConfig + ")";
+    var bio = "back.inOut(" + bConfig + ")";
+
+    var eConfig = "1.25, 0.5"
+
+    var eo = "elastic.out(+" + eConfig + ")"; //or just "elastic" because ".out" is the default flavor
+    var ei = "elastic.in(+" + eConfig + ")";
+    var eio = "elastic.inOut(+" + eConfig + ")";
 
     // "bounce.out";
     // "steps(5)";
-    // "slow(0.5, 0.8)";
-    // "rough(40)";
-    // "expoScale(0.5, 3)";
+    // "slow(0.5, 0.8)"; //external EasePack file
+    // "rough(40)"; //external EasePack file
+    // "expoScale(0.5, 3)"; //external EasePack file
 
     // ===== random =====
 
@@ -71,11 +82,6 @@
     //    yoyo: true
     //});
 
-    // ===== timescale/duration =====
-
-    // tl1.timeScale(1); 
-    // tl1.totalDuration(10);
-
     function startAnim() {
         //console.log('startAnim');
 
@@ -87,26 +93,41 @@
         //.eventCallback("onUpdate", null)
 
             .addLabel("frame1", 0)
-            .addLabel("frame2", 2)
+            .addLabel("frame2", 3)
+            .addLabel("frame3", 6)
 
         .from(placeholder, {
-            duration: animTime,
             autoAlpha: 0,
             scale: animScale
         }, "frame1")
 
         .from(cta, {
-            duration: animTime,
             autoAlpha: 0,
             y: animDist,
             ease: eo
         }, "frame2")
 
+        .to(cta, {
+            duration: animTime * 2,
+            rotation: 360,
+            ease: eio
+        }, "frame3")
+
         ;
 
         // ===== gets total duration of timeline =====
 
-        // console.log("duration : " + tl1.totalDuration() + " secs");
+        console.log("total duration : " + tl1.totalDuration() + " secs");
+
+        // ===== timescale/duration =====
+
+        //tl1.timeScale(1);
+        //tl1.totalDuration(15);
+
+        if (tl1.totalDuration() >= maxAnimDuration) {
+            tl1.totalDuration(maxAnimDuration);
+            console.log("adjusted duration : " + maxAnimDuration + " secs");
+        };
 
     }
 

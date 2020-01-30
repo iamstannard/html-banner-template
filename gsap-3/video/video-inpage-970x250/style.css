@@ -22,7 +22,7 @@ video {
     height: 250px;
     background: #000;
     overflow: hidden;
-    /*display: none;*/
+    /* display: none; */
 }
 #border {
     width: 100%;
