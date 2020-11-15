@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 
 
-<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="GSAP_Basic.js?1461846445959"></script>
 
 <script>
@@ -31,7 +31,7 @@ function init() {
 	stage.addChild(exportRoot);
 	stage.update();
 
-	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.framerate = lib.properties.fps;
 	createjs.Ticker.addEventListener("tick", stage);
 }
 

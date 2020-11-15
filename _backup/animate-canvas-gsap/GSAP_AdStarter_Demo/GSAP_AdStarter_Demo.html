@@ -60,7 +60,7 @@ div.preloader p {
 </style>
 
 
-<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="GSAP_AdStarter_Demo.js?1460484585335"></script>
 <!-- comment out or remove if not using AdHelper -->
 <script src="js/AdHelper.min.js"></script> 
@@ -119,7 +119,7 @@ function init() {
 	stage.addChild(exportRoot);
 	stage.update();
 
-	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.framerate = lib.properties.fps;
 	createjs.Ticker.addEventListener("tick", stage);
     createjs.Touch.enable(stage);
     stage.enableMouseOver();
