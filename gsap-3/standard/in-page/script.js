@@ -102,31 +102,31 @@
 
         tl1
 
-        //.eventCallback("onStart", onStartF)
-        //.eventCallback("onUpdate", onUpdateF)
-        //.eventCallback("onComplete", onCompleteF)
-        //.eventCallback("onUpdate", null)
+            //.eventCallback("onStart", onStartF)
+            //.eventCallback("onUpdate", onUpdateF)
+            //.eventCallback("onComplete", onCompleteF)
+            //.eventCallback("onUpdate", null)
 
             .addLabel("frame1", 0)
             .addLabel("frame2", 3)
             .addLabel("frame3", 6)
 
-        .from(placeholder, {
-            autoAlpha: 0,
-            scale: animScale
-        }, "frame1")
+            .from(placeholder, {
+                autoAlpha: 0,
+                scale: animScale
+            }, "frame1")
 
-        .from(cta, {
-            autoAlpha: 0,
-            y: animDist,
-            ease: eo
-        }, "frame2")
+            .from(cta, {
+                autoAlpha: 0,
+                y: animDist,
+                ease: eo
+            }, "frame2")
 
-        .to(cta, {
-            duration: animTime * 2,
-            rotation: 360,
-            ease: eio
-        }, "frame3")
+            .to(cta, {
+                duration: animTime * 2,
+                rotation: 360,
+                ease: eio
+            }, "frame3")
 
         ;
 
