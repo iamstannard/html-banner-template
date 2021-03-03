@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-    <banners>
+<banners>
 
-        <!--CAMPAIGN DETAILS-->
+    <!--CAMPAIGN DETAILS-->
 
-        <campaign>
+    <campaign>
 
-            <client>CLIENT</client>
-            <project>Campaign Title</project>
-            <!--<date>Month YYYY</date>-->
-            <!--date is auto-generated in javascript-->
+        <client>CLIENT</client>
+        <project>Campaign Title</project>
+        <!--<date>Month YYYY</date>-->
+        <!--date is auto-generated in javascript-->
 
-        </campaign>
+    </campaign>
 
-        <!--BANNERS-->
+    <!--BANNERS-->
 
-        <!-- follow this folder structure-->
+    <!-- follow this folder structure-->
 
-        <!--
+    <!--
         [banners]
         ..[phaseName1]
         ....[WxH]
@@ -32,23 +32,23 @@
         etc
         -->
 
-        <phase category="physical">
-            <!--phase category can be whatever you want it to be, but subfolder has to have the same name-->
-            <!--hyphens in category name/subfolder will be displayed as spaces-->
+    <phase category="physical">
+        <!--phase category can be whatever you want it to be, but subfolder has to have the same name-->
+        <!--hyphens in category name/subfolder will be displayed as spaces-->
 
-            <banner>
-                <type>html</type>
-                <!--type : html or gif or jpg or png-->
-                <!--if html, will navigate to index file-->
-                <!--if image type, will append filename with image type-->
-                <width>300</width>
-                <height>250</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-                <!--if altLabel or altFileName are left empty, will use WxH-->
-            </banner>
+        <banner>
+            <type>html</type>
+            <!--type : html or gif or jpg or png-->
+            <!--if html, will navigate to index file-->
+            <!--if image type, will append filename with image type-->
+            <width>300</width>
+            <height>250</height>
+            <altLabel></altLabel>
+            <altFileName></altFileName>
+            <!--if altLabel or altFileName are left empty, will use WxH-->
+        </banner>
 
-            <!--
+        <!--
             <banner>
                 <type>gif</type>
                 <width>300</width>
@@ -58,30 +58,30 @@
             </banner>
             -->
 
-        </phase>
+    </phase>
 
-        <phase category="itunes">
+    <phase category="itunes">
 
-            <banner>
-                <type>html</type>
-                <width>300</width>
-                <height>250</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
+        <banner>
+            <type>html</type>
+            <width>300</width>
+            <height>250</height>
+            <altLabel></altLabel>
+            <altFileName></altFileName>
+        </banner>
 
-        </phase>
+    </phase>
 
-        <phase category="google">
+    <phase category="google">
 
-            <banner>
-                <type>html</type>
-                <width>300</width>
-                <height>250</height>
-                <altLabel></altLabel>
-                <altFileName></altFileName>
-            </banner>
+        <banner>
+            <type>html</type>
+            <width>300</width>
+            <height>250</height>
+            <altLabel></altLabel>
+            <altFileName></altFileName>
+        </banner>
 
-        </phase>
+    </phase>
 
-    </banners>
+</banners>

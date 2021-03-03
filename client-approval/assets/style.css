@@ -20,13 +20,16 @@ body * {
     height: 0;
     visibility: visible;
 }
+
 .clear {
     clear: both;
 }
+
 .fl {
     float: left;
     padding-right: 7.5px;
 }
+
 .fr {
     float: right;
     padding-left: 7.5px;
@@ -53,16 +56,19 @@ body {
     vertical-align: baseline;
     background-color: #121b26;
 }
+
 div,
 iframe {
     overflow: hidden !important;
     padding: 0px;
     margin: 0px;
 }
+
 img {
     padding: 0px;
     margin: 0px;
 }
+
 header,
 footer {
     background-color: #121b26;
@@ -70,28 +76,35 @@ footer {
     padding-bottom: 15px;
     color: #fff;
 }
+
 header {
     font-size: 18px;
     font-weight: 400;
 }
+
 footer {
     text-align: center;
     font-size: 14px;
     font-weight: 400;
 }
+
 main {
     background-color: #fff;
 }
+
 .container {
     width: 1200px;
     margin: 0 auto;
 }
+
 .col-left {
     width: 150px;
 }
+
 .col-right {
     width: 1050px;
 }
+
 button {
     display: block;
     width: 100%;
@@ -105,16 +118,20 @@ button {
     font-size: 12px;
     border-radius: 0px;
 }
+
 button:last-of-type {
     margin-bottom: 0px;
 }
+
 button:focus {
     outline: 0;
 }
+
 button:hover {
     background-color: #121b26;
     color: #d2fc4f;
 }
+
 #buttonContainer div {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -123,9 +140,11 @@ button:hover {
     font-size: 14px;
     color: #121b26;
 }
+
 #buttonContainer div:first-of-type {
     padding-top: 0px;
 }
+
 #buttonContainer,
 #bannerContainer {
     width: 100%;
@@ -134,6 +153,7 @@ button:hover {
     padding: 15px;
     margin-bottom: 15px;
 }
+
 iframe {
     outline: none;
     border: none;
@@ -141,6 +161,7 @@ iframe {
     margin: 0px;
     overflow: hidden !important;
 }
+
 #projectHeadings,
 #projectData {
     padding-top: 15px;
@@ -150,18 +171,22 @@ iframe {
     background-color: #fff;
     color: #121b26;
 }
+
 #projectHeadings div {
     text-align: right;
     font-weight: 700;
 }
+
 #projectData div {
     text-align: left;
     font-weight: 400;
 }
+
 #main-logo {
     height: 36px;
     padding-left: 15px;
 }
+
 #subhead {
     text-align: left;
     font-weight: 400;
@@ -170,6 +195,7 @@ iframe {
     line-height: 36px;
     color: #121b26;
 }
+
 [class*="decor-"] {
     width: 100%;
     height: 30px;
@@ -177,15 +203,19 @@ iframe {
     display: block;
     background-color: #fff;
 }
+
 .decor-top {
     bottom: 0px;
 }
+
 .decor-bottom {
     top: 0px;
 }
+
 svg path {
     fill: #121b26;
 }
+
 #bannerFrame {
     position: absolute;
     outline: none;
@@ -194,6 +224,7 @@ svg path {
     margin: 0px;
     display: none;
 }
+
 #staticFrame {
     position: absolute;
     outline: none;
