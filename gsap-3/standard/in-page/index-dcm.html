@@ -19,11 +19,14 @@
         #bannerContainer {
             display: none
         }
+
     </style>
 
+    <link rel="stylesheet" type="text/css" href="style.css">
+
     <!-- Load GSAP -->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>-->
-    <script src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.5.1_min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>-->
+    <script src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.9.1_min.js"></script>
 
     <script>
         // HTML5 Validator
@@ -80,15 +83,7 @@
             }
         })();
 
-        function loadCSSAndJS() {
-            //console.log('loadCSSAndJS');
-            // Load in CSS 
-            //console.log('loadCSS');
-            var extCSS = document.createElement('link');
-            extCSS.setAttribute('rel', 'stylesheet');
-            extCSS.setAttribute('type', 'text/css');
-            extCSS.setAttribute('href', 'style.css');
-            document.getElementsByTagName('head')[0].appendChild(extCSS);
+        function loadJS() {
             // Load in JS
             ////console.log('loadJS');
             var extJavascript = document.createElement('script');
@@ -101,7 +96,7 @@
 
 </head>
 
-<body onload='loadCSSAndJS()'>
+<body onload='loadJS()'>
     <div id="bannerContainer">
         <!-- banner stuff goes here -->
         <img id="placeholder" src="images/placeholder.png">

@@ -19,11 +19,14 @@
         #bannerContainer {
             display: none
         }
+
     </style>
 
+    <link rel="stylesheet" type="text/css" href="style.css">
+
     <!-- Load GSAP -->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>-->
-    <script src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.5.1_min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>-->
+    <script src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.9.1_min.js"></script>
 
     <!-- DoubleClick Enabler -->
     <script type="text/javascript" src='https://s0.2mdn.net/ads/studio/Enabler.js'></script>
@@ -51,13 +54,6 @@
 
         function enablerPoliteInit() {
             console.log('enablerPoliteInit');
-            // Load in CSS 
-            //console.log('loadCSS');
-            var extCSS = document.createElement('link');
-            extCSS.setAttribute('rel', 'stylesheet');
-            extCSS.setAttribute('type', 'text/css');
-            extCSS.setAttribute('href', Enabler.getUrl('style.css'));
-            document.getElementsByTagName('head')[0].appendChild(extCSS);
             // Load in JS
             ////console.log('loadJS');
             var extJavascript = document.createElement('script');

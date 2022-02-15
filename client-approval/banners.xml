@@ -32,7 +32,7 @@
         etc
         -->
 
-    <phase category="physical">
+    <phase category="folder-name">
         <!--phase category can be whatever you want it to be, but subfolder has to have the same name-->
         <!--hyphens in category name/subfolder will be displayed as spaces-->
 
@@ -57,30 +57,6 @@
                 <altFileName></altFileName>
             </banner>
             -->
-
-    </phase>
-
-    <phase category="itunes">
-
-        <banner>
-            <type>html</type>
-            <width>300</width>
-            <height>250</height>
-            <altLabel></altLabel>
-            <altFileName></altFileName>
-        </banner>
-
-    </phase>
-
-    <phase category="google">
-
-        <banner>
-            <type>html</type>
-            <width>300</width>
-            <height>250</height>
-            <altLabel></altLabel>
-            <altFileName></altFileName>
-        </banner>
 
     </phase>
 

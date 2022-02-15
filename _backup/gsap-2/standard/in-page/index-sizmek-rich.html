@@ -15,6 +15,8 @@
         }
 
     </style>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <!-- Load TweenMax -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
@@ -34,19 +36,11 @@
             if (!EB.isInitialized()) {
                 EB.addEventListener(EBG.EventName.EB_INITIALIZED, loadCSSAndJS);
             } else {
-                loadCSSAndJS();
+                loadJS();
             }
         }
 
-        function loadCSSAndJS() {
-            //console.log('loadCSSAndJS');
-            // Load in CSS 
-            //console.log('loadCSS');
-            var extCSS = document.createElement('link');
-            extCSS.setAttribute('rel', 'stylesheet');
-            extCSS.setAttribute('type', 'text/css');
-            extCSS.setAttribute('href', 'style.css');
-            document.getElementsByTagName('head')[0].appendChild(extCSS);
+        function loadJS() {
             // Load in JS
             ////console.log('loadJS');
             var extJavascript = document.createElement('script');
