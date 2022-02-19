@@ -2,10 +2,116 @@
 
     // console.clear();
 
-    // ===== get elements =====
+    // ===== get dom elements =====
 
-    var placeholder = document.getElementById('placeholder');
-    var cta = document.getElementById('cta');
+var text1 = document.getElementById('text1');
+var text2 = document.getElementById('text2');
+    
+    // ===== set vars and defaults =====
+
+    var animTime = 1;
+    var fadeTime = animTime/3;
+    var animDist = 100;
+    var animScale = 2;
+    var staggerOffset = 1;
+    var maxAnimDuration = 15; // secs
+
+    // ===== establish gsap timeline =====
+
+    // https://greensock.com/docs/v3/GSAP
+
+    var tl1 = gsap.timeline({
+        repeat: 0,
+        repeatDelay: 3
+    });
+
+    // ===== defaults =====
+
+    gsap.defaults({
+        ease: "power2.out",
+        duration: animTime,
+        stagger: staggerOffset
+    });
+
+    //gsap.config({
+    //    force3D: false
+    //});
+
+    // ===== eases =====
+
+    // https://greensock.com/ease-visualizer
+
+    var le = "none";
+
+    var so = "sine.out";
+    var si = "sine.in";
+    var sio = "sine.inOut";
+
+    var bConfig = "2";
+
+    var bo = "back.out(" + bConfig + ")";
+    var bi = "back.in(" + bConfig + ")";
+    var bio = "back.inOut(" + bConfig + ")";
+
+    var eConfig = "1.25, 0.375"
+
+    var eo = "elastic.out(+" + eConfig + ")"; //or just "elastic" because ".out" is the default flavor
+    var ei = "elastic.in(+" + eConfig + ")";
+    var eio = "elastic.inOut(+" + eConfig + ")";
+    
+    var eOut = "power2.out";
+    var eIn = "power2.in";
+    
+    // rotation: gsap.utils.wrap([0,-30,30,-35,40])
+    //.set(plateDiv,{x:-10,y:0,transformPerspective:450, rotationY: -45, transformStyle:'preserve-3d',backfaceVisibility: 'hidden'})
+    
+    var rIn = gsap.utils.wrap([85,-85]);
+    var rOut = gsap.utils.wrap([-85,85]);
+    
+    function startAnim() {
+        //console.log('startAnim');
+
+        tl1
+
+            .addLabel("frame1", 1)
+   
+            .from([text1,text2],{y: 50, autoAlpha:0},'frame1')
+
+
+        ;
+
+        // ===== gets total duration of timeline =====
+
+        //console.log("total duration : " + tl1.totalDuration() + " secs");
+
+        // ===== timescale/duration =====
+
+//        tl1.timeScale(1);
+//        tl1.totalDuration(15);
+
+//        if (tl1.totalDuration() >= maxAnimDuration) {
+//            tl1.totalDuration(maxAnimDuration);
+//            console.log("adjusted duration : " + maxAnimDuration + " secs");
+//        };
+
+    }
+
+    // ===== init =====
+
+    function addEventListeners() {
+        //console.log('addEventListeners');
+    }
+
+    function initBanner() {
+        //console.log('initBanner');
+        bannerContainer.style.display = 'block';
+        addEventListeners();
+        startAnim();
+    }
+
+    initBanner();
+
+})();
 
     // ===== check date =====
 
@@ -36,119 +142,6 @@
     //        console.log(d1);
     //    }
 
-    // ===== set vars and defaults =====
-
-    var animTime = 1;
-    var fadeTime = 0.5;
-    var animDist = 50;
-    var animScale = 2;
-    var staggerOffset = 0.25;
-    var frameDelay = 3;
-
-    // TweenLite.defaultOverwrite = 'auto';
-
-    TweenLite.defaultEase = Power4.easeOut;
-
-    var ee = Elastic.easeOut.config(1, 0.5); // elastic ease
-    var re = RoughEase.ease.config({
-        template: Cubic.easeOut,
-        strength: 1,
-        points: 25,
-        taper: "out",
-        randomize: true,
-        clamp: false
-    }); // rough ease
-    var le = Power0.easeNone; // linear ease
-    var bo = Back.easeOut.config(2); // back out
-    var bi = Back.easeIn.config(2); // back in
-
-    var tl1 = new TimelineMax({
-        repeat: 0,
-        repeatDelay: frameDelay
-    });
-
-    // ===== set timeScale =====
-
-    tl1.timeScale(1);
-
-    // ===== eases =====
-
-    // https://greensock.com/ease-visualizer
-
-    // ease: Elastic.easeOut.config(1, 0.3);
-    // ease: Back.easeOut.config(1.7);
-    // ease: SteppedEase.config(12);
-    // ease: SlowMo.ease.config(0.5, 1, false);
-    // ease: RoughEase.ease.config({ template: Cubic.easeOut, strength: 1, points: 20, taper: "out", randomize: true, clamp: false});
-
-    //  ===== timeline =====
-
-    // https://greensock.com/docs/#/HTML5/Sequencing/TimelineMax/
-
-    //.set(element, {});
-    //.to(element, animTime, {});
-    //.from(element, animTime, {});
-    //.fromTo(element, animTime, {},{});
-    //.staggerTo([elements], animTime, {}, staggerOffset);
-    //.staggerFrom([elements], animTime, {}, staggerOffset);
-
-    //cycle:{x:[50,0,-20], rotation:[30,60,90]}
-    //cycle:{x:function() { return Math.random() * 200; }}
-
-    // ===== frame functions =====
-
-    // function nextFrame(nextFrameFunction, nextFrameDelay) {
-    //     setTimeout(nextFrameFunction, nextFrameDelay);
-    // }
-    // onComplete: nextFrame,
-    // onCompleteParams: [frame2, 2000]
-
-    function random(min, max) {
-        if (max == null) {
-            max = min;
-            min = 0;
-        }
-        return Math.random() * (max - min) + min;
-    }
-
-    function startAnim() {
-        //console.log('startAnim');
-
-        tl1
-
-        .addLabel("frame1", 0)
-        .addLabel("frame2", 3)
-        .addLabel("frame3", 6)
-        .addLabel("frame4", 9)
-        .addLabel("frame5", 12)
-
-        .from(placeholder, animTime, {autoAlpha: 0, scale: animScale}, "frame1")
-        .from(cta, animTime, {autoAlpha: 0, y: animDist, ease: ee}, "frame2")
-
-        ;
-
-        // ===== total duration of timeline =====
-
-        console.log("duration : " + tl1.totalDuration() + " secs");
-
-    }
-
-    // ===== init =====
-
-    function addEventListeners() {
-        //console.log('addEventListeners');
-    }
-
-    function initBanner() {
-        //console.log('initBanner');
-        bannerContainer.style.display = 'block';
-        addEventListeners();
-        startAnim();
-    }
-
-    initBanner();
-
-})();
 
 // ---------------------------------------------------------------------------------
 // POLITE LOAD IMAGES
